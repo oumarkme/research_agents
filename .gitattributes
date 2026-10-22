@@ -1,2 +1,7 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Keep LF line endings in the repository and in every working tree, on all operating
+# systems. Scripts and SKILL.md files break when Windows converts them to CRLF.
+* text=auto eol=lf
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.pdf binary

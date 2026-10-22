@@ -1,0 +1,22 @@
+{
+  "name": "research_agents",
+  "description": "A bioinformatics, genetics, and breeding lab as one plugin.",
+  "owner": {
+    "name": "Bioinfo Lab maintainers"
+  },
+  "plugins": [
+    {
+      "name": "bioinfo-lab",
+      "source": "./plugins/bioinfo-lab",
+      "description": "Ten right-sized lab agents and 21 skills for sequencing, breeding, genomic prediction, association studies, and clinical genetics.",
+      "category": "research",
+      "tags": [
+        "bioinformatics",
+        "genomics",
+        "genetics",
+        "statistics",
+        "breeding"
+      ]
+    }
+  ]
+}
