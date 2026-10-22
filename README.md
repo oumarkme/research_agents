@@ -8,12 +8,12 @@ Ask in plain language, and the right method loads: genomic prediction for breede
 
 ## Install
 
-Claude web app: Customize > Plugins > Add > Add marketplace, enter `<owner>/research_agents`, then select `bioinfo-lab` and Add. For a private repository, connect GitHub and allow the Claude GitHub App when asked.
+Claude web app: Customize > Plugins > Add > Add marketplace, enter `oumarkme/research_agents`, then select `bioinfo-lab` and Add. For a private repository, connect GitHub and allow the Claude GitHub App when asked.
 
 Claude Code:
 
 ```text
-/plugin marketplace add <owner>/research_agents
+/plugin marketplace add oumarkme/research_agents
 /plugin install bioinfo-lab@research_agents
 ```
 
