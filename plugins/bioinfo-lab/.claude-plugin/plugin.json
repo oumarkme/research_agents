@@ -1,12 +1,13 @@
 {
   "name": "bioinfo-lab",
   "displayName": "Bioinfo Lab",
-  "version": "1.0.0",
-  "description": "Ten right-sized lab agents and 21 skills for sequencing, breeding, genomic prediction, association studies, and clinical genetics.",
+  "version": "1.1.0",
+  "description": "Ten right-sized lab agents and 22 skills for sequencing, breeding, genomic prediction, association studies, and clinical genetics.",
   "author": {
     "name": "Bioinfo Lab maintainers"
   },
   "license": "MIT",
+  "repository": "https://github.com/oumarkme/research_agents",
   "keywords": [
     "bioinformatics",
     "genomics",

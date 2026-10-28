@@ -3,7 +3,7 @@
 
 Usage: python3 check_translation.py SOURCE TARGET
 
-Checks (Chinese and English, either direction; standard library only):
+Checks (any language pair; standard library only):
   FAIL  a DOI or URL differs between the texts
   FAIL  a number differs (multiset comparison, thousands separators ignored)
   WARN  a citation (surname, year) is missing from one text
@@ -50,7 +50,7 @@ def extract(text):
         if s:
             cites[(s.group(1), m.group())] += 1
     terms = Counter(t for t in TERM.findall(body) if len(t) > 1)
-    sents = len([s for s in re.split(r"(?<=[.!?。！？])\s*", body) if len(s.strip()) > 3])
+    sents = len([s for s in re.split(r"(?<=[.!?。！？؟।])\s*", body) if len(s.strip()) > 3])
     return Counter(dois), Counter(urls), nums, cites, terms, sents
 
 

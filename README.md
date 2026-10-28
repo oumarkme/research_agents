@@ -1,8 +1,8 @@
 # research_agents
 
-A Claude plugin marketplace that adds a bioinformatics, genetics, and breeding lab to Claude: 10 agents as lab members and 21 skills as shared methods.
+A Claude plugin marketplace that adds a bioinformatics, genetics, and breeding lab to Claude: 10 agents as lab members and 22 skills as shared methods.
 
-Status: stable · Version: 1.0.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
+Status: stable · Version: 1.1.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
 
 Ask in plain language, and the right method loads: genomic prediction for breeders, ACMG/AMP variant classification for clinicians, sample planning for the bench, pipeline QC for bioinformatics. No server, conda, or container is required.
 
@@ -36,7 +36,7 @@ Intended behavior (not yet tested end to end): the breeder agent states the obje
 |---|---|---|---|
 | `assistant` | Haiku | low | Search, lookups, log checks, test runs |
 | `data-steward` | Haiku | medium | Metadata, FAIR, repositories, data plans |
-| `translator` | Sonnet | medium | Taiwan Traditional Chinese and American English |
+| `translator` | Sonnet | medium | Academic English to or from any language (default: Taiwan Traditional Chinese) |
 | `writer` | Sonnet | medium | Manuscripts, grants, reports, READMEs |
 | `bioinformatician` | Sonnet | medium | Sequencing QC, calling, assembly, pipelines |
 | `software-engineer` | Sonnet | medium | Reusable tools in Python, R, C++, Rust |
@@ -51,7 +51,7 @@ Intended behavior (not yet tested end to end): the breeder agent states the obje
 | Quantitative | `study-design`, `quantitative-genetics`, `genomic-prediction`, `association-studies` |
 | Data and sequencing | `sample-and-assay-planning`, `sequencing-pipelines`, `genomics-pitfalls`, `data-stewardship` |
 | Clinical | `variant-interpretation` |
-| Code and projects | `coding-style`, `project-readme` |
+| Code and projects | `coding-style`, `project-readme`, `analysis-log` |
 | Evidence and writing | `trusted-sources`, `writing`, `translator`, `plotting` |
 | People and compliance | `stakeholder-communication`, `research-ethics`, `research-planning` |
 
@@ -62,9 +62,11 @@ If you run jobs on a shared server or cluster, put its rules (host, limits, read
 1. Scope: skills map to the ISCB bioinformatics core competencies (Mulder et al., 2018) and to domain standards for breeding, prediction, association studies, sequencing, clinical genetics, and data stewardship. The map is in `plugins/bioinfo-lab/skills/lab-team/references/competency-map.md`.
 2. Evidence: each skill cites primary sources. On 2026-10-22 the 45 cited DOIs were checked in Crossref and 136 resource URLs with live requests; failures are flagged in the catalog.
 3. Cost control: only `lab-rules` plus at most one role skill is preloaded per agent. Detail sits in `references/` files that load on demand. Each agent has a model and effort tier and a turn cap, and the main session handles small work (`lab-team`).
-4. Layout: `.claude-plugin/marketplace.json`; `plugins/bioinfo-lab/` with `agents/`, `skills/<name>/SKILL.md`, and `.claude-plugin/plugin.json`.
+4. Long work: `analysis-log` keeps a progress file, a claims ledger, and provenance, so a new session resumes from the files and not from memory.
+5. Design basis: delegation, context, and testing choices follow Anthropic's published engineering guidance; each choice and its source is listed in `plugins/bioinfo-lab/skills/lab-team/references/design-basis.md`.
+6. Layout: `.claude-plugin/marketplace.json`; `plugins/bioinfo-lab/` with `agents/`, `skills/<name>/SKILL.md`, and `.claude-plugin/plugin.json`.
 
-Limits: skills are guidance, not validated pipelines, and no skill has been tested end to end on real data. Policy items taken from secondary sources (ICMJE and Springer Nature AI rules, Taiwan data-protection law) must be checked against the official text. Some sites block scripts (OMIM, UK Biobank, TAIR); use a browser.
+Limits: skills are guidance, not validated pipelines, and no skill has been tested end to end on real data. Instructions are advice, not enforcement: a rule that must never be skipped belongs in a hook or permission rule in your own settings. Policy items taken from secondary sources (ICMJE and Springer Nature AI rules, Taiwan data-protection law) must be checked against the official text. Some sites block scripts (OMIM, UK Biobank, TAIR); use a browser.
 
 ## Develop
 

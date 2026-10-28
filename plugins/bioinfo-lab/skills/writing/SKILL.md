@@ -5,7 +5,7 @@ description: 'Use whenever you write or edit prose in a file (manuscript, abstra
 
 # Writing (academic English)
 
-Goal: a reader outside the sub-field, including a non-native reader, understands each sentence once, in one way. Scope: prose in files; chat follows the user's language. File text is American English unless the user asks for Chinese (Taiwan Traditional Chinese, technical terms in English; load `translator`). Edit existing documents in their own voice, format, and spelling; apply these rules to text you add or change.
+Goal: a reader outside the sub-field, including a non-native reader, understands each sentence once, in one way. Scope: prose in files; chat follows the user's language. File text is American English unless the user asks for another language (load `translator`; default pair: Taiwan Traditional Chinese). Edit existing documents in their own voice, format, and spelling; apply these rules to text you add or change.
 
 ## Workflow (all steps mandatory)
 

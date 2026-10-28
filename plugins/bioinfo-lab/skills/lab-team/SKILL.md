@@ -15,7 +15,7 @@ A multi-agent run costs about 15 times the tokens of a chat (Anthropic, 2025). D
 |---|---|---|---|---|
 | `assistant` | Haiku | low | 15 | Search, lookups by public ID, log and job checks, test runs, exact edits |
 | `data-steward` | Haiku | medium | 20 | Layout, metadata, FAIR and MIAPPE checks, repository choice, data management plans |
-| `translator` | Sonnet | medium | 30 | zh-TW and English translation |
+| `translator` | Sonnet | medium | 30 | Academic English to or from any language (default zh-TW) |
 | `writer` | Sonnet | medium | 30 | Manuscripts, grants, READMEs, reports |
 | `bioinformatician` | Sonnet | medium | 40 | Sequencing QC, calling, benchmarking, assembly, pipelines |
 | `software-engineer` | Sonnet | medium | 40 | Reusable tools and packages with tests (Python, R, C++, Rust) |
@@ -26,9 +26,19 @@ A multi-agent run costs about 15 times the tokens of a chat (Anthropic, 2025). D
 
 Escalate only when a cheaper tier fails twice: raise effort first, then model. Opus is for the reviewer and for blind variant classification, nothing else by default.
 
+## Effort by task size
+
+| Task | Agents | Tool calls each |
+|---|---|---|
+| Lookup, small edit, one file | none (main session) | 3 to 10 |
+| Compare 2 to 4 items, or a literature scan | 2 to 4 `assistant` in parallel | 10 to 15 |
+| Full analysis or manuscript | roles in sequence per the playbooks | up to the agent's turn limit |
+
+Do not split work whose parts share context or depend on each other; keep it in one session. These sizes are heuristics from vendor guidance (`references/design-basis.md`), not tested on this plugin.
+
 ## Brief every agent with
 
-Objective, exact inputs and paths, output format and length, boundaries, and (for jobs) the CLAUDE.md compute rules. It sees none of this conversation. Name the skill it must load for figures, prose, or translation.
+Objective, exact inputs and paths, output format and length, boundaries, and (for jobs) the CLAUDE.md compute rules. It sees none of this conversation. Name the skill it must load for figures, prose, or translation, and the sources or tools it should use. For work across sessions, point it to `PROGRESS.md` (`analysis-log`).
 
 ## Playbooks
 
@@ -37,7 +47,7 @@ Objective, exact inputs and paths, output format and length, boundaries, and (fo
 * Breeding analysis or genomic prediction: `breeder` sets objective and scheme, `statistician` fits and validates (`quantitative-genetics`, `genomic-prediction`), `bioinformatician` prepares genotypes, `writer` reports to the breeder (`stakeholder-communication`).
 * GWAS or Mendelian randomization: `bioinformatician` QC, `statistician` model and thresholds (`association-studies`), `reviewer` on the claim.
 * Rare disease or diagnostic case: patient-level data stays in the main session and on the machines CLAUDE.md names. `assistant` batches public-ID lookups; `clinical-geneticist` classifies from the evidence table; `reviewer` (variant mode) classifies blind; adjudicate only discordant variants; the report goes to the physician (`stakeholder-communication`).
-* Manuscript or grant: main fixes claims and the design statement (`study-design`, `research-planning`); `assistant` collects literature in parallel; `writer` drafts; one `reviewer` claims audit before delivery. Translation after the English text is final. Brief `translator` with source path, direction, audience, output path, and glossary path. For a final submission, add one `reviewer` claims check on Methods and Results of the translation.
+* Manuscript or grant: main fixes claims and the design statement (`study-design`, `research-planning`); `assistant` collects literature in parallel; `writer` drafts; one `reviewer` claims audit before delivery. Translation after the English text is final. Brief `translator` with source path, language pair, audience, output path, and glossary path. For a final submission, add one `reviewer` claims check on Methods and Results of the translation.
 * Data release: `data-steward` prepares; the user decides on any consent or sharing question (`research-ethics`).
 
 ## Checks and stop rules

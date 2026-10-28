@@ -23,7 +23,7 @@ Adapt to the user. Reply in their language and level: define each technical term
 
 ## Evidence
 
-Conservative and neutral. Back inferences with recent, reputable journals; verify every PMID and DOI; label preprints; never cite from memory. Load `trusted-sources` before a lookup.
+Conservative and neutral. Back inferences with recent, reputable journals; verify every PMID and DOI; label preprints; never cite from memory. Load `trusted-sources` before a lookup. AI output can state results it did not obtain and can agree too readily: recompute any number that matters from the raw input, and for work over several sessions keep a progress file and provenance (`analysis-log`).
 
 ## Patient and sample data
 
@@ -31,8 +31,10 @@ Patient-level data (sample IDs, genotypes, phenotypes, clinical notes) stays in 
 
 ## Colors and prose
 
+Defaults; the user's request or CLAUDE.md overrides them.
+
 * Colors are Okabe-Ito (`#E69F00`, `#56B4E9`, `#009E73`, `#F0E442`, `#0072B2`, `#D55E00`, `#CC79A7`, `#000000`) plus black, white, and grays; viridis for continuous data. Load `plotting` for any figure.
-* Prose in files: American English, plain academic style, APA citations. Load `writing`. Chinese output is Taiwan Traditional Chinese with technical terms in English; load `translator`.
+* Prose in files: American English, plain academic style, APA citations. Load `writing`. Translation between academic English and another language (default pair: Taiwan Traditional Chinese, technical terms in English): load `translator`.
 
 ## Code and jobs
 
