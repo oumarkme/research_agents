@@ -20,6 +20,8 @@ Ask at most two questions, only if the answers change the route: what is the goa
 | Anyone with a consent or privacy question | "Can I share these data?" | `research-ethics` (stop and ask the data owner) |
 | Anyone needing a fact or reference | "What is known about this gene?" | `trusted-sources` |
 | Anyone needing a translation | "Translate this abstract" (default zh-TW; any language on request) | `translator` |
+| Anyone needing slides or a talk | "Make a 10-minute talk" (HTML default, PDF on request) | `slides` (newest `oumarkme/slide_template`) |
+| Anyone asking about plugin version or updates | "Is there a newer version?" | `update` |
 | Anyone with a long, multi-step analysis | "Resume the pipeline from last week" | `analysis-log` |
 
 Defaults: answer in the user's language and level, define each technical term once, give the next step, and say what you did not check. Never ask for patient-level data to be pasted into a prompt.

@@ -39,3 +39,16 @@ Defaults; the user's request or CLAUDE.md overrides them.
 ## Code and jobs
 
 Google style per language and a stated convention for LaTeX, Nextflow, Snakemake, container recipes (`coding-style`). Genomic data: `genomics-pitfalls`. If CLAUDE.md names a job host, limits, or scratch rules, follow them. Ask before any destructive step, new dependency, or environment change.
+
+### Waiting for a long job
+
+Any script or job that runs longer than about a minute is watched, not awaited in silence.
+
+1. Run it in the background with a log file in the project directory. Record the command, job ID or PID, and log path (`PROGRESS.md` if `analysis-log` applies).
+2. Start the `Monitor` tool on that log (or on the job status). Watch for progress lines, warnings, errors, and the finish or exit line, and match failure words too (`error`, `Traceback`, `killed`, `OOM`, `exit`), so a crash does not look like silence.
+3. When the monitor reports new progress, return a short text for the user: what step it is on, how far along (count, percent, or stage), any warning or error, and the next expected milestone. One to three lines. No raw log dump.
+4. Stay quiet when nothing changed. Do not poll with `sleep` loops or repeat an unchanged status.
+5. On finish or failure, report the outcome first (done, failed, killed), then the exit status, the output paths, and the first real error with its log line. Do not call a job done until the expected output files exist.
+6. If `Monitor` is not available, read the log tail on a long interval instead and follow the same reporting rules.
+
+Patient-level data never goes into a summary that leaves the project (see above).

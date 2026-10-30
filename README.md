@@ -1,8 +1,8 @@
 # research_agents
 
-A Claude plugin marketplace that adds a bioinformatics, genetics, and breeding lab to Claude: 10 agents as lab members and 22 skills as shared methods.
+A Claude plugin marketplace that adds a bioinformatics, genetics, and breeding lab to Claude: 10 agents as lab members and 24 skills as shared methods.
 
-Status: stable · Version: 1.1.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
+Status: stable · Version: 1.2.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
 
 Ask in plain language, and the right method loads: genomic prediction for breeders, ACMG/AMP variant classification for clinicians, sample planning for the bench, pipeline QC for bioinformatics. No server, conda, or container is required.
 
@@ -17,7 +17,9 @@ Claude Code:
 /plugin install bioinfo-lab@research_agents
 ```
 
-Skills work in chat, Cowork, and Claude Code. Agents work in Cowork and Claude Code. Update with `/plugin marketplace update research_agents`, then `/reload-plugins`.
+Skills work in chat, Cowork, and Claude Code. Agents work in Cowork and Claude Code. Ask for `/bioinfo-lab:update` to compare your version with the latest release and get the exact commands: `/plugin marketplace update research_agents`, `/plugin update bioinfo-lab@research_agents`, then `/reload-plugins`.
+
+Slides: ask for a talk and the `slides` skill downloads the newest [slide_template](https://github.com/oumarkme/slide_template) and builds an HTML deck (PDF on request).
 
 ## Quick start
 
@@ -47,11 +49,11 @@ Intended behavior (not yet tested end to end): the breeder agent states the obje
 
 | Group | Skills |
 |---|---|
-| Entry and rules | `start-here`, `lab-rules`, `lab-team` |
+| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `update` |
 | Quantitative | `study-design`, `quantitative-genetics`, `genomic-prediction`, `association-studies` |
 | Data and sequencing | `sample-and-assay-planning`, `sequencing-pipelines`, `genomics-pitfalls`, `data-stewardship` |
 | Clinical | `variant-interpretation` |
-| Code and projects | `coding-style`, `project-readme`, `analysis-log` |
+| Code and projects | `coding-style`, `project-readme`, `analysis-log`, `slides` |
 | Evidence and writing | `trusted-sources`, `writing`, `translator`, `plotting` |
 | People and compliance | `stakeholder-communication`, `research-ethics`, `research-planning` |
 

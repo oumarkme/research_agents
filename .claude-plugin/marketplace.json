@@ -8,7 +8,7 @@
     {
       "name": "bioinfo-lab",
       "source": "./plugins/bioinfo-lab",
-      "description": "Ten right-sized lab agents and 22 skills for sequencing, breeding, genomic prediction, association studies, and clinical genetics.",
+      "description": "Ten right-sized lab agents and 24 skills for sequencing, breeding, genomic prediction, association studies, and clinical genetics.",
       "category": "research",
       "tags": [
         "bioinformatics",
