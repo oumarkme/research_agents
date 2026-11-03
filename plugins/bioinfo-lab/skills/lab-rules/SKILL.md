@@ -33,7 +33,7 @@ Patient-level data (sample IDs, genotypes, phenotypes, clinical notes) stays in 
 
 Defaults; the user's request or CLAUDE.md overrides them.
 
-* Colors are Okabe-Ito (`#E69F00`, `#56B4E9`, `#009E73`, `#F0E442`, `#0072B2`, `#D55E00`, `#CC79A7`, `#000000`) plus black, white, and grays, used in the pick order of `plotting` (light colors only as fills); viridis for sequential data and the Okabe-Ito diverging map for data centered on a value. Load `plotting` for any figure.
+* Colors: the lab's muted 8-color palette, used in this order and never more than eight (Nature figure guides: few colors, hierarchy, no red-green): indigo `#332288`, rose `#CC6677`, wine `#882255`, green `#117733`, cyan `#88CCEE`, olive `#999933`, sand `#DDCC77`, purple `#AA4499`; plus black (reference) and grays (context). Cyan, olive, and sand are fills only. One saturated accent (indigo) marks the focus, the same group keeps the same color in every figure, black type, text at least 7 pt. Viridis for sequential data, the muted diverging map for data centered on a value. Applies to figures, slides, tables, and diagrams alike. Load `plotting` for any figure and `slides` for any deck.
 * Prose in files: American English, plain academic style, APA citations. Load `writing`. Translation between academic English and another language (default pair: Taiwan Traditional Chinese, technical terms in English): load `translator`.
 
 ## Code and jobs

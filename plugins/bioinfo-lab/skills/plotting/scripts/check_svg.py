@@ -2,8 +2,8 @@
 """Spec check for stand-alone manuscript SVG figures, plus a PNG preview for viewing.
 
 Usage: python check_svg.py figure.svg [more.svg ...]
-Checks: width <= 88 mm, height <= 247 mm, white background, text >= 6 pt, one font family (Arial),
-colors from Okabe-Ito / grays / viridis-like ramps (vector parts only), file name, rasterized layers.
+Checks: width <= 88 mm, height <= 247 mm, white background, text >= 7 pt, one font family (Arial),
+colors from palette / grays / viridis-like ramps (vector parts only), file name, rasterized layers.
 Writes <scratch>/<name>_preview.png (rsvg-convert, 300 dpi); view it with Read for the legibility check.
 Exit status 1 if any hard check fails. Colors inside rasterized layers are not inspected.
 """
@@ -13,8 +13,8 @@ import subprocess
 import sys
 import tempfile
 
-MAX_W_MM, MAX_H_MM, MIN_PT = 88.0, 247.0, 6.0
-OKABE_ITO = {"#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000"}
+MAX_W_MM, MAX_H_MM, MIN_PT = 88.0, 247.0, 7.0
+PALETTE = {"#332288", "#CC6677", "#882255", "#117733", "#88CCEE", "#999933", "#DDCC77", "#AA4499", "#000000"}
 BAD_NAME = re.compile(r"^(fig(ure)?[_-]?\d+|\d+[_-])", re.I)
 UNIT_MM = {"pt": 25.4 / 72, "px": 25.4 / 96, "mm": 1.0, "cm": 10.0, "in": 25.4, "": 25.4 / 96}
 
@@ -55,8 +55,8 @@ def check(path: str) -> bool:
 
     cols = {c.upper() for c in re.findall(r"(?:fill|stroke)[:=]\s*['\"]?\s*(#[0-9a-fA-F]{6})", svg)}
     grays = {c for c in cols if c[1:3] == c[3:5] == c[5:7]}
-    other = sorted(cols - grays - OKABE_ITO)
-    rep("colors", True, f"{len(cols & OKABE_ITO)} Okabe-Ito, {len(grays)} gray, {len(other)} other"
+    other = sorted(cols - grays - PALETTE)
+    rep("colors", True, f"{len(cols & PALETTE)} palette, {len(grays)} gray, {len(other)} other"
         + (f" (viridis/continuous only, else fix): {', '.join(other[:12])}" if other else ""), hard=False)
     if other and len(other) <= 8:
         res[-1] = res[-1].replace("[ok]", "[WARN]")

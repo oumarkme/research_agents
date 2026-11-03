@@ -1,4 +1,4 @@
-"""Nature single-column theme, Okabe-Ito palette, and exact-size JPEG (default) / PDF (publication) / SVG writer (plotnine).
+"""Nature single-column theme, muted palette, and exact-size JPEG (default) / PDF (publication) / SVG writer (plotnine).
 
 Usage:
     import sys, os; sys.path.insert(0, "<skill dir>/templates")  # the plotting skill gives the path as ${CLAUDE_SKILL_DIR}
@@ -17,26 +17,43 @@ from plotnine import scale_color_gradientn, scale_fill_gradientn, element_blank,
 JPEG_DPI = 300  # default output: JPEG at 300 dpi
 DPI = 600  # resolution of rasterized layers in PDF/SVG only (those are vector); pt text sizes unchanged
 JPEG_QUALITY = 95
-# Publication (PDF) mode keeps the full Okabe-Ito colors (color-blind-safe) and adds a texture channel so groups
+# Publication (PDF) mode keeps the full muted colors (color-blind-safe) and adds a texture channel so groups
 # stay distinguishable when printed in gray: filled areas get a hatch (save_fig applies it by fill color),
 # lines and points get a distinct line style or shape (set by hand). Hatch ink is black on light fills and white
 # on dark fills so it contrasts with the fill in gray.
-HATCH = {"#E69F00": "////", "#56B4E9": "\\\\\\\\", "#009E73": "----", "#F0E442": "||||",
-         "#0072B2": "xxxx", "#D55E00": "++++", "#CC79A7": "....", "#000000": ""}
-HATCH_INK = {"#E69F00": "#000000", "#56B4E9": "#000000", "#009E73": "#FFFFFF", "#F0E442": "#000000",
-             "#0072B2": "#FFFFFF", "#D55E00": "#FFFFFF", "#CC79A7": "#000000", "#000000": "#000000"}
+HATCH = {"#332288": "xxxx", "#CC6677": "////", "#882255": "++++", "#117733": "----", "#88CCEE": "\\\\",
+         "#999933": "||||", "#DDCC77": "....", "#AA4499": "oooo", "#000000": ""}
+HATCH_INK = {"#332288": "#FFFFFF", "#CC6677": "#000000", "#882255": "#FFFFFF", "#117733": "#FFFFFF", "#88CCEE": "#000000",
+             "#999933": "#000000", "#DDCC77": "#000000", "#AA4499": "#FFFFFF", "#000000": "#000000"}
 LINETYPES = ["solid", "dashed", "dotted", "dashdot"]  # per group, for lines
 SHAPES = ["o", "^", "s", "D", "v", "P", "X", "*"]  # per group, for points
-OKABE_ITO = ["#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000"]  # canonical order
-# Pick order (see references/color.md): first groups are the best separated under all CVD types and in lightness.
-# Fills and large markers: blue, orange, green, vermilion, sky blue, pink, yellow, black.
-OKABE_FILL = ["#0072B2", "#E69F00", "#009E73", "#D55E00", "#56B4E9", "#CC79A7", "#F0E442", "#000000"]
-# Lines, thin marks, text: only colors with >= 3:1 contrast on white (max 5 groups; more: split or label directly).
-OKABE_LINE = ["#0072B2", "#D55E00", "#CC79A7", "#009E73", "#000000"]
-# Diverging data (centered on a meaningful value): Okabe-Ito blue -> light gray -> vermilion, interpolated in CIELAB
-# (17 anchors, step dE2000 even to within 0.9 of the exact ramp). Sequential data: viridis. Always draw the color bar.
-OKABE_DIV = ["#0072B2", "#4181BB", "#6191C3", "#7DA1CC", "#97B2D5", "#AFC3DD", "#C8D4E6", "#E0E6EF", "#F7F6F6",
-             "#F9E3D8", "#F8D0BA", "#F6BD9D", "#F2AA80", "#EC9764", "#E68447", "#DE7029", "#D55E00"]
+# Compact muted palette, 8 colors (Tol muted set; Tol, 2021). Chosen for the Nature guide (few colors, hierarchy, no red-green,
+# black type) and checked for color-vision deficiency: smallest distance between any two colors, under normal vision and
+# deutan, protan, and tritan simulation (Machado et al., 2009), is dE76 17 (dE76 > 10 reads as distinct). Order of use: the
+# first colors are the best separated and have >= 3:1 contrast on white (indigo, rose, wine, green); cyan, olive, and
+# sand are light (contrast 1.6-3.0): fill only, with a dark edge, never text or thin lines.
+PALETTE = ["#332288", "#CC6677", "#882255", "#117733", "#88CCEE", "#999933", "#DDCC77", "#AA4499"]  # use in this order; take the first n
+PALETTE_NAMES = ["indigo", "rose", "wine", "green", "cyan", "olive", "sand", "purple"]
+PALETTE_LINE = ["#332288", "#CC6677", "#882255", "#117733", "#AA4499"]  # >= 3:1 on white: lines, thin marks, text (five at most)
+BLACK = "#000000"  # reference or control, not a category
+# Hierarchy (Nature guide): context in neutral gray, the focus group in the first palette color (indigo).
+NEUTRAL = "#BDBDBD"  # context marks; 1.9:1 on white, so fill or large marker only, never text or thin line
+NEUTRAL_LINE = "#757575"  # context lines (4.6:1 on white)
+
+
+def focus_colors(levels, focus):
+    """Dict level -> color: `focus` (one level or a list) gets PALETTE in order, all others NEUTRAL.
+
+    Use with scale_*_manual(values=focus_colors(levels, "case")) when one group carries the message.
+    """
+    focus = [focus] if isinstance(focus, str) else list(focus)
+    return {lv: (PALETTE[focus.index(lv)] if lv in focus else NEUTRAL) for lv in levels}
+
+
+# Diverging data (centered on a meaningful value): muted blue -> light gray -> muted red (ColorBrewer RdBu anchors,
+# interpolated in CIELAB; ends differ in lightness by 4 L*, lightness peaks at the gray middle). Sequential: viridis.
+# Always draw the color bar.
+DIVERGING = ["#2166AC", "#347CB8", "#4393C3", "#6EACD1", "#92C5DE", "#B2D5E7", "#D1E5F0", "#E4EEF4", "#F7F7F7", "#FBE9DF", "#FDDBC7", "#FAC0A4", "#F4A582", "#E68367", "#D6604D", "#C4413C", "#B2182B"]
 
 _available = {f.name for f in font_manager.fontManager.ttflist}
 FIG_FONT = next((f for f in ("Arial", "Liberation Sans", "Arimo", "Helvetica", "DejaVu Sans") if f in _available), "DejaVu Sans")
@@ -52,36 +69,37 @@ def pt_lw(pt: float) -> float:
 
 
 def theme_nature(base_size: float = 7):
+    """Nature guide: all text at least 7 pt (house style 8 pt); black type; titles bold-capable, never italic for emphasis."""
     return theme_classic(base_size=base_size, base_family=FIG_FONT) + theme(
         text=element_text(size=base_size, color="#000000", family=FIG_FONT),
-        axis_text=element_text(size=6, color="#333333"),
-        axis_title=element_text(size=7, color="#000000"),
+        axis_text=element_text(size=7, color="#000000"),
+        axis_title=element_text(size=8, color="#000000"),
         axis_line=element_line(size=pt_lw(0.5), color="#000000"),
         axis_ticks=element_line(size=pt_lw(0.5), color="#000000"),
-        legend_text=element_text(size=6),
-        legend_title=element_text(size=7),
+        legend_text=element_text(size=7),
+        legend_title=element_text(size=8),
         panel_background=element_rect(fill="white"),
         plot_background=element_rect(fill="white", color="white"),
         panel_grid=element_blank(),
     )
 
 
-def scale_color_okabe(line=False, **kw):
-    """line=True: thin lines and text-weight marks (5 colors, all >= 3:1 on white); default: points (8 colors)."""
-    return scale_color_manual(values=OKABE_LINE if line else OKABE_FILL, **kw)
+def scale_color_lab(line=False, **kw):
+    """line=True: thin lines and text-weight marks (5 colors, all >= 3:1 on white); default: fills and points (8 colors)."""
+    return scale_color_manual(values=PALETTE_LINE if line else PALETTE, **kw)
 
 
-def scale_fill_okabe(**kw):
-    return scale_fill_manual(values=OKABE_FILL, **kw)
+def scale_fill_lab(**kw):
+    return scale_fill_manual(values=PALETTE, **kw)
 
 
-def scale_fill_okabe_div(**kw):
+def scale_fill_lab_div(**kw):
     """plotnine scale for data centered on a value: pass limits=(-m, m) so 0 sits at the gray middle."""
-    return scale_fill_gradientn(colors=OKABE_DIV, **kw)
+    return scale_fill_gradientn(colors=DIVERGING, **kw)
 
 
-def scale_color_okabe_div(**kw):
-    return scale_color_gradientn(colors=OKABE_DIV, **kw)
+def scale_color_lab_div(**kw):
+    return scale_color_gradientn(colors=DIVERGING, **kw)
 
 
 def cmap_diverging():
@@ -91,7 +109,7 @@ def cmap_diverging():
     and always draw the color bar (Crameri et al. 2020).
     """
     from matplotlib.colors import LinearSegmentedColormap
-    return LinearSegmentedColormap.from_list("okabe_div", OKABE_DIV, N=256)
+    return LinearSegmentedColormap.from_list("lab_div", DIVERGING, N=256)
 
 
 def _ext(file: str) -> str:
@@ -111,7 +129,7 @@ def _fix_svg(file: str):
 
 
 def apply_hatch(fig) -> int:
-    """Hatch every filled Okabe-Ito patch/polygon (bars, boxes, areas, legend keys) by its fill color.
+    """Hatch every filled muted patch/polygon (bars, boxes, areas, legend keys) by its fill color.
 
     matplotlib hatches a whole collection with one pattern, so a PolyCollection that mixes fill colors
     (plotnine draws all bars of a layer as one) is split into one collection per color first.
@@ -160,7 +178,7 @@ def save_fig(plot, file: str, height_mm: float = 70, width_mm: float = 88, raste
 
     .jpeg default: RGB JPEG, 300 dpi, quality 95.
     .pdf  publication: vector, TrueType fonts embedded; dense layers (collections with more than `raster_min`
-          elements) are rasterized at DPI; full Okabe-Ito colors, with `hatch=True` adding a texture to filled
+          elements) are rasterized at DPI; full muted colors, with `hatch=True` adding a texture to filled
           groups by fill color (see above); set `linetype`/`shape` per group by hand for lines and points.
     .svg  only on request: vector, live text written as Arial, same rasterization rule as PDF.
     """
@@ -190,7 +208,7 @@ def save_fig(plot, file: str, height_mm: float = 70, width_mm: float = 88, raste
 
 
 def mpl_style():
-    """matplotlib/seaborn counterpart of theme_nature (6-7 pt Arial-family text, thin black axes, Okabe-Ito line cycle).
+    """matplotlib/seaborn counterpart of theme_nature (7-8 pt Arial-family text, thin black axes, muted line cycle).
 
     Dense layers: pass rasterized=True to scatter/hexbin/pcolormesh/imshow-like calls; save with save_mpl().
     """
@@ -198,13 +216,13 @@ def mpl_style():
     from cycler import cycler
 
     plt.rcParams.update({
-        "font.family": FIG_FONT, "font.size": 7, "axes.labelsize": 7, "axes.titlesize": 7,
-        "xtick.labelsize": 6, "ytick.labelsize": 6, "legend.fontsize": 6, "legend.title_fontsize": 7,
+        "font.family": FIG_FONT, "font.size": 7, "axes.labelsize": 8, "axes.titlesize": 8,
+        "xtick.labelsize": 7, "ytick.labelsize": 7, "legend.fontsize": 7, "legend.title_fontsize": 8,
         "text.color": "#000000", "axes.labelcolor": "#000000", "xtick.color": "#000000", "ytick.color": "#000000",
         "axes.edgecolor": "#000000", "axes.linewidth": 0.5, "xtick.major.width": 0.5, "ytick.major.width": 0.5,
         "xtick.major.size": 2.5, "ytick.major.size": 2.5, "lines.linewidth": 0.75,
         "axes.spines.top": False, "axes.spines.right": False, "axes.grid": False, "legend.frameon": False,
-        "axes.prop_cycle": cycler(color=OKABE_LINE), "figure.facecolor": "white", "axes.facecolor": "white",
+        "axes.prop_cycle": cycler(color=PALETTE_LINE), "figure.facecolor": "white", "axes.facecolor": "white",
         "svg.fonttype": "none", "savefig.facecolor": "white", "figure.dpi": 100,
     })
 
