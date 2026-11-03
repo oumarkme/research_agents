@@ -27,9 +27,10 @@ Manuscript-draft figures for PowerPoint or slides (JPEG, 300 dpi) and publicatio
 
 ## Palette
 
-* Okabe-Ito (Okabe & Ito, 2008), set explicitly: `#E69F00`, `#56B4E9`, `#009E73`, `#F0E442`, `#0072B2`, `#D55E00`, `#CC79A7`, `#000000`. Templates export them.
-* Continuous or diverging data: viridis or another perceptually uniform, color-blind-safe map.
-* Light colors (`#F0E442`, `#56B4E9`): fills or large markers with a dark edge only; never text or thin lines.
+* Okabe-Ito (Okabe & Ito, 2008), set explicitly: `#E69F00`, `#56B4E9`, `#009E73`, `#F0E442`, `#0072B2`, `#D55E00`, `#CC79A7`, `#000000`. Templates export them in pick order: `OKABE_FILL` for fills and points, `OKABE_LINE` for thin lines and text (five at most; `scale_color_okabe(line=True)`).
+* Orange, sky blue, and yellow are under 3:1 on white: fills or large markers with a dark edge only, never text or thin lines. Black marks the reference or control, not a category.
+* Sequential data: viridis. Data centered on a value: `scale_*_okabe_div()` or `cmap_diverging()`. Never jet, rainbow, Turbo, or red-green; always draw the color bar (Crameri et al., 2020).
+* Read `${CLAUDE_SKILL_DIR}/references/color.md` for any continuous map, more than 3 groups, or a projected figure.
 
 ## Text
 

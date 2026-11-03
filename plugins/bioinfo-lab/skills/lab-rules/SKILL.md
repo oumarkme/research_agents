@@ -33,7 +33,7 @@ Patient-level data (sample IDs, genotypes, phenotypes, clinical notes) stays in 
 
 Defaults; the user's request or CLAUDE.md overrides them.
 
-* Colors are Okabe-Ito (`#E69F00`, `#56B4E9`, `#009E73`, `#F0E442`, `#0072B2`, `#D55E00`, `#CC79A7`, `#000000`) plus black, white, and grays; viridis for continuous data. Load `plotting` for any figure.
+* Colors are Okabe-Ito (`#E69F00`, `#56B4E9`, `#009E73`, `#F0E442`, `#0072B2`, `#D55E00`, `#CC79A7`, `#000000`) plus black, white, and grays, used in the pick order of `plotting` (light colors only as fills); viridis for sequential data and the Okabe-Ito diverging map for data centered on a value. Load `plotting` for any figure.
 * Prose in files: American English, plain academic style, APA citations. Load `writing`. Translation between academic English and another language (default pair: Taiwan Traditional Chinese, technical terms in English): load `translator`.
 
 ## Code and jobs

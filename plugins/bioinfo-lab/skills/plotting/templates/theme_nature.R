@@ -14,7 +14,16 @@ okabe_pattern_ang <- c(45, -45, 0, 90, 45, 0, 0, 0)
 okabe_pattern_ink <- c("#000000", "#000000", "#FFFFFF", "#000000", "#FFFFFF", "#FFFFFF", "#000000", "#000000")
 okabe_linetype <- c("solid", "dashed", "dotted", "dotdash")
 okabe_shape    <- c(16, 17, 15, 18, 25, 3, 4, 8)
-okabe_ito <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")
+okabe_ito <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000")  # canonical order; the pattern vectors above follow it
+# Pick order (see references/color.md): first groups are the best separated under all CVD types and in lightness.
+# Fills and large markers: blue, orange, green, vermilion, sky blue, pink, yellow, black.
+okabe_fill <- c("#0072B2", "#E69F00", "#009E73", "#D55E00", "#56B4E9", "#CC79A7", "#F0E442", "#000000")
+# Lines, thin marks, text: only colors with >= 3:1 contrast on white (max 5 groups; more: split or label directly).
+okabe_line <- c("#0072B2", "#D55E00", "#CC79A7", "#009E73", "#000000")
+# Diverging data (centered on a meaningful value): Okabe-Ito blue -> light gray -> vermilion, interpolated in CIELAB
+# (17 anchors, step dE2000 even to within 0.9 of the exact ramp). Sequential data: viridis. Always draw the color bar.
+okabe_div <- c("#0072B2", "#4181BB", "#6191C3", "#7DA1CC", "#97B2D5", "#AFC3DD", "#C8D4E6", "#E0E6EF", "#F7F6F6",
+               "#F9E3D8", "#F8D0BA", "#F6BD9D", "#F2AA80", "#EC9764", "#E68447", "#DE7029", "#D55E00")
 
 # Resolve the font by exact family from system_fonts() and register it under a fixed name.
 # (systemfonts::match_fonts() and ragg's family lookup can silently return an unrelated file,
@@ -60,9 +69,14 @@ theme_nature <- function(base_size = 7) {
     )
 }
 
-scale_color_okabe  <- function(...) scale_color_manual(values = okabe_ito, ...)
+# line = TRUE: thin lines and text-weight marks (5 colors, all >= 3:1 on white); default: points, fills (8 colors).
+scale_color_okabe  <- function(line = FALSE, ...) scale_color_manual(values = if (line) okabe_line else okabe_fill, ...)
 scale_colour_okabe <- scale_color_okabe
-scale_fill_okabe   <- function(...) scale_fill_manual(values = okabe_ito, ...)
+scale_fill_okabe   <- function(...) scale_fill_manual(values = okabe_fill, ...)
+# Continuous: scale_*_okabe_div(limits = c(-m, m)) centers 0 for diverging data; sequential: scale_fill_viridis_c().
+# Keep the full range, never squeeze or clip the ramp, and keep gaps between heatmap tiles (Crameri et al. 2020).
+scale_fill_okabe_div  <- function(...) scale_fill_gradientn(colours = okabe_div, ...)
+scale_color_okabe_div <- function(...) scale_color_gradientn(colours = okabe_div, ...)
 
 # Dense layers (thousands of points, hexbin, tiles): wrap the layer, e.g. rast(geom_point(...)).
 # In PDF/SVG only that layer becomes a 600 dpi bitmap; axes, text, and other layers stay vector (JPEG is a bitmap anyway).
@@ -75,10 +89,11 @@ rast <- function(layer, dpi = fig_dpi) ggrastr::rasterise(layer, dpi = dpi)
 tex_scales <- function(lv) {
   i <- seq_along(lv)
   stopifnot(length(lv) <= 8)
-  list(scale_fill_manual(values = setNames(okabe_ito[i], lv)),
-       ggpattern::scale_pattern_manual(values = setNames(okabe_pattern[i], lv)),
-       ggpattern::scale_pattern_angle_manual(values = setNames(okabe_pattern_ang[i], lv)),
-       ggpattern::scale_pattern_fill_manual(values = setNames(okabe_pattern_ink[i], lv)))
+  j <- match(okabe_fill[i], okabe_ito)  # pattern vectors follow the canonical order
+  list(scale_fill_manual(values = setNames(okabe_fill[i], lv)),
+       ggpattern::scale_pattern_manual(values = setNames(okabe_pattern[j], lv)),
+       ggpattern::scale_pattern_angle_manual(values = setNames(okabe_pattern_ang[j], lv)),
+       ggpattern::scale_pattern_fill_manual(values = setNames(okabe_pattern_ink[j], lv)))
 }
 
 # Exact 88 mm wide figure on opaque white, chosen by file extension:
