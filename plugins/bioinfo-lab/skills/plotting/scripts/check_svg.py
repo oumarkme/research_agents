@@ -3,7 +3,7 @@
 
 Usage: python check_svg.py figure.svg [more.svg ...]
 Checks: width <= 88 mm, height <= 247 mm, white background, text >= 7 pt, one font family (Arial),
-colors from palette / grays / viridis-like ramps (vector parts only), file name, rasterized layers.
+colors from Okabe-Ito / grays / viridis-like ramps (vector parts only), file name, rasterized layers.
 Writes <scratch>/<name>_preview.png (rsvg-convert, 300 dpi); view it with Read for the legibility check.
 Exit status 1 if any hard check fails. Colors inside rasterized layers are not inspected.
 """
@@ -14,7 +14,7 @@ import sys
 import tempfile
 
 MAX_W_MM, MAX_H_MM, MIN_PT = 88.0, 247.0, 7.0
-PALETTE = {"#332288", "#CC6677", "#882255", "#117733", "#88CCEE", "#999933", "#DDCC77", "#AA4499", "#000000"}
+PALETTE = {"#0072B2", "#D55E00", "#009E73", "#E69F00", "#56B4E9", "#CC79A7", "#F0E442", "#000000"}
 BAD_NAME = re.compile(r"^(fig(ure)?[_-]?\d+|\d+[_-])", re.I)
 UNIT_MM = {"pt": 25.4 / 72, "px": 25.4 / 96, "mm": 1.0, "cm": 10.0, "in": 25.4, "": 25.4 / 96}
 

@@ -7,7 +7,7 @@ description: 'Use before delegating to an agent or planning multi-step work: the
 
 ## Default: the main session
 
-A multi-agent run costs about 15 times the tokens of a chat (Anthropic, 2025). Delegate only for isolation (output you will not reread), independence (a check not anchored on your reasoning), parallelism (many independent items), or a long build. Do not delegate a task of a few tool calls, anything that needs this conversation, or the final answer. Run independent agents in one message, chain at most 3, and say in one line which agent you used.
+A multi-agent run uses about 15 times the tokens of a chat (Anthropic, 2025). Delegate only for isolation (output you will not reread), independence (a check not anchored on your reasoning), parallelism (many independent items), or a long build. Keep a task of a few tool calls, anything that needs this conversation, and the final answer in the main session. Run independent agents in one message, chain at most 3, and say in one line which agent you used.
 
 ## Roster (cheapest sufficient tier)
 
@@ -24,7 +24,7 @@ A multi-agent run costs about 15 times the tokens of a chat (Anthropic, 2025). D
 | `clinical-geneticist` | Sonnet | high | 30 | Variant classification, phenotype fit, physician reports |
 | `reviewer` | Opus | high | 20 | One independent review before results are reported |
 
-Escalate only when a cheaper tier fails twice: raise effort first, then model. Opus is for the reviewer and for blind variant classification, nothing else by default.
+Escalate only after a cheaper tier fails twice: effort first, then model. Opus is for the reviewer and blind variant classification only.
 
 ## Effort by task size
 
@@ -34,11 +34,11 @@ Escalate only when a cheaper tier fails twice: raise effort first, then model. O
 | Compare 2 to 4 items, or a literature scan | 2 to 4 `assistant` in parallel | 10 to 15 |
 | Full analysis or manuscript | roles in sequence per the playbooks | up to the agent's turn limit |
 
-Do not split work whose parts share context or depend on each other; keep it in one session. These sizes are heuristics from vendor guidance (`references/design-basis.md`), not tested on this plugin.
+Keep work whose parts share context or depend on each other in one session. These sizes come from vendor guidance (`references/design-basis.md`) and are untested on this plugin.
 
 ## Brief every agent with
 
-Objective, exact inputs and paths, output format and length, boundaries, and (for jobs) the CLAUDE.md compute rules. It sees none of this conversation. Name the skill it must load for figures, prose, or translation, and the sources or tools it should use. For work across sessions, point it to `PROGRESS.md` (`analysis-log`).
+Objective, exact inputs and paths, output format and length, boundaries, and for jobs the CLAUDE.md compute rules. It sees none of this conversation. Name the skill to load for figures, prose, or translation, and the sources or tools to use. For multi-session work, point it to `PROGRESS.md` (`analysis-log`).
 
 ## Playbooks
 
@@ -52,8 +52,8 @@ Objective, exact inputs and paths, output format and length, boundaries, and (fo
 
 ## Checks and stop rules
 
-* Spot-check key numbers and citations in an agent report before using them. A report is evidence, not a conclusion.
-* Ask a reviewer for correctness and requirement gaps only; it will always find optional ones.
+* Spot-check key numbers and citations in an agent report before using them.
+* Ask a reviewer for correctness and requirement gaps only; it always finds optional ones.
 * If an agent fails the same way twice, do the task in the main session.
 * Skip `reviewer` for exploratory work and for edits you tested yourself.
 

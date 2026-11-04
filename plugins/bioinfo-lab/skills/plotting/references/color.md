@@ -1,75 +1,74 @@
 # plotting: color
 
-Palette rules for categorical and continuous data, tuned for color-vision deficiency (CVD), gray print, screens, and projected slides. Numbers below were computed for this plugin with the CIEDE2000 color difference (ΔE) after the Machado et al. (2009) CVD simulation at full severity (deutan, protan, tritan), CIELAB lightness (L*), and Web Content Accessibility Guidelines (WCAG) contrast ratios on white.
+Rules for figures, tables, diagrams, slides, and posters. Categories use the Okabe-Ito palette, continuous data use viridis, and the background is white. Contrast ratios are WCAG 2.1 values against white.
 
-## The palette
+## Palette (Okabe & Ito, 2008)
 
-Eight muted colors (Tol, 2021, "muted" set), no vivid primaries. Chosen for the Nature art guide (few colors, hierarchy, black type, no red-green) and checked for color-vision deficiency (CVD): the smallest CIE76 color difference (dE) between any two of the eight, under normal vision and Machado et al. (2009) deutan, protan, and tritan simulation at full severity, is 17 (above about 10 reads as distinct). Use them in this order and take the first n:
+The palette was built to stay distinguishable under the common forms of color vision deficiency (CVD). Take colors in this order, first n:
 
-| # | Name | Hex | L* | Contrast on white | Use |
-|---|---|---|---|---|---|
-| 1 | Indigo | `#332288` | 22 | 12.2 | fill, line, text; the focus color |
-| 2 | Rose | `#CC6677` | 56 | 3.7 | fill, line (not text) |
-| 3 | Wine | `#882255` | 32 | 8.7 | fill, line, text |
-| 4 | Green | `#117733` | 44 | 5.7 | fill, line, text |
-| 5 | Cyan | `#88CCEE` | 79 | 1.8 | fill only, dark edge |
-| 6 | Olive | `#999933` | 61 | 3.0 | fill only, dark edge |
-| 7 | Sand | `#DDCC77` | 82 | 1.6 | fill only, dark edge |
-| 8 | Purple | `#AA4499` | 46 | 5.3 | fill, line, text |
+| # | Name | Hex | Contrast on white | Use |
+|---|---|---|---|---|
+| 1 | Blue | `#0072B2` | 5.2 | fill, line, text; focus color and slide accent |
+| 2 | Vermillion | `#D55E00` | 3.9 | fill, line; second color for contrast or alerts; text only if large and bold |
+| 3 | Bluish green | `#009E73` | 3.4 | fill, line; text only if large and bold |
+| 4 | Orange | `#E69F00` | 2.3 | fill with a dark edge |
+| 5 | Sky blue | `#56B4E9` | 2.3 | fill with a dark edge |
+| 6 | Reddish purple | `#CC79A7` | 3.1 | fill, line |
+| 7 | Yellow | `#F0E442` | 1.3 | fill with a dark edge; not used on slides |
 
-* Neutrals are not counted: black `#000000` (reference or control), gray `#BDBDBD` (context fill) and `#757575` (context line).
-* Lines and thin marks use only colors with at least 3:1 contrast on white: indigo, rose, wine, green, purple (`PALETTE_LINE`, five at most). Colored text needs 4.5:1: indigo, wine, green, purple. Cyan, olive, and sand are fills with a 0.25-0.5 pt dark edge.
-* Rose and wine are close in hue; they are separated by lightness (L* 56 and 32). Keep both on the same figure only with direct labels or texture.
-* Lightness spreads from 22 to 82, but several mid colors sit near each other in gray (46 to 61), so print in gray needs the texture channel (see `design.md`).
+* Black `#000000` marks the reference or control and is not a category. Gray: `#333333` for text, `#757575` (4.6:1) for context lines, `#BDBDBD` (1.9:1) for context fills only.
+* Lines and thin marks need at least 3:1: blue, vermillion, bluish green, reddish purple (`PALETTE_LINE`). Colored text needs 4.5:1, which only blue reaches. Vermillion and bluish green pass the 3:1 large-text threshold, so they are allowed for bold text of 24 pt or more.
+* Orange, sky blue, and yellow have a luminance too high for lines or text. Use them as fills with a 0.25 to 0.5 pt dark edge.
+* Text on a colored fill is white on blue and black on all other colors.
+* Do not use vermillion and bluish green as the only cue for two opposite meanings. Add a label, a shape, or a line style.
 
-## Hierarchy and restraint (Nature Reviews art guide)
+## When to use color
 
-* The most important element is the most saturated; background and context share one neutral gray (`#BDBDBD` fill, `#757575` line). Example: one cohort in blue against others in gray.
-* Use color for hierarchy, categories, or a scientific convention (off-palette is acceptable only for a field convention; flag it in the caption). Random or decorative color is a mistake.
-* Same group, same color across all figures of a project.
-* Prefer black type; avoid red-green; use a CVD and contrast check (this plugin's checks, or Coblis-type simulators).
-* Do not rely on color alone: label directly where possible.
-
-## Categorical data
-
-* Take colors in the table order. One to four groups is typical (Nature: five items per list is optimal); use more only when each is directly labeled or textured. Eight is the maximum; beyond that, split the figure.
-* Hierarchy: the focus group gets indigo (`focus_colors()`), everything else gray.
-* Black is the reference or control, not a category.
-* No red-green pairs, no rainbow cycles, no alpha blending of colored groups.
+* Use color only where it makes the information clearer. Everything else stays black and gray. One accent color on gray context is the default. Add a second color when the comparison needs it, and a third only when there is a third group.
+* The focus group is blue (`focus_colors()`) and the other groups are gray.
+* Color encodes a group, an ordered value, or a field convention (for example a disease or tissue color). A convention outside the palette is allowed and is stated in the caption.
+* A group keeps its color in every figure and slide of the project.
+* Black type, with direct labels in addition to color. No transparency on overlapping colored groups.
+* Four colored groups at once is typical. Seven is the limit and needs direct labels or texture. With more groups, split the figure.
 
 ## Continuous data (Crameri et al., 2020)
 
-Crameri, Shephard, and Heron (2020) show that rainbow-like maps (jet, Turbo, hsv) distort data, because uneven lightness creates false boundaries and hides real gradients by more than 7% of the displayed variation. Red-green maps exclude the roughly 8% of men and 0.5% of women with CVD. Rules that follow:
+Rainbow colormaps (jet, Turbo, hsv) have uneven luminance, which creates false boundaries in the data, and red-green colormaps are unreadable with CVD.
 
-* Sequential data: viridis (or cividis for the strongest CVD fidelity). Lightness rises monotonically, so it survives gray print. Never jet, rainbow, Turbo, or red-green.
-* Diverging data (centered on zero, a reference, or a threshold): `scale_*_lab_div()` (plotnine, ggplot2) or `cmap_diverging()` (matplotlib). It runs a muted blue, light gray, muted red (ColorBrewer RdBu anchors, interpolated in CIELAB); the ends differ by 4 L* and lightness peaks at the gray middle, so it stays readable under CVD. Set symmetric limits (`-m` to `m`) so the gray midpoint is the reference value. 
-* Optional upgrade: the Scientific colour maps (Crameri, 2018; `cmcrameri` in Python, `scico` in R) are the reference implementation: `batlow` (sequential), `vik` (diverging), `romaO` (cyclic). The lab default stays viridis plus the muted diverging map; use Crameri maps when a journal or collaborator asks, and say so in the caption.
-* Always draw the color bar with ticks and units. A cropped or missing bar makes even a good map unreadable.
-* Never stretch, clip, truncate, or edit a map. Do not reverse it without reason, and keep the same map for the same quantity across figures.
-* Heatmap tiles that touch alter perceived color; leave a thin white gap or draw a thin outline when cell values matter.
-* Do not use a perceptually uniform map for categories, or a categorical palette for ordered values.
+* Use viridis for every continuous scale, including data centered on a value: `scale_*_viridis_c()` in ggplot2, `scale_*_cmap("viridis")` in plotnine, `cmap="viridis"` in matplotlib. Its luminance increases monotonically, so it is also readable in grayscale.
+* For data centered on a value (log fold change, z-score, residual), set symmetric limits (`-m` to `m`) and mark the center on the colorbar. Viridis has no neutral midpoint.
+* Always draw the colorbar with ticks and units. Do not clip, stretch, or truncate the colormap, and use the same colormap for the same quantity in every figure.
+* Leave a thin white gap between heatmap tiles when cell values matter, because touching tiles shift the perceived color.
+* Do not use viridis for categories or the categorical palette for ordered values.
 
-## Screens, print, and large canvases
+## Slides and posters
 
-* Paper (PDF): the full palette plus a texture channel (see `design.md`). Run `check_pdf.py` or `check_png.py --gray`.
-* Screen and PowerPoint: the 88 mm figure may be enlarged. Keep lines at least 0.75 pt in the figure; thicker lines survive scaling better than small markers.
-* Projector or large hall: projectors lift dark tones and wash out light ones. Cyan, olive, and sand are fill-only; prefer indigo, wine, and black for the message.
-* Text: black or dark gray `#333333` by default (Nature: primarily black type); colored text (4.5:1 or more) only indigo, wine, green, or purple.
-* Text on a colored fill: white on indigo, wine, green, and purple; black on rose, cyan, olive, and sand.
-* Dark backgrounds are not part of the lab template. If one is unavoidable, cyan and sand become the strong colors and indigo the weak one; swap roles and re-check.
+The background is white. Choose colors by their contrast on white, because projectors lift dark tones and wash out light ones.
+
+* Text, axes, and context are black, `#333333`, or gray. Color goes on the compared groups, the highlighted result, or an alert. If a slide reads the same in black and gray, leave it that way.
+* Blue is the accent for emphasis, links, and the focus group. Vermillion is the second color, for contrast or an alert. Bluish green and reddish purple are for a third and fourth group, as fills or thick lines.
+* Orange, sky blue, and yellow appear only as large fills with a dark edge. Never use them for text, thin lines, or small markers.
+* Titles and body text are black or `#333333`. Colored text is blue, or bold vermillion at 24 pt or more.
+* No colored backgrounds, gradients, or title bars.
+* Posters follow the same rules. Viewers read from 1 to 2 m, so figure lines are at least 1.5 pt and groups carry direct labels.
+
+## Screens and print
+
+* PDF for journals: Okabe-Ito colors plus a texture channel (`design.md`). Run `check_pdf.py` or `check_png.py --gray`.
+* PowerPoint: the 88 mm figure can be enlarged. Keep lines at 0.75 pt or more in the figure, and prefer thick lines to small markers.
+* Dark backgrounds are not part of the lab design.
 
 ## Checks
 
-1. View the figure as is, then the gray preview (`check_png.py --gray` or `check_pdf.py`). Fix every flagged pair.
-2. For a figure that will be projected, view it at half size and from across the room (or at 25% zoom). Every group must still be separable.
-3. For a continuous map, confirm the color bar is present, the range is not clipped, and no rainbow, jet, or red-green map slipped in from a default (matplotlib, ggplot2, and heatmap packages differ).
+1. View the figure, then the grayscale preview (`check_png.py --gray` or `check_pdf.py`). Fix each flagged pair.
+2. For a projected figure, view it at half size or 25% zoom. Every group must still be separable.
+3. For a continuous map, confirm the colorbar is present, the range is not clipped, and no rainbow, jet, or red-green default slipped in (matplotlib, ggplot2, and heatmap packages differ).
+4. For a slide, take each colored element and ask what is lost when it turns black or gray. If nothing is lost, remove the color.
 
 ## References
 
-* Nature Reviews. Guide to designing figures (artwork guide, "Scientific illustration for commissioned content"): hierarchy, visual editing, clarity, accessibility; at least 7 pt text in drafts.
+* Okabe, M., & Ito, K. (2008). Color Universal Design (CUD). https://jfly.uni-koeln.de/color/
 * Crameri, F., Shephard, G. E., & Heron, P. J. (2020). The misuse of colour in science communication. *Nature Communications, 11*, 5444. https://doi.org/10.1038/s41467-020-19160-7
-* Crameri, F. (2018). Scientific colour maps. Zenodo. https://doi.org/10.5281/zenodo.1243862
-* Tol, P. (2021). Colour schemes (technical note SRON/EPS/TN/09-002, v3.2). https://sronpersonalpages.nl/~pault/
-* Okabe, M., & Ito, K. (2008). Color Universal Design (CUD). https://jfly.uni-koeln.de/color/ (the earlier lab palette; its vivid hues were replaced by the muted set above)
-* Machado, G. M., Oliveira, M. M., & Fernandes, L. A. F. (2009). A physiologically-based model for simulation of color vision deficiency. *IEEE Transactions on Visualization and Computer Graphics, 15*(6), 1291–1298. https://doi.org/10.1109/TVCG.2009.113
-* W3C. (2018). Web Content Accessibility Guidelines (WCAG) 2.1, success criteria 1.4.3 and 1.4.11. https://www.w3.org/TR/WCAG21/
+* Nature Reviews. Guide to designing figures (artwork guide).
+* Garnier, S., Ross, N., Rudis, R., Camargo, A. P., Sciaini, M., & Scherer, C. viridis: Colorblind-friendly color maps for R. https://sjmgarnier.github.io/viridis/
+* World Wide Web Consortium. (2018). Web Content Accessibility Guidelines (WCAG) 2.1, success criteria 1.4.3 and 1.4.11. https://www.w3.org/TR/WCAG21/

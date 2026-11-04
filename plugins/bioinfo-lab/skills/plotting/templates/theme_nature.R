@@ -1,4 +1,4 @@
-# Nature single-column theme, muted palette, and exact-size JPEG (default) / PDF (publication) / SVG writer (ggplot2 + ragg + svglite + ggrastr).
+# Nature single-column theme, Okabe-Ito palette, and exact-size JPEG (default) / PDF (publication) / SVG writer (ggplot2 + ragg + svglite + ggrastr).
 # Usage: source("<skill dir>/templates/theme_nature.R")  # the plotting skill gives the path as ${CLAUDE_SKILL_DIR}
 # Units: text sizes in pt (theme); geom text/line sizes in ggplot2 are mm -> use pt_text() and pt_lw().
 suppressPackageStartupMessages({ library(ggplot2); library(svglite); library(ggrastr); library(ragg) })
@@ -6,30 +6,28 @@ suppressPackageStartupMessages(library(ggpattern))
 
 jpeg_dpi <- 300  # default output: JPEG at 300 dpi
 fig_dpi <- 600   # resolution of rasterized layers in PDF/SVG only (those are vector); pt text sizes unchanged
-# Publication (PDF) mode keeps the full muted colors (color-blind-safe) and adds a texture channel so groups
+# Publication (PDF) mode keeps the full Okabe-Ito colors (color-blind-safe) and adds a texture channel so groups
 # stay distinguishable when printed in gray: filled areas get a pattern (tex_scales()), lines and points get a
 # distinct linetype or shape (set by hand). Pattern ink is black on light fills and white on dark fills.
 lab_linetype <- c("solid", "dashed", "dotted", "dotdash")
 lab_shape    <- c(16, 17, 15, 18, 25, 3, 4, 8)
-# Compact muted palette, 8 colors (Tol muted set; Tol, 2021), chosen for the Nature guide (few colors, hierarchy, no red-green)
-# and checked for color-vision deficiency (smallest dE76 between any two, normal and deutan/protan/tritan: 17). Use in this
-# order, first n. The first four have >= 3:1 contrast on white; cyan, olive, sand are light: fill only, dark edge, no text.
-lab_fill <- c("#332288", "#CC6677", "#882255", "#117733", "#88CCEE", "#999933", "#DDCC77", "#AA4499")
-lab_names <- c("indigo", "rose", "wine", "green", "cyan", "olive", "sand", "purple")
-lab_line <- c("#332288", "#CC6677", "#882255", "#117733", "#AA4499")  # >= 3:1 on white: lines, thin marks, text
+# Okabe-Ito palette (Okabe & Ito, 2008), color-vision-deficiency safe. Order of use (take the first n): blue, vermillion,
+# bluish green, orange, sky blue, reddish purple, yellow. Contrast on white: blue 5.2, vermillion 3.9, bluish green 3.4,
+# reddish purple 3.1, orange 2.3, sky blue 2.3, yellow 1.3. Orange, sky blue, and yellow are fill only, with a dark edge.
+lab_fill <- c("#0072B2", "#D55E00", "#009E73", "#E69F00", "#56B4E9", "#CC79A7", "#F0E442")
+lab_names <- c("blue", "vermillion", "bluish green", "orange", "sky blue", "reddish purple", "yellow")
+lab_line <- c("#0072B2", "#D55E00", "#009E73", "#CC79A7")  # >= 3:1 on white: lines and thin marks
 lab_black <- "#000000"  # reference or control, not a category
-# Hierarchy (Nature guide): context in neutral gray, the focus group in the first palette color. Gray is fill/marker only.
+# Hierarchy: context in neutral gray, the focus group in the first palette color (blue). Gray is fill/marker only.
 neutral <- "#BDBDBD"; neutral_line <- "#757575"
 focus_colors <- function(levels, focus) {  # scale_*_manual(values = focus_colors(levels(d$g), "case"))
   v <- setNames(rep(neutral, length(levels)), levels); v[focus] <- lab_fill[seq_along(focus)]; v
 }
-# Texture per palette color (gray-print channel): pattern, angle, ink (white on dark fills)
-lab_pattern     <- c("crosshatch", "stripe", "crosshatch", "stripe", "stripe", "stripe", "circle", "circle")
-lab_pattern_ang <- c(45, 45, 0, 0, -45, 90, 0, 45)
-lab_pattern_ink <- c("#FFFFFF", "#000000", "#FFFFFF", "#FFFFFF", "#000000", "#000000", "#000000", "#FFFFFF")
-# Diverging data (centered on a meaningful value): muted blue -> light gray -> muted red (ColorBrewer RdBu anchors,
-# interpolated in CIELAB). Sequential: viridis. Always draw the color bar.
-lab_div <- c("#2166AC", "#347CB8", "#4393C3", "#6EACD1", "#92C5DE", "#B2D5E7", "#D1E5F0", "#E4EEF4", "#F7F7F7", "#FBE9DF", "#FDDBC7", "#FAC0A4", "#F4A582", "#E68367", "#D6604D", "#C4413C", "#B2182B")
+# Texture per palette color (gray-print channel): pattern, angle, ink (white on blue only)
+lab_pattern     <- c("crosshatch", "stripe", "crosshatch", "stripe", "stripe", "circle", "circle")
+lab_pattern_ang <- c(45, 45, 0, 0, -45, 45, 0)
+lab_pattern_ink <- c("#FFFFFF", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000")
+# Continuous data: viridis only (scale_fill_viridis_c). Always draw the color bar.
 
 # Resolve the font by exact family from system_fonts() and register it under a fixed name.
 # (systemfonts::match_fonts() and ragg's family lookup can silently return an unrelated file,
@@ -75,14 +73,12 @@ theme_nature <- function(base_size = 7) {
     )
 }
 
-# line = TRUE: thin lines and text-weight marks (5 colors, all >= 3:1 on white); default: points, fills (8 colors).
+# line = TRUE: thin lines and text-weight marks (4 colors, all >= 3:1 on white); default: points, fills (7 colors).
 scale_color_lab  <- function(line = FALSE, ...) scale_color_manual(values = if (line) lab_line else lab_fill, ...)
 scale_colour_lab <- scale_color_lab
 scale_fill_lab   <- function(...) scale_fill_manual(values = lab_fill, ...)
-# Continuous: scale_*_lab_div(limits = c(-m, m)) centers 0 for diverging data; sequential: scale_fill_viridis_c().
-# Keep the full range, never squeeze or clip the ramp, and keep gaps between heatmap tiles (Crameri et al. 2020).
-scale_fill_lab_div  <- function(...) scale_fill_gradientn(colours = lab_div, ...)
-scale_color_lab_div <- function(...) scale_color_gradientn(colours = lab_div, ...)
+# Continuous: scale_fill_viridis_c() / scale_color_viridis_c(). Keep the full range, never squeeze or clip the ramp,
+# and keep gaps between heatmap tiles (Crameri et al. 2020).
 
 # Dense layers (thousands of points, hexbin, tiles): wrap the layer, e.g. rast(geom_point(...)).
 # In PDF/SVG only that layer becomes a 600 dpi bitmap; axes, text, and other layers stay vector (JPEG is a bitmap anyway).
@@ -94,7 +90,7 @@ rast <- function(layer, dpi = fig_dpi) ggrastr::rasterise(layer, dpi = dpi)
 # pattern_colour = NA, pattern_density = 0.4, pattern_spacing = 0.02, pattern_key_scale_factor = 0.5) + tex_scales(levels(d$g)).
 tex_scales <- function(lv) {
   i <- seq_along(lv)
-  stopifnot(length(lv) <= 8)
+  stopifnot(length(lv) <= 7)
   j <- match(lab_fill[i], lab_fill)  # pattern vectors follow the palette order
   list(scale_fill_manual(values = setNames(lab_fill[i], lv)),
        ggpattern::scale_pattern_manual(values = setNames(lab_pattern[j], lv)),
@@ -104,7 +100,7 @@ tex_scales <- function(lv) {
 
 # Exact 88 mm wide figure on opaque white, chosen by file extension:
 #   .jpeg default: RGB JPEG, 300 dpi, quality 95 (ragg).
-#   .pdf  publication: vector, fonts embedded (cairo_pdf); wrap dense layers in rast(); full muted colors plus
+#   .pdf  publication: vector, fonts embedded (cairo_pdf); wrap dense layers in rast(); full Okabe-Ito colors plus
 #         texture (tex_scales, lab_linetype, lab_shape) so groups survive gray printing.
 #   .svg  only on request: live text, font name written as Arial (metric-compatible with Liberation Sans/Arimo).
 save_fig <- function(plot, file, height_mm = 70, width_mm = 88) {

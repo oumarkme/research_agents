@@ -1,4 +1,4 @@
-"""Nature single-column theme, muted palette, and exact-size JPEG (default) / PDF (publication) / SVG writer (plotnine).
+"""Nature single-column theme, Okabe-Ito palette, and exact-size JPEG (default) / PDF (publication) / SVG writer (plotnine).
 
 Usage:
     import sys, os; sys.path.insert(0, "<skill dir>/templates")  # the plotting skill gives the path as ${CLAUDE_SKILL_DIR}
@@ -12,31 +12,29 @@ os.environ.setdefault("MPLBACKEND", "Agg")  # headless; avoids Qt and Wayland er
 import matplotlib
 from matplotlib import font_manager
 from plotnine.ggplot import plot_context
-from plotnine import scale_color_gradientn, scale_fill_gradientn, element_blank, element_line, element_rect, element_text, scale_color_manual, scale_fill_manual, theme, theme_classic
+from plotnine import element_blank, element_line, element_rect, element_text, scale_color_manual, scale_fill_manual, theme, theme_classic
 
 JPEG_DPI = 300  # default output: JPEG at 300 dpi
 DPI = 600  # resolution of rasterized layers in PDF/SVG only (those are vector); pt text sizes unchanged
 JPEG_QUALITY = 95
-# Publication (PDF) mode keeps the full muted colors (color-blind-safe) and adds a texture channel so groups
+# Publication (PDF) mode keeps the full Okabe-Ito colors (color-blind-safe) and adds a texture channel so groups
 # stay distinguishable when printed in gray: filled areas get a hatch (save_fig applies it by fill color),
 # lines and points get a distinct line style or shape (set by hand). Hatch ink is black on light fills and white
 # on dark fills so it contrasts with the fill in gray.
-HATCH = {"#332288": "xxxx", "#CC6677": "////", "#882255": "++++", "#117733": "----", "#88CCEE": "\\\\",
-         "#999933": "||||", "#DDCC77": "....", "#AA4499": "oooo", "#000000": ""}
-HATCH_INK = {"#332288": "#FFFFFF", "#CC6677": "#000000", "#882255": "#FFFFFF", "#117733": "#FFFFFF", "#88CCEE": "#000000",
-             "#999933": "#000000", "#DDCC77": "#000000", "#AA4499": "#FFFFFF", "#000000": "#000000"}
+HATCH = {"#0072B2": "xxxx", "#D55E00": "////", "#009E73": "++++", "#E69F00": "----", "#56B4E9": "\\\\",
+         "#CC79A7": "oooo", "#F0E442": "....", "#000000": ""}
+HATCH_INK = {"#0072B2": "#FFFFFF", "#D55E00": "#000000", "#009E73": "#000000", "#E69F00": "#000000", "#56B4E9": "#000000",
+             "#CC79A7": "#000000", "#F0E442": "#000000", "#000000": "#000000"}
 LINETYPES = ["solid", "dashed", "dotted", "dashdot"]  # per group, for lines
 SHAPES = ["o", "^", "s", "D", "v", "P", "X", "*"]  # per group, for points
-# Compact muted palette, 8 colors (Tol muted set; Tol, 2021). Chosen for the Nature guide (few colors, hierarchy, no red-green,
-# black type) and checked for color-vision deficiency: smallest distance between any two colors, under normal vision and
-# deutan, protan, and tritan simulation (Machado et al., 2009), is dE76 17 (dE76 > 10 reads as distinct). Order of use: the
-# first colors are the best separated and have >= 3:1 contrast on white (indigo, rose, wine, green); cyan, olive, and
-# sand are light (contrast 1.6-3.0): fill only, with a dark edge, never text or thin lines.
-PALETTE = ["#332288", "#CC6677", "#882255", "#117733", "#88CCEE", "#999933", "#DDCC77", "#AA4499"]  # use in this order; take the first n
-PALETTE_NAMES = ["indigo", "rose", "wine", "green", "cyan", "olive", "sand", "purple"]
-PALETTE_LINE = ["#332288", "#CC6677", "#882255", "#117733", "#AA4499"]  # >= 3:1 on white: lines, thin marks, text (five at most)
+# Okabe-Ito palette (Okabe & Ito, 2008), color-vision-deficiency safe. Order of use (take the first n): blue, vermillion,
+# bluish green, orange, sky blue, reddish purple, yellow. Contrast on white: blue 5.2, vermillion 3.9, bluish green 3.4,
+# reddish purple 3.1, orange 2.3, sky blue 2.3, yellow 1.3. Orange, sky blue, and yellow are fill only, with a dark edge.
+PALETTE = ["#0072B2", "#D55E00", "#009E73", "#E69F00", "#56B4E9", "#CC79A7", "#F0E442"]  # use in this order; take the first n
+PALETTE_NAMES = ["blue", "vermillion", "bluish green", "orange", "sky blue", "reddish purple", "yellow"]
+PALETTE_LINE = ["#0072B2", "#D55E00", "#009E73", "#CC79A7"]  # >= 3:1 on white: lines and thin marks (four at most)
 BLACK = "#000000"  # reference or control, not a category
-# Hierarchy (Nature guide): context in neutral gray, the focus group in the first palette color (indigo).
+# Hierarchy: context in neutral gray, the focus group in the first palette color (blue).
 NEUTRAL = "#BDBDBD"  # context marks; 1.9:1 on white, so fill or large marker only, never text or thin line
 NEUTRAL_LINE = "#757575"  # context lines (4.6:1 on white)
 
@@ -50,10 +48,7 @@ def focus_colors(levels, focus):
     return {lv: (PALETTE[focus.index(lv)] if lv in focus else NEUTRAL) for lv in levels}
 
 
-# Diverging data (centered on a meaningful value): muted blue -> light gray -> muted red (ColorBrewer RdBu anchors,
-# interpolated in CIELAB; ends differ in lightness by 4 L*, lightness peaks at the gray middle). Sequential: viridis.
-# Always draw the color bar.
-DIVERGING = ["#2166AC", "#347CB8", "#4393C3", "#6EACD1", "#92C5DE", "#B2D5E7", "#D1E5F0", "#E4EEF4", "#F7F7F7", "#FBE9DF", "#FDDBC7", "#FAC0A4", "#F4A582", "#E68367", "#D6604D", "#C4413C", "#B2182B"]
+# Continuous data: viridis only (scale_*_viridis_c in plotnine, cmap="viridis" in matplotlib). Always draw the color bar.
 
 _available = {f.name for f in font_manager.fontManager.ttflist}
 FIG_FONT = next((f for f in ("Arial", "Liberation Sans", "Arimo", "Helvetica", "DejaVu Sans") if f in _available), "DejaVu Sans")
@@ -85,31 +80,12 @@ def theme_nature(base_size: float = 7):
 
 
 def scale_color_lab(line=False, **kw):
-    """line=True: thin lines and text-weight marks (5 colors, all >= 3:1 on white); default: fills and points (8 colors)."""
+    """line=True: thin lines and text-weight marks (4 colors, all >= 3:1 on white); default: fills and points (7 colors)."""
     return scale_color_manual(values=PALETTE_LINE if line else PALETTE, **kw)
 
 
 def scale_fill_lab(**kw):
     return scale_fill_manual(values=PALETTE, **kw)
-
-
-def scale_fill_lab_div(**kw):
-    """plotnine scale for data centered on a value: pass limits=(-m, m) so 0 sits at the gray middle."""
-    return scale_fill_gradientn(colors=DIVERGING, **kw)
-
-
-def scale_color_lab_div(**kw):
-    return scale_color_gradientn(colors=DIVERGING, **kw)
-
-
-def cmap_diverging():
-    """matplotlib colormap for data centered on a value (pass vmin=-m, vmax=m so 0 sits at the middle).
-
-    Sequential data: viridis. Keep the full range, never squeeze or clip the ramp, keep gaps between heatmap tiles,
-    and always draw the color bar (Crameri et al. 2020).
-    """
-    from matplotlib.colors import LinearSegmentedColormap
-    return LinearSegmentedColormap.from_list("lab_div", DIVERGING, N=256)
 
 
 def _ext(file: str) -> str:
@@ -129,7 +105,7 @@ def _fix_svg(file: str):
 
 
 def apply_hatch(fig) -> int:
-    """Hatch every filled muted patch/polygon (bars, boxes, areas, legend keys) by its fill color.
+    """Hatch every filled palette patch/polygon (bars, boxes, areas, legend keys) by its fill color.
 
     matplotlib hatches a whole collection with one pattern, so a PolyCollection that mixes fill colors
     (plotnine draws all bars of a layer as one) is split into one collection per color first.
@@ -178,7 +154,7 @@ def save_fig(plot, file: str, height_mm: float = 70, width_mm: float = 88, raste
 
     .jpeg default: RGB JPEG, 300 dpi, quality 95.
     .pdf  publication: vector, TrueType fonts embedded; dense layers (collections with more than `raster_min`
-          elements) are rasterized at DPI; full muted colors, with `hatch=True` adding a texture to filled
+          elements) are rasterized at DPI; full Okabe-Ito colors, with `hatch=True` adding a texture to filled
           groups by fill color (see above); set `linetype`/`shape` per group by hand for lines and points.
     .svg  only on request: vector, live text written as Arial, same rasterization rule as PDF.
     """
@@ -208,7 +184,7 @@ def save_fig(plot, file: str, height_mm: float = 70, width_mm: float = 88, raste
 
 
 def mpl_style():
-    """matplotlib/seaborn counterpart of theme_nature (7-8 pt Arial-family text, thin black axes, muted line cycle).
+    """matplotlib/seaborn counterpart of theme_nature (7-8 pt Arial-family text, thin black axes, Okabe-Ito line cycle).
 
     Dense layers: pass rasterized=True to scatter/hexbin/pcolormesh/imshow-like calls; save with save_mpl().
     """

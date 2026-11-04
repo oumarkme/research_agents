@@ -2,7 +2,7 @@
 
 A Claude plugin marketplace that adds a bioinformatics, genetics, and breeding lab to Claude: 10 agents as lab members and 24 skills as shared methods.
 
-Status: stable · Version: 1.4.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
+Status: stable · Version: 1.5.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
 
 Ask in plain language, and the right method loads: genomic prediction for breeders, ACMG/AMP variant classification for clinicians, sample planning for the bench, pipeline QC for bioinformatics. No server, conda, or container is required.
 
