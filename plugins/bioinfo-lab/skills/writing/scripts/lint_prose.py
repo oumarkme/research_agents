@@ -6,8 +6,13 @@ Skips YAML front matter, fenced code, HTML/style blocks, tables, and link target
 Checks: self-praise/priority words, filler, vague quantifiers, bare "This/It" openers,
 long sentences, undefined abbreviations, "significant" without a statistic, causal verbs,
 missing space before units, passive-voice candidates (informational).
+Whole-text checks (humanizer signals): invisible characters, trailing participial clauses
+per sentence, uniform sentence length, recent marker words, and nominalization density
+(printed as information, not counted). Agentless passives are not flagged: they are
+normal in Methods text and are not an AI tell (Reinhart et al., PNAS 2025).
 """
 import re
+import statistics
 import sys
 
 BANNED = r"novel|unprecedented|groundbreaking|ground-breaking|remarkabl[ey]|striking(ly)?|dramatic(ally)?|superior|state-of-the-art|cutting-edge|paradigm[- ]shift\w*|pioneering|crucial(ly)?|first (report|time|study|to)|world-class"
@@ -30,6 +35,9 @@ except Exception:  # fall back to the character list below
     _S2TWP = None
 SIMPLIFIED = set("这个们为国对时会来发学经现说还从体关实术进过动机资数据软网络视频质预设库产种变异检测验确论图简报写设测试态状乱码环视显")
 ZH_TERMS = "基因體學|基因體|基因組|基因型|表現型|表型|定序|測序|變異|變體|突變|等位基因|染色體|轉錄體|蛋白質體|生物資訊|關聯分析|連鎖不平衡|遺傳率|育種值|育種|基因剔除|資料庫|演算法|機器學習|深度學習|迴歸|交叉驗證|訓練集|測試集|組裝|比對|讀長|覆蓋度|深度學習|顯著性|信賴區間|標準差|標準誤"
+# Marker words seen in 2025-2026 text; community-observed, not measured (see humanizer/references/era-words.md).
+ERA_WORDS = r"align(?:s|ed|ing)? with|emphasi[sz](?:e|es|ed|ing)|enhanc(?:e|es|ed|ing)|multifaceted|ever-changing|rich (?:tapestry|landscape)|deep(?:er)? understanding"
+INVISIBLE = "[\u200b-\u200f\u2060\ufeff\u00ad\u202a-\u202e\u2066-\u2069\ufe00-\ufe0f]"
 STD_ABBR = {"DNA", "RNA", "SD", "SEM", "CI", "PCR", "USA", "UK", "SI", "PDF", "HTML", "CSV", "PNG", "URL", "DOI", "APA", "SNP", "QTL", "GWAS", "ONT", "GPU", "CPU", "RAM", "README", "YAML", "ID", "OK"}
 
 
@@ -61,9 +69,9 @@ def lint(path: str) -> int:
             flag("long sentence (%d words)" % len(words), s)
         if re.match(r"\s*(This|These|Those|It|They|Such)\b(?!\s+\w+(?:\s+\w+)?\s+(?:is|are|was|were)\b.*\bwhich\b)", s) and re.match(r"\s*(This|These|It|They|Such)\s+(is|are|was|were|has|have|had|can|may|will|shows?|suggests?|means?|leads?)\b", s):
             flag("bare pronoun opener", s)
-        for m in re.finditer(BANNED, s, re.I):
+        for m in re.finditer(r"\b(?:%s)\b" % BANNED, s, re.I):
             flag("self-praise/priority: " + m.group(0), s)
-        for m in re.finditer(FILLER, s, re.I):
+        for m in re.finditer(r"\b(?:%s)\b" % FILLER, s, re.I):
             flag("filler: " + m.group(0), s)
         for m in re.finditer(r"\b(%s)\b" % VAGUE, s, re.I):
             if not re.search(r"\d", s):
@@ -84,7 +92,7 @@ def lint(path: str) -> int:
             if re.search(pat, s, re.I):
                 flag("AI-typical pattern: " + msg, s)
         for m in re.finditer(r"\b(%s)\b" % BRITISH, s, re.I):
-            if m.group(0).lower() not in {"otherwise", "advise", "likewise", "precise", "exercise", "promise", "surprise", "wise", "premise", "expertise", "comprise", "enterprise", "compromise", "paradise", "disguise", "concise", "noise", "praise"}:
+            if m.group(0).lower() not in {"otherwise", "advise", "likewise", "precise", "exercise", "promise", "surprise", "wise", "premise", "expertise", "comprise", "enterprise", "compromise", "paradise", "disguise", "concise", "noise", "praise", "rising", "raises", "raising", "raised", "promises", "promising", "arising", "arises", "surprising", "comprising", "advertising", "exercising", "revising", "supervise", "supervised", "devise", "devised", "franchise", "treatise"}:
                 flag("British spelling (use American): " + m.group(0), s)
                 break
         if re.search(r"[\u4e00-\u9fff]", s):
@@ -122,6 +130,25 @@ def lint(path: str) -> int:
         lens = [len(p.split()) for p in paras]
         if max(lens) - min(lens) < 0.2 * (sum(lens) / len(lens)):
             flag("AI-typical rhythm", "paragraphs are nearly identical in length")
+    if re.search(INVISIBLE, raw):
+        flag("invisible character", "run humanizer/scripts/unicode_check.py on this file")
+    prose = [x for x in sentences if len(x.split()) >= 6 and not re.search(r"[\u4e00-\u9fff]", x)]
+    if len(prose) >= 4:
+        tails = sum(1 for x in prose if re.search(r",\s+(?:[a-z]+ly\s+)?[a-z]{4,}ing\b", x))
+        if tails / len(prose) > 0.25:
+            flag("AI-typical syntax", "%d of %d sentences end in a participial clause (', verb-ing ...'); limit to rare use" % (tails, len(prose)))
+    if len(prose) >= 8:
+        lens = [len(x.split()) for x in prose]
+        if statistics.pstdev(lens) / statistics.mean(lens) < 0.30:
+            flag("AI-typical rhythm", "sentence lengths are uniform (SD/mean %.2f); mix short and long sentences" % (statistics.pstdev(lens) / statistics.mean(lens)))
+    for m in re.finditer(r"\b(%s)\b" % ERA_WORDS, text, re.I):
+        flag("recent AI marker: " + m.group(0), text[max(0, m.start() - 40):m.end() + 40])
+    words_all = re.findall(r"[A-Za-z]+", text)
+    if len(words_all) >= 200:
+        nom = sum(1 for w in words_all if re.search(r"(tion|tions|ment|ments|ness|ity|ities|ance|ence)$", w.lower()) and len(w) > 6)
+        rate = 100 * nom / len(words_all)
+        if rate > 9:
+            print(f"{path}: [info] nominalization rate {rate:.1f} per 100 words; rewrite some noun phrases as verbs")
     if n == 0:
         print(f"{path}: no flags")
     else:

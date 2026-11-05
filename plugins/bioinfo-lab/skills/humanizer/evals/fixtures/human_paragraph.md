@@ -1,0 +1,1 @@
+We sequenced 38 blood samples on a PromethION and basecalled with dorado 0.8. Two samples failed the 5x coverage cut, so we reran them. The rerun fixed one sample but not the other, which carries a low-input library. We left it out of the trio analysis and kept it in the QC table.

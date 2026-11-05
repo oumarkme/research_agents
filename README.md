@@ -1,6 +1,6 @@
 # research_agents
 
-A Claude plugin marketplace that adds a bioinformatics, genetics, and breeding lab to Claude: 10 agents as lab members and 24 skills as shared methods.
+A Claude plugin marketplace that adds a bioinformatics, genetics, and breeding lab to Claude: 10 agents as lab members and 25 skills as shared methods.
 
 Status: stable · Version: 1.5.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
 
@@ -54,7 +54,7 @@ Intended behavior (not yet tested end to end): the breeder agent states the obje
 | Data and sequencing | `sample-and-assay-planning`, `sequencing-pipelines`, `genomics-pitfalls`, `data-stewardship` |
 | Clinical | `variant-interpretation` |
 | Code and projects | `coding-style`, `project-readme`, `analysis-log`, `slides` |
-| Evidence and writing | `trusted-sources`, `writing`, `translator`, `plotting` |
+| Evidence and writing | `trusted-sources`, `writing`, `humanizer`, `translator`, `plotting` |
 | People and compliance | `stakeholder-communication`, `research-ethics`, `research-planning` |
 
 If you run jobs on a shared server or cluster, put its rules (host, limits, read-only paths, scratch) in your global or project `CLAUDE.md`. Otherwise nothing needs setup.

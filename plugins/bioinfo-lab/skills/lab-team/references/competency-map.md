@@ -17,7 +17,7 @@ Built from the ISCB bioinformatics core competencies (Mulder et al., 2018, https
 | Scientific discovery process, evidence (D) | `trusted-sources`, `study-design` | all |
 | Professional, ethical, legal, security issues (M) | `research-ethics` | `data-steward` |
 | Data management, FAIR, reproducibility | `data-stewardship` | `data-steward` |
-| Effective communication (N) | `project-readme`, `writing`, `translator`, `plotting`, `stakeholder-communication` | `writer`, `translator` |
+| Effective communication (N) | `project-readme`, `writing`, `humanizer`, `translator`, `plotting`, `stakeholder-communication` | `writer`, `translator` |
 | Teamwork and collaboration with breeders and physicians (O) | `stakeholder-communication` | `writer`, `breeder`, `clinical-geneticist` |
 | Project planning, grants, mentoring (P, practice-based) | `research-planning` | main session, `writer` |
 | Delegation and cost control | `lab-team`, `lab-rules` | main session |

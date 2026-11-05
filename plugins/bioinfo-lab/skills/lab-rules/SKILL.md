@@ -34,7 +34,7 @@ Patient-level data (sample IDs, genotypes, phenotypes, clinical notes) stays in 
 The user's request or CLAUDE.md overrides these defaults.
 
 * Colors: Okabe-Ito for categories, in this order: blue `#0072B2`, vermillion `#D55E00`, bluish green `#009E73`, orange `#E69F00`, sky blue `#56B4E9`, reddish purple `#CC79A7`, yellow `#F0E442`. Black marks the reference and gray the context. Viridis for every continuous scale. White background on figures, slides, and posters. Color only where it makes the information clearer; the rest is black and gray. Orange, sky blue, and yellow are fills only; colored text is blue. A group keeps its color in every figure. Load `plotting` for a figure and `slides` for a deck.
-* Prose: American English, plain academic style, APA citations. Every text you write (file, commit message, chat) gets the humanizer pass and the field's own terms (`writing`). Translation between academic English and another language (default: Taiwan Traditional Chinese, technical terms in English): `translator`.
+* Prose: American English, plain academic style, APA citations. Every text you write (file, commit message, chat) gets the humanizer pass (`humanizer`) and the field's own terms (`writing`). Translation between academic English and another language (default: Taiwan Traditional Chinese, technical terms in English): `translator`.
 
 ## Code and jobs
 
