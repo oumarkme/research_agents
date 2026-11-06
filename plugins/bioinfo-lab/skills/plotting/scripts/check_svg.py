@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Spec check for stand-alone manuscript SVG figures, plus a PNG preview for viewing.
 
-Usage: python check_svg.py figure.svg [more.svg ...]
+Usage: python check_svg.py [--outdir DIR] figure.svg [more.svg ...]
 Checks: width <= 88 mm, height <= 247 mm, white background, text >= 7 pt, one font family (Arial),
 colors from Okabe-Ito / grays / viridis-like ramps (vector parts only), file name, rasterized layers.
-Writes <scratch>/<name>_preview.png (rsvg-convert, 300 dpi); view it with Read for the legibility check.
+Writes <outdir>/<name>_preview.png (rsvg-convert, 300 dpi); view it with Read for the legibility check.
+--outdir DIR sets the preview folder (default: a fresh temporary folder, printed), so projects never overwrite each other.
 Exit status 1 if any hard check fails. Colors inside rasterized layers are not inspected.
 """
+import argparse
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -24,8 +27,9 @@ def to_mm(v: str) -> float:
     return float(m.group(1)) * UNIT_MM[m.group(2)]
 
 
-def check(path: str) -> bool:
-    svg = open(path, encoding="utf-8").read()
+def check(path: str, outdir: str) -> bool:
+    with open(path, encoding="utf-8-sig") as f:
+        svg = f.read()
     ok = True
     res = []
 
@@ -70,13 +74,40 @@ def check(path: str) -> bool:
     name = os.path.basename(path)
     rep("file name", not BAD_NAME.match(name), name + " (no figure numbers / ordering prefixes)")
 
-    prev = os.path.join(tempfile.gettempdir(), name.rsplit(".", 1)[0] + "_preview.png")
-    r = subprocess.run(["rsvg-convert", "-d", "300", "-p", "300", "-b", "white", path, "-o", prev], capture_output=True)
-    rep("preview", r.returncode == 0, f"{prev} (view it with Read)" if r.returncode == 0 else r.stderr.decode()[:200])
+    prev = os.path.join(outdir, name.rsplit(".", 1)[0] + "_preview.png")
+    if shutil.which("rsvg-convert") is None:
+        rep("preview", False, "rsvg-convert not found on PATH; install librsvg (conda install -c conda-forge librsvg)")
+    else:
+        r = subprocess.run(["rsvg-convert", "-d", "300", "-p", "300", "-b", "white", path, "-o", prev], capture_output=True)
+        rep("preview", r.returncode == 0,
+            f"{prev} (view it with Read)" if r.returncode == 0 else r.stderr.decode("utf-8", "replace")[:200])
     print(path)
     print("\n".join(res))
     return ok
 
 
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description="Spec check for manuscript SVG figures.")
+    ap.add_argument("files", nargs="+")
+    ap.add_argument("--outdir", help="folder for the preview PNG (default: new temporary folder)")
+    args = ap.parse_args(argv)
+    outdir = args.outdir or tempfile.mkdtemp(prefix="figcheck_")
+    os.makedirs(outdir, exist_ok=True)
+    print(f"preview folder: {outdir}")
+    results = []
+    for p in args.files:
+        try:
+            results.append(check(p, outdir))
+        except (OSError, UnicodeDecodeError) as e:
+            print(f"error: cannot read {p} as UTF-8 text ({e})")
+            return 2
+        except (AttributeError, KeyError, ValueError, IndexError):
+            print(f"error: {p} lacks a parsable <svg> tag with width, height, and viewBox")
+            return 2
+    return 0 if all(results) else 1
+
+
 if __name__ == "__main__":
-    sys.exit(0 if all([check(p) for p in sys.argv[1:]]) else 1)
+    if hasattr(sys.stdout, "reconfigure"):  # Windows consoles default to a legacy code page
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.exit(main())

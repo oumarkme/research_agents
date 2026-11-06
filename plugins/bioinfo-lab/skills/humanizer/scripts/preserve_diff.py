@@ -18,8 +18,10 @@ import re
 import sys
 from collections import Counter
 
-UNIT = r"(?:\s?(?:%|°C|°F|[kMGT]b|bp|[kMG]B|kDa|cM|×|x|-?fold|Hz|kg|mg|µg|ng|mL|µL|nM|µM|mM|min|h|s|d))?"
-NUM = r"(?<![\w.])[-+−]?\d[\d,]*(?:\.\d+)?(?:[eE][-+]?\d+)?"
+# A unit must end at a letter boundary, so "12 samples" is not "12 s".
+UNIT = r"(?:\s?(?:%|°C|°F|[kMGT]b|bp|[kMG]B|kDa|cM|×|x|-?fold|Hz|kg|mg|µg|ng|mL|µL|nM|µM|mM|min|h|s|d)(?![A-Za-z]))?"
+# Thousands groups only, so "n = 12, p" does not keep the comma.
+NUM = r"(?<![\w.])[-+−]?\d+(?:,\d{3})*(?:\.\d+)?(?:[eE][-+]?\d+)?"
 
 PATTERNS = {
     "numbers": re.compile(NUM + UNIT),
@@ -31,7 +33,7 @@ PATTERNS = {
     ),
     "doi": re.compile(r"10\.\d{4,9}/[^\s\"<>)\]]+"),
     "pmid": re.compile(r"PMID:?\s*\d+"),
-    "url": re.compile(r"https?://[^\s)\]>\"]+"),
+    "url": re.compile(r"https?://[^\s)\]>\",;\u3000-\u9fff\uff00-\uffef]+"),
     "citation_key": re.compile(r"\[@[^\]]+\]|\\cite\w*\{[^}]+\}"),
     "author_year": re.compile(
         r"\b([A-Z][A-Za-z'\-]+)(?: et al\.| (?:and|&) [A-Z][A-Za-z'\-]+)?,? \(?(\d{4}[a-z]?)\)?"
@@ -45,8 +47,14 @@ PATTERNS = {
 }
 
 
+# An en dash is a minus sign only when no digit or word precedes it, so 5-10 stays a range.
+EN_DASH_SIGN = re.compile(r"(?<![\w.)])(?<!\w\s)\u2013(?=\d)")
+
+
 def tokens(text: str, kind: str) -> Counter:
     pat = PATTERNS[kind]
+    if kind == "numbers":
+        text = EN_DASH_SIGN.sub("-", text)
     out = Counter()
     for m in pat.finditer(text):
         if kind == "author_year":
@@ -60,6 +68,9 @@ def tokens(text: str, kind: str) -> Counter:
 
 
 def main(argv):
+    if any(a in ("-h", "--help") for a in argv):
+        print(__doc__)
+        return 0
     if "--list" in argv:
         print("\n".join(PATTERNS))
         return 0
@@ -76,12 +87,19 @@ def main(argv):
     if len(args) != 2 or not skip <= set(PATTERNS):
         print(__doc__)
         return 2
-    try:
-        a = open(args[0], encoding="utf-8").read()
-        b = open(args[1], encoding="utf-8").read()
-    except OSError as e:
-        print(f"error: {e}")
-        return 2
+    texts = []
+    for path in args:
+        try:
+            with open(path, encoding="utf-8-sig") as f:
+                texts.append(f.read())
+        except UnicodeDecodeError as e:
+            print(f"error: {path} is not valid UTF-8 ({e.reason} at byte {e.start}); "
+                  "convert it first, for example: iconv -f <encoding> -t UTF-8")
+            return 2
+        except OSError as e:
+            print(f"error: {e}")
+            return 2
+    a, b = texts
     bad = 0
     for kind in PATTERNS:
         if kind in skip:
@@ -102,4 +120,6 @@ def main(argv):
 
 
 if __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):  # Windows consoles default to a legacy code page
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.exit(main(sys.argv[1:]))

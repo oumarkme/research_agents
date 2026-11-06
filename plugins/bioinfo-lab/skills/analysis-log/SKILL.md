@@ -9,7 +9,7 @@ Goal: a fresh session or agent resumes in minutes, and every reported number tra
 
 ## Files (project directory; copy from `${CLAUDE_SKILL_DIR}/templates/`)
 
-* `PROGRESS.md`: goal, current state, next step, blockers, commands run, job IDs, scratch path, and each decision with its reason. Update after every step. Keep it to one page. No patient-level data if the project is shared.
+* `PROGRESS.md`: goal, current state, next step, blockers, commands run, job IDs, scratch path, and each decision with its reason. Update after every step. Keep it to one page.
 * `claims.json`: the ledger of claims or deliverables. Each entry has `id`, `claim`, `check` (how it will be verified), `evidence` (path), `status` (`open`, `verified`, `failed`), and `notes`. Change only `status`, `evidence`, and `notes`. Never delete or reword an entry; add a new `id` instead. JSON resists accidental rewriting better than Markdown.
 * `provenance.tsv`: one row per figure, table, or number that leaves the project: output file, script, input files and versions or genome build, key parameters, tool versions, date.
 

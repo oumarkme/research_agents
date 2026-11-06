@@ -1,25 +1,32 @@
 #!/usr/bin/env python3
 """Spec check for stand-alone raster figures (default .jpeg at 300 dpi; .png at 600 dpi): size, mode, dpi, background, tight crop, grayscale.
 
-Usage: python check_png.py [--gray] figure.jpeg [more.jpeg ...]
+Usage: python check_png.py [--gray] [--outdir DIR] figure.jpeg [more.jpeg ...]
 --gray (always for publication PDF previews; otherwise only when the user asks for grayscale-safe figures) adds a grayscale-separability warning and preview.
+--outdir DIR sets the preview folder (default: a fresh temporary folder, printed).
 Exit status 1 if any hard check fails. Text size cannot be inferred from pixels:
 measure a known element (px = pt / 72 * 600) and still do the visual legibility check.
 """
+from __future__ import annotations
+
+import argparse
 import itertools
 import os
 import re
 import sys
 import tempfile
 
-from PIL import Image, ImageChops
+try:
+    from PIL import Image, ImageChops
+except ImportError:
+    sys.exit("error: Pillow is required (pip install pillow or conda install pillow).")
 
 MAX_H_MM = 247
 MIN_GRAY_GAP = 40  # of 255; colored groups closer than this merge when printed in grayscale
 BAD_NAME = re.compile(r"^(fig(ure)?[_-]?\d+|\d+[_-])", re.I)
 
 
-def check(path: str, gray: bool = False) -> bool:
+def check(path: str, gray: bool = False, outdir: str | None = None) -> bool:
     im = Image.open(path)
     DPI = 300 if path.lower().endswith((".jpg", ".jpeg")) else 600  # JPEG default 300 dpi; PNG/PDF previews 600
     MAX_W_PX = round(88 / 25.4 * DPI)
@@ -46,16 +53,16 @@ def check(path: str, gray: bool = False) -> bool:
         rep("tight crop", max(m) <= DPI // 5, f"white margins L/T/R/B = {m} px (≤ {DPI // 5} px ≈ 5 mm expected)")
     else:
         rep("content", False, "image is blank")
-    name = path.rsplit("/", 1)[-1]
+    name = os.path.basename(path)
     rep("file name", not BAD_NAME.match(name), name + " (no figure numbers / ordering prefixes)")
     print(path)
     print("\n".join(res))
     if gray:
-        gray_check(rgb, path)
+        gray_check(rgb, path, outdir)
     return ok
 
 
-def gray_check(rgb, path):
+def gray_check(rgb, path, outdir=None):
     """Warn when saturated colors in the figure map to near-identical grays; write a grayscale preview.
 
     Advisory only: groups that also differ by shape, line style, or label are fine. View the preview.
@@ -75,7 +82,9 @@ def gray_check(rgb, path):
         if all(max(abs(a - b) for a, b in zip(c, r)) > 48 for r in reps):
             reps.append(c)
     close = [(a, b) for a, b in itertools.combinations(reps, 2) if abs(lum(a) - lum(b)) < MIN_GRAY_GAP]
-    prev = os.path.join(tempfile.gettempdir(), os.path.basename(path).rsplit(".", 1)[0] + "_gray_preview.png")
+    outdir = outdir or tempfile.mkdtemp(prefix="figcheck_")
+    os.makedirs(outdir, exist_ok=True)
+    prev = os.path.join(outdir, os.path.basename(path).rsplit(".", 1)[0] + "_gray_preview.png")
     rgb.convert("L").save(prev)
     tag = "WARN" if close else "ok"
     msg = f"{len(reps)} main colors; grayscale preview {prev} (view it)"
@@ -85,6 +94,26 @@ def gray_check(rgb, path):
     print(f"  [{tag}] grayscale: {msg}")
 
 
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description="Spec check for raster figures.")
+    ap.add_argument("files", nargs="+")
+    ap.add_argument("--gray", action="store_true")
+    ap.add_argument("--outdir", help="folder for the grayscale preview (default: new temporary folder)")
+    args = ap.parse_args(argv)
+    outdir = args.outdir or (tempfile.mkdtemp(prefix="figcheck_") if args.gray else None)
+    if outdir:
+        print(f"preview folder: {outdir}")
+    results = []
+    for p in args.files:
+        try:
+            results.append(check(p, args.gray, outdir))
+        except OSError as e:  # missing file or not an image (PIL's error subclasses OSError)
+            print(f"error: cannot read {p} as an image ({e})")
+            return 2
+    return 0 if all(results) else 1
+
+
 if __name__ == "__main__":
-    args = [a for a in sys.argv[1:] if a != "--gray"]
-    sys.exit(0 if all([check(p, "--gray" in sys.argv) for p in args]) else 1)
+    if hasattr(sys.stdout, "reconfigure"):  # Windows consoles default to a legacy code page
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.exit(main())

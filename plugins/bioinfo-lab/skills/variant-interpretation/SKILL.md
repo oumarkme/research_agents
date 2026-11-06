@@ -1,26 +1,36 @@
 ---
 name: variant-interpretation
-description: 'Use when classifying or reviewing germline variants: ACMG/AMP with ClinGen refinements, evidence table, build and transcript rules, report fields.'
+description: 'Use when classifying or reviewing human germline variants: ACMG/AMP with ClinGen refinements, evidence table, build and transcript rules, report fields. Not for somatic variants or pipeline validation.'
 ---
 
 # Germline variant interpretation
 
-Standard: ACMG/AMP 2015 (Richards et al.) with ClinGen SVI refinements and, where one exists, the gene- or disease-specific ClinGen Variant Curation Expert Panel (VCEP) specification, which overrides generic thresholds. Check the current specification and ACMG secondary-findings list version before reporting; do not rely on remembered thresholds. CNVs and SVs follow the ACMG/ClinGen CNV standard.
+## Capability
+Classify a human germline variant from combined, sourced evidence.
 
-## Workflow
+## Decide
+1. Normalize: HGVS (genomic with build, transcript with version, protein), left-aligned; state the build; pick the transcript by disease.
+2. Evidence table, one row per criterion: value, source, database release, retrieval date, access label (`trusted-sources`). Types:
+   * Population frequency: dataset, subset, ancestry match; databases under-represent some ancestries.
+   * Computational: one calibrated predictor with tool, score, version, at the strength its calibrated thresholds allow (Pejaver, PMID 36413997); do not double count with PM1.
+   * Functional and literature: verified PMIDs, ClinVar submitters, review status, and conflicts, gene-disease validity, HPO match.
+   * Case-level: de novo with confirmed parentage, segregation, phase, phenotype specificity, other diagnosis.
+3. Mechanism: loss of function counts only when it is an established mechanism for the gene; apply the current transcript, exon, and reading-frame decision logic.
+4. Combine by the current official framework; state which version and whether a gene- or disease-specific expert-panel specification overrides generic rules. Report class, criteria with strength, conflicts, and what evidence would change the class.
+5. Phenotype fit: gene and patient HPO terms must agree; a mismatch is an unrelated or incidental finding or a possible phenotype expansion; the class is unchanged.
 
-1. Normalize: HGVS (genomic with build, transcript with version, protein), left-aligned; MANE Select transcript unless the disease requires another. State GRCh37 or GRCh38.
-2. Evidence table, one row per criterion, with value, source, database release, date, and access label (`trusted-sources`):
-   * Population: gnomAD (version, subset, filtering allele frequency, homozygote count) and a population-matched biobank when available; gnomAD under-represents many ancestries, so state the ancestry match.
-   * Computational: calibrated predictors (state tool, score, version); splice predictors; conservation. Prediction alone never reaches strong evidence on its own.
-   * Functional and literature: PubMed (verified PMIDs), ClinVar (submitter count, review status, conflicts), ClinGen gene-disease validity, OMIM, HPO match.
-   * Case-level: de novo (confirmed parentage), segregation, phase (trans/cis), phenotype specificity, other diagnosis in the same patient.
-3. Mechanism: loss-of-function must be an established mechanism for the gene; apply the ClinGen PVS1 decision tree (transcript, last exon, NMD, reading frame, exon importance).
-4. Combine: use the point-based Bayesian framework (Tavtigian) or the ACMG table; state which. Report the classification and the criteria with strength, plus conflicts and what evidence would change the class.
-5. Phenotype fit: ask whether the gene and the patient's HPO terms agree; a pathogenic variant in a non-matching gene is a secondary finding or a non-diagnosis.
+## Find current information
+Follow `current-methods-lookup`. Ask: which ACMG/AMP guideline and ClinGen SVI refinements apply now; does the gene have an expert-panel specification; which CNV/SV standard; which secondary-findings list version. Sources in order: ACMG, AMP, and ClinGen pages (retrieve current text, record the retrieval date); ClinVar and ClinGen records. Never use remembered criteria or points. Seeds: `references/where-to-look.md`.
 
-## Report fields
+## Verify
+* Agent output is a draft: a second reviewer re-derives the class from the table, and a qualified clinical laboratory geneticist signs any clinical class or report.
+* Expert-reviewed variants are reproduced.
+* HGVS round-trips between build, transcript, and protein.
 
-Gene; HGVS (build, transcript); zygosity; inheritance; classification with criteria; ClinVar status (date); frequency (version); evidence summary; recommended follow-up (segregation, functional test, reanalysis date). Patient-level data never goes into queries; query by rsID, HGVS, or gene only.
+## Failure modes
+* Mixed builds or transcript versions; ancestry-unmatched frequency.
+* Double-counting correlated evidence; prediction as proof.
+* Stale ClinVar status; citing from memory.
 
-Sources (verified 2026-10-22): Richards 2015, https://doi.org/10.1038/gim.2015.30 · Riggs 2020 (CNV), https://doi.org/10.1038/s41436-019-0686-8 · Tavtigian 2018, https://doi.org/10.1038/gim.2017.210 · Tavtigian 2020 (points), https://doi.org/10.1002/humu.24088 · Smedley 2015 (Exomiser), https://doi.org/10.1038/nprot.2015.124. Plan reanalysis of unsolved cases and name the date in the report.
+## Record and report
+Log: question, date retrieved, sources, guideline version, not verified, recheck date. Report gene; HGVS with build and transcript; zygosity; inheritance; class with criteria; ClinVar status and date; frequency source; follow-up; reanalysis date.

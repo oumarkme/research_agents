@@ -17,6 +17,6 @@ Goal: a first-time visitor knows within one screen what the project is, how to i
 6. Length: tool or pipeline up to about 150 lines; analysis project up to about 100; subproject up to about 50.
 7. State status (stable, experimental, archived), version, and license near the top.
 8. Update the README in the same change as the code.
-9. Never put patient-level data, credentials, machine names, or local paths in it.
+9. Never put credentials, machine names, or local paths in it.
 
 Write the prose with `writing` (American English, humanizer pass, lint). Follow the Google Markdown style (`coding-style`). For datasets, add the data dictionary from `data-stewardship`.

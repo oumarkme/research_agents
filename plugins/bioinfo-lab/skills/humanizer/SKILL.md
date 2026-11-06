@@ -1,6 +1,6 @@
 ---
 name: humanizer
-description: 'Use when you edit text so it reads like a careful specialist wrote it by hand: audit measured AI tells, clean invisible characters, and check that numbers, identifiers, and citations did not change. Called by writing. Not a detector-evasion or watermark tool.'
+description: 'Use when auditing or cleaning text that already exists: measured AI tells, invisible characters, preserved numbers, identifiers, citations. Called by writing. Not for drafting (writing); not a detector-evasion tool.'
 ---
 
 # Humanizer
@@ -16,7 +16,7 @@ Goal: the author's text reads naturally, keeps every fact, and carries no format
 ## Workflow
 
 1. Keep the original: copy the file, or confirm it is committed. For chat text, skip the scripts and apply step 2 to the draft.
-2. Audit. Read `${CLAUDE_SKILL_DIR}/references/tells.md` and list the tells you find, measured ones first. Use the field's own terms (`writing`, `references/field-vocabulary.md`).
+2. Audit. Read `${CLAUDE_SKILL_DIR}/references/tells.md` and list the tells you find, measured ones first. Use the field's own terms (`writing`).
 3. Edit. Make the smallest change that removes each tell. Protected content stays as it is: numbers with units, P values, variant and gene strings, accessions, DOIs, PubMed IDs (PMIDs), citations, code, tables, and headings (`references/preservation.md`). Keep the author's wording where it is correct.
 4. Check. Each command must pass:
    * `python ${CLAUDE_SKILL_DIR}/scripts/preserve_diff.py ORIGINAL EDITED` exits 0, or the author confirms each difference.

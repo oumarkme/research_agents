@@ -1,0 +1,89 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.10 is the declared minimum (see plugins/bioinfo-lab/tests/README.md).
+        python-version: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils librsvg2-bin
+          python -m pip install pytest pillow
+      - name: Run pytest
+        run: python -m pytest plugins/bioinfo-lab/tests -q
+
+  metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check versions and front matter
+        shell: python
+        run: |
+          import json, re, sys
+          from pathlib import Path
+
+          plugin = Path("plugins/bioinfo-lab")
+          errors = []
+
+          # Versions: README.md, plugin.json, and marketplace.json must agree.
+          pj = json.loads((plugin / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))["version"]
+          m = re.search(r"Version:\s*(\d+(?:\.\d+)*[-\w.]*)", Path("README.md").read_text(encoding="utf-8"))
+          readme = m.group(1) if m else None
+          mk = json.loads(Path(".claude-plugin/marketplace.json").read_text(encoding="utf-8"))
+          found = {}
+          if "version" in mk:
+              found["marketplace.json"] = mk["version"]
+          if "version" in mk.get("metadata", {}):
+              found["marketplace.json metadata"] = mk["metadata"]["version"]
+          for p in mk.get("plugins", []):
+              if p.get("name") == "bioinfo-lab" and "version" in p:
+                  found["marketplace.json plugin entry"] = p["version"]
+          print(f"plugin.json {pj}; README {readme}; marketplace {found or 'no version field'}")
+          if readme != pj:
+              errors.append(f"README.md version {readme} != plugin.json {pj}")
+          for where, v in found.items():
+              if v != pj:
+                  errors.append(f"{where} version {v} != plugin.json {pj}")
+
+          # Front matter: name and description in every agent and skill.
+          files = sorted((plugin / "agents").glob("*.md")) + sorted((plugin / "skills").glob("*/SKILL.md"))
+          for f in files:
+              text = f.read_text(encoding="utf-8")
+              fm = re.match(r"---\r?\n(.*?)\r?\n---\r?\n", text, re.S)
+              if not fm:
+                  errors.append(f"{f}: no front matter")
+                  continue
+              for key in ("name", "description"):
+                  if not re.search(rf"^{key}:\s*\S", fm.group(1), re.M):
+                      errors.append(f"{f}: front matter lacks {key}")
+
+          # SKILL.md size: warning only.
+          for f in sorted((plugin / "skills").glob("*/SKILL.md")):
+              size = f.stat().st_size
+              if size > 4096:
+                  print(f"::warning file={f}::SKILL.md is {size} bytes (limit 4096)")
+
+          for e in errors:
+              print(f"::error::{e}")
+          sys.exit(1 if errors else 0)

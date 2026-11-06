@@ -26,7 +26,7 @@ From the Wikipedia field guide "Signs of AI writing", which says these are obser
 
 ## Tier 3: house style
 
-These come from the lab's rules and have weak or contested evidence. Keep them for consistency.
+These come from the plugin's house rules and have weak or contested evidence. Keep them for consistency.
 
 * No em dashes. Rates differ by model and the sources conflict (arXiv 2603.27006, preprint), so this is a style choice. Use a comma, colon, parentheses, or two sentences.
 * Sentence-case headings; no emoji; no bold lead-in on every bullet; no decorative bullets.

@@ -1,17 +1,40 @@
 ---
 name: sequencing-pipelines
-description: 'Use when building or validating sequencing analysis: short- and long-read QC, alignment, variant calling, benchmarking, assembly, pangenomes, and Nextflow or Snakemake workflows.'
+description: 'Use when building or validating sequencing analysis: short- and long-read QC, alignment, variant calling, benchmarking, assembly, pangenomes, and workflow managers. Not for tests and CI (pipeline-testing-and-ci).'
 ---
 
 # Sequencing pipelines
 
-* Inputs: record instrument, chemistry, read length, and expected depth. Check raw QC before alignment; stop and report on a failed run instead of analyzing it.
-* Align with minimap2 for long reads; use the project's short-read aligner and record its version. Mark duplicates, check coverage and insert size, and confirm sample identity against known genotypes when you have them.
-* Call variants with a caller matched to the data (GATK or DeepVariant for short reads; a long-read caller for SV and repeat expansions). Normalize with `bcftools norm`; follow `genomics-pitfalls`.
-* Benchmark before trusting: run `hap.py` or `vcfeval` against GIAB truth sets, stratified by region and variant type, and report precision and recall per stratum, not one number. Outside high-confidence regions the truth set says nothing.
-* Clinical or diagnostic pipelines: validate on a representative sample set, define accuracy and precision per variant class, freeze versions, and keep a change log (AMP/CAP guideline, Roy et al., 2018).
-* Assembly: assemble haplotype-resolved with hifiasm (HiFi, optionally ultra-long ONT and Hi-C), then check completeness (BUSCO or k-mer), contiguity, and phasing. Pangenomes: pick a graph tool by the question, and keep a linear reference for coordinates and annotation.
-* Workflows: Nextflow (nf-core layout) or Snakemake. Pin each tool version (container, conda environment, module, or a recorded list), validate the sample sheet, use resumable runs, and store the command and config. Test on a small input first. Without a workflow manager, run the steps as a documented script or a Galaxy workflow.
-* Do not tune on the truth set, do not mix builds, and do not re-run finished steps; use resume.
+## Capability
+Raw reads to validated calls or assemblies in a reproducible workflow. Methods change often; the checks do not.
 
-Sources and versions: `${CLAUDE_SKILL_DIR}/references/sources.md`.
+## Decide
+1. Record instrument, chemistry, read length, expected depth. Check raw QC first; report a failed run instead of analyzing it.
+2. Match aligner and caller to data type, organism, and variant class. Mark duplicates; check coverage, insert size, and sample identity.
+3. Normalize variants; follow `genomics-pitfalls`.
+4. Benchmark before trusting: score against a truth set, stratified by region and variant type, precision and recall per stratum. Outside high-confidence regions a truth set says nothing.
+5. Human clinical pipelines: validate on a representative set, define accuracy per variant class, freeze versions, keep a change log.
+6. Assembly: check completeness, contiguity, phasing. Pangenomes: keep a linear reference for coordinates.
+7. Workflows: pin every tool version, validate the sample sheet, use resumable runs, store command and config; test on a small input first.
+8. Do not tune on the truth set, mix builds, or re-run finished steps.
+
+## Find current information
+Follow `current-methods-lookup`. Ask: which aligner, caller, or assembler is current and independently benchmarked for this platform, organism, and variant class; which truth set and stratifications are current; which workflow templates exist.
+Sources in order: tool docs and release notes; GIAB, GA4GH, nf-core pages; independent benchmarks of recent years (PubMed, Europe PMC); preprints, labeled.
+Check release date, maintenance, chemistry fit. Seeds: `${CLAUDE_SKILL_DIR}/references/where-to-look.md`.
+
+## Verify
+* Truth-set concordance per stratum, same comparison tool each run.
+* Sanity metrics (duplication, mapped fraction, coverage evenness, Ti/Tv, het/hom, sex check) within the project's earlier range.
+* Replicate or pedigree concordance; Mendelian errors in trios.
+* Two methods on one sample; known-answer small input first.
+Failing: locate the step and rerun; never filter to pass.
+
+## Failure modes
+Sample swap; build mix; tuning on the truth set; unpinned versions; recall quoted for high-confidence regions only.
+
+## Record and report
+Log: question, date retrieved, sources, versions, NOT verified, recheck date. Report tools, command, references, per-stratum metrics, untested items.
+
+## Long jobs
+Run in the background with a project log; record command, PID or job ID. Start `Monitor` on progress and failure words (`error`, `Traceback`, `killed`, `OOM`, `exit`); send one to three lines on news, none otherwise. At the end report outcome, exit status, outputs, first real error. Done means expected outputs exist.

@@ -5,23 +5,24 @@ description: 'Use when a user asks what this plugin can do, where to start, or w
 
 # Start here
 
-Ask at most two questions, only if the answers change the route: what is the goal, and what data or files exist (none is fine). Infer the user's level from their words. No programming, server, or special software is required; web-tool routes exist for every step.
+Vision: skills are capabilities that look up current methods and verify results; agents are the group members; you are the PI who decides; the main session is the deputy PI.
 
-| If the user is | Example request | Route |
-|---|---|---|
-| Plant or animal breeder | "Rank my lines with genomic prediction" | `breeder`; `quantitative-genetics`, `genomic-prediction` |
-| Physician or clinical geneticist | "Classify this variant" (public ID only) | `clinical-geneticist`; `variant-interpretation` |
-| Wet-lab scientist or technician | "Plan QC and batches for 96 samples" | `sample-and-assay-planning`, `data-stewardship` |
-| Bioinformatician | "Build and benchmark a calling pipeline" | `bioinformatician`; `sequencing-pipelines` |
-| Statistician | "Check this mixed model" | `statistician`; `study-design` |
-| Student or newcomer | "Explain GWAS, then show the steps" | `association-studies` in plain language |
-| Project lead | "Plan aims; check my manuscript claims" | `research-planning`; `writer`, `reviewer` |
-| Data manager or curator | "Document this dataset for sharing" | `data-steward`; `data-stewardship` |
-| Anyone with a consent or privacy question | "Can I share these data?" | `research-ethics` (stop and ask the data owner) |
-| Anyone needing a fact or reference | "What is known about this gene?" | `trusted-sources` |
-| Anyone needing a translation | "Translate this abstract" (default zh-TW; any language on request) | `translator` |
-| Anyone needing slides or a talk | "Make a 10-minute talk" (HTML default, PDF on request) | `slides` (newest `oumarkme/slide_template`) |
-| Anyone asking about plugin version or updates | "Is there a newer version?" | `update` |
-| Anyone with a long, multi-step analysis | "Resume the pipeline from last week" | `analysis-log` |
+This plugin supports research in bioinformatics, genetics, genomics, and breeding on any organism: human, animal, plant, microbial, viral, fungal, and wild populations. Ask at most two questions, only if the answers change the route: what is the organism and goal, and what data exist (none is fine). Infer the user's level from their words; no programming skill is required.
 
-Defaults: answer in the user's language and level, define each technical term once, give the next step, and say what you did not check. Never ask for patient-level data to be pasted into a prompt.
+By need (full table in `references/skill-map.md`):
+
+* Calling and QC: `run-qc-and-demultiplexing`, `short-read-germline-calling`, `sv-cnv-calling`, `long-read-ont-pacbio`, `genome-assembly-and-curation`.
+* Human variants: `rare-disease-prioritization`, `variant-interpretation`; agent `clinical-geneticist`.
+* Breeding: `quantitative-genetics`, `genomic-prediction`, `plant-field-trial-gwas`; agent `breeder`.
+* Microbial: `bacterial-genome-assembly-annotation`, `pathogen-genomic-epidemiology`, `metagenomics`; agent `microbial-genomicist`.
+* Evolution: `phylogenetic-inference`, `species-tree-and-selection`; agent `evolutionary-genomicist`.
+* Omics: `rna-seq-and-splicing`, `methylation-and-epigenomics`, `proteomics-metabolomics-integration`.
+* Engineering: `workflow-engines-and-containers`, `hpc-resource-planning`, `troubleshooting-failed-jobs`.
+* Statistics: `study-design`, `omics-statistics-and-batch`, `association-studies`.
+* Conduct: `research-ethics`, `data-stewardship`, `open-science-reproducible-paper`.
+
+Other routes: `translator`, `figure-maker`, `literature-reviewer`, `analysis-log` (long work), `lab-team` (team plan).
+
+Single-cell and nf-core: the optional separate bio-research plugin, if installed; otherwise use `sequencing-pipelines` and `current-methods-lookup` (`bio-research:single-cell-rna-qc`, `bio-research:scvi-tools`, `bio-research:nextflow-development`).
+
+The deputy PI (main session) routes each step to the best-matching member (`lab-team`). Defaults: user's language and level, next step, what was not checked.

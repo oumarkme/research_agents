@@ -7,6 +7,7 @@ subjects, and prints the commands that update the plugin. It changes nothing.
 Exit status: 0 up to date, 10 update available, 2 could not check.
 """
 import json
+import re
 import sys
 import urllib.request
 from pathlib import Path
@@ -24,16 +25,33 @@ def get(url):
 
 
 def parse(v):
-    return tuple(int(x) for x in v.split(".")[:3])
+    """Sortable key for 'X.Y[.Z][-pre]'; a pre-release sorts before its release."""
+    m = re.match(r"\s*v?(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:[-+.]?([0-9A-Za-z.\-]+))?", v)
+    if not m:
+        raise ValueError(f"unrecognized version: {v!r}")
+    nums = tuple(int(x or 0) for x in m.groups()[:3])
+    pre = m.group(4) or ""
+    return nums + (0 if pre else 1, pre)
 
 
 def main():
+    if any(a in ("-h", "--help") for a in sys.argv[1:]):
+        print(__doc__)
+        return 0
     as_json = "--json" in sys.argv
-    local = json.loads(LOCAL.read_text(encoding="utf-8"))["version"]
+    try:
+        local = json.loads(LOCAL.read_text(encoding="utf-8"))["version"]
+        parse(local)
+    except (OSError, ValueError, KeyError, TypeError) as e:
+        local = None
+        print(f"Installed version unknown: cannot read a version from {LOCAL} ({e}).")
     try:
         remote = json.loads(get(REMOTE))["version"]
     except Exception as e:  # network, DNS, or JSON failure
-        print(f"Could not reach GitHub ({e}). Installed: {local}.")
+        print(f"Could not reach GitHub ({e}). Installed: {local or 'unknown'}.")
+        return 2
+    if local is None:
+        print(f"Latest: {remote}. Compare it with your installed version by hand.")
         return 2
     newer = parse(remote) > parse(local)
     commits = []
@@ -59,4 +77,6 @@ def main():
 
 
 if __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):  # Windows consoles default to a legacy code page
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.exit(main())

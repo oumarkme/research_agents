@@ -20,3 +20,5 @@
 * Pass each section three things: the text, `glossary.tsv`, and a one-line summary of the previous section. Do not pass earlier sections in full.
 * After each section run `check_translation.py` on that section pair, then once on the whole file. A section-level FAIL is easier to fix than a file-level one.
 * Keep one rendering per term across sections; if a later section needs a new decision, add it to the glossary and re-check earlier sections for the same term.
+
+A pair with no English side (for example Japanese to Korean): translate the same way and say the checks ran on source and target directly.

@@ -20,6 +20,8 @@ h² into h2.
 These characters are formatting residue. None of this touches a statistical
 watermark, which is carried by word choice and leaves no character to remove.
 """
+from __future__ import annotations
+
 import sys
 import unicodedata
 
@@ -51,13 +53,18 @@ def action(cp: int, ch: str) -> str | None:
 
 
 def main(argv):
+    if any(a in ("-h", "--help") for a in argv):
+        print(__doc__)
+        return 0
     fix = "--fix" in argv
     paths = [a for a in argv if not a.startswith("--")]
     if len(paths) != 1:
         print(__doc__)
         return 2
     try:
-        text = open(paths[0], encoding="utf-8").read()
+        # newline="" keeps CRLF and lone CR as they are, so --fix does not rewrite line endings.
+        with open(paths[0], encoding="utf-8", newline="") as f:
+            text = f.read()
     except (OSError, UnicodeDecodeError) as e:
         print(f"error: {e}")
         return 2
@@ -88,4 +95,6 @@ def main(argv):
 
 
 if __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):  # Windows consoles default to a legacy code page
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.exit(main(sys.argv[1:]))

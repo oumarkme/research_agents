@@ -19,9 +19,7 @@ Declare any pass in which a model rewrote sentences, not only fixed spelling or 
 | Bioinformatics (OUP/ISCB) | Spelling and grammar aids and translation allowed, with disclosure in the cover letter and Methods or Acknowledgements. Drafting a paper from a prompt is "not acceptable". | read |
 | Frontiers | Acknowledge AI-edited content with tool name and version. | read |
 | NIH, NOT-OD-25-132 | Applications "substantially developed by AI" will not be considered. NIH states it uses AI-detection technology. | read |
-| NTU generative AI guideline (June 2026) | Disclose tool, version, date, purpose, operation, and degree of involvement. Keep a log of key prompts, outputs, and human revisions. Heavy, influential, undisclosed use can count as plagiarism. | read (PDF) |
 | Nature Portfolio, Science, MDPI, Cell Press, BMJ, JAMA, NAR, ACMG journals | Not read first-hand (cookie gate, HTTP 403, or page not found). | check before submission |
-| NSTC, NTUH | No research-writing guideline found. | confirm with the research integrity office |
 
 ## Declaration template
 
@@ -29,7 +27,7 @@ Composed from the elements journals ask for; it is not quoted from any journal. 
 
 > During the preparation of this work, the author(s) used [tool and version] on [date] to [purpose, for example "edit the wording of the Introduction"]. The author(s) reviewed and edited the output and take full responsibility for the content.
 
-Keep a log of the prompts, outputs, and revisions (`analysis-log`). National Taiwan University (NTU) asks for it, and it answers any later query.
+Keep a log of the prompts, outputs, and revisions (`analysis-log`). Institutions and funders may require it, and it answers any later query. Check your institution's own guideline; `site-notes.md` shows one example.
 
 ## Reviewing
 

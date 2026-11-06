@@ -11,6 +11,15 @@
 * Keep styling, scales, and colors consistent across separate figures of the same project: same group, same color, shape, and order.
 * Do not rely on color alone for definition; add direct labels, shape, or line style. Avoid multiple arrow weights or styles unless each means something.
 
+## Text and legibility
+
+* One sans-serif throughout (Arial, Liberation Sans, Helvetica, or DejaVu Sans as a last resort). Check that the font resolves in your library, with no silent fallback.
+* 7 pt for tick labels, legends, and annotations; 8 pt for axis titles (Nature house style 8 pt; drafts at least 7 pt). Never below 7. Black type on white. On colored fills, black text, except white on blue. Short labels, few abbreviations (define each in the caption).
+* Emphasis by position, bold, or color only. No italic or size changes for emphasis; italic only for gene and species names and variables.
+* Label the first instance of every object, and label directly rather than relying on color alone. Axes carry units; a key explains every color and symbol. Keep legends to five entries or fewer.
+* Information flows top-left to bottom-right; no circular layouts unless the process is a cycle.
+* If the content is a list or categories without a process or measured data, give a table, not a figure.
+
 ## Overlap
 
 Avoid first, then keep any remainder readable.
@@ -21,6 +30,7 @@ Avoid first, then keep any remainder readable.
 
 ## Output formats
 
+* Needs: R with ggplot2, svglite, ggrastr, ragg, ggpattern, or Python with plotnine, matplotlib, Pillow; `pdftoppm` (PDF) and `rsvg-convert` (SVG) for previews. Pick R or Python by context.
 * Publication PDF (only on request): vector, TrueType fonts embedded (no Type 3), live text in an Arial-compatible font, opaque white background, gray-print safe through texture. Dense layers (more than about 2000 points, hexbin, tiles, density clouds) are rasterized at 600 dpi inside the PDF; axes, text, and small layers stay vector. R: `rast(geom_point(...))` (ggrastr) written with `cairo_pdf`. plotnine: `save_fig()` rasterizes any collection above `raster_min` (2000). matplotlib or seaborn: call `mpl_style()` once, pass `rasterized=True` to dense artists, save with `save_mpl()`. Never rasterize text, axes, or lines.
 * SVG on request: live Arial text, checked with `check_svg.py`, which reads pt sizes directly. PNG on request: 600 dpi, checked with `check_png.py`.
 * Fonts: some systems lack Arial (use Liberation Sans or Arimo, which are metric-compatible). In R, the template registers the font by exact path (`FigSans`) because ragg's own family lookup can pick an unrelated file and draw garbled glyphs; always view the render to confirm.

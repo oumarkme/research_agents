@@ -1,15 +1,40 @@
 ---
 name: sample-and-assay-planning
-description: 'Use when planning sampling, DNA or RNA extraction QC, assay choice, replicates, controls, batch layout, or sample tracking for a genomics study.'
+description: 'Use when planning sampling, DNA or RNA extraction QC, assay choice, replicates, controls, batch layout, or sample tracking for a genomics study in any organism. Not for analysis.'
 ---
 
 # Sample and assay planning
 
-1. Assay from question. State what must be detected and in how many samples, then choose: SNVs and small indels (short-read genome, exome, or panel); structural variants, repeats, and phasing (long reads); many markers across many lines for selection (SNP array, genotyping-by-sequencing, low-pass sequencing, or targeted genotyping); expression (RNA-seq); methylation (bisulfite or long-read). Check reference quality and budget before the choice is final.
-2. Sampling. Record what you need to interpret the data later: tissue, time, and for plants field position, plant ID, and growth stage; for animals breed, sex, age, farm, and pedigree ID; for humans consent reference and collection protocol. Separate biological replicates from technical ones.
-3. Extraction QC. Measure quantity, purity, and integrity with a named method. Set pass and fail thresholds before looking at results, following the assay and kit specifications. Flag failed samples; do not drop them silently.
-4. Design. Spread samples across extraction, library, and sequencing batches so that batch does not line up with the main contrast. Include a positive control (a reference sample or a repeated internal sample) and a negative control. Choose replicate numbers from precision or power (`study-design`).
-5. Tracking. Use unique, stable IDs and one sample sheet as the single source of truth. After sequencing, check identity (genotype concordance, sex check) and flag swaps and contamination.
-6. Record kit, lot, instrument, run ID, date, and operator for every batch.
+## Capability
 
-Do not relabel samples after submission, pool without a record, or change the plan after seeing the results without saying so. Format questions: `genomics-pitfalls`. Data handling: `data-stewardship`, `research-ethics`.
+Plan collection, measurement, and tracking so the data answer the question. See `study-design`, `omics-statistics-and-batch`.
+
+## Decide
+
+1. Assay from question: what must be detected, in how many samples; check reference quality and budget.
+2. Sampling: record tissue, time, and context (plants field position and stage; animals breed, sex, age, pedigree; humans consent reference). Separate biological from technical replicates.
+3. Extraction QC: named method for quantity, purity, integrity; pass limits set before results, from the kit specification; flag failures, never drop silently.
+4. Design: spread samples so batch does not track the main contrast; include positive and negative controls; set replicates from power (`study-design`).
+5. Tracking: stable unique IDs, one sample sheet.
+
+## Find current information
+
+Follow `current-methods-lookup`. Ask:
+* Which assay now suits our variant class, input, and budget?
+* What input and integrity limits does the vendor document?
+* Which reference material is a valid control?
+* What metadata does the target repository require?
+
+## Verify
+
+* Genotype concordance and sex check against the sheet; flag swaps and contamination.
+* The negative control is blank; a repeated sample gives matching genotypes.
+* Tabulate batch against the main contrast.
+
+## Failure modes
+
+Relabeling after submission; undocumented pooling; unannounced plan changes.
+
+## Record and report
+
+Kit, lot, instrument, run ID, date, operator per batch; pre-set limits; failed samples. Seeds: `references/where-to-look.md`.

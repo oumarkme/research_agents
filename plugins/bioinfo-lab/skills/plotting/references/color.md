@@ -22,6 +22,9 @@ The palette was built to stay distinguishable under the common forms of color vi
 * Text on a colored fill is white on blue and black on all other colors.
 * Do not use vermillion and bluish green as the only cue for two opposite meanings. Add a label, a shape, or a line style.
 
+* Template objects: `PALETTE` / `lab_fill` (fills), `PALETTE_LINE` / `lab_line` (lines and thin marks), `focus_colors()`, `scale_color_lab(line=True)`, `scale_fill_lab()`.
+* Gray: `#BDBDBD` fills, `#757575` lines. Use a field convention color (for example a disease or tissue color) only when one exists, and state it in the caption.
+
 ## When to use color
 
 * Use color only where it makes the information clearer. Everything else stays black and gray. One accent color on gray context is the default. Add a second color when the comparison needs it, and a third only when there is a third group.
@@ -56,7 +59,7 @@ The background is white. Choose colors by their contrast on white, because proje
 
 * PDF for journals: Okabe-Ito colors plus a texture channel (`design.md`). Run `check_pdf.py` or `check_png.py --gray`.
 * PowerPoint: the 88 mm figure can be enlarged. Keep lines at 0.75 pt or more in the figure, and prefer thick lines to small markers.
-* Dark backgrounds are not part of the lab design.
+* Dark backgrounds are not part of this design.
 
 ## Checks
 

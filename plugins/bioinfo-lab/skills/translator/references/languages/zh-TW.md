@@ -1,4 +1,4 @@
-# zh-TW: Taiwan Traditional Chinese (default language)
+# zh-TW: Taiwan Traditional Chinese
 
 ## Terms
 

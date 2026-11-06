@@ -1,8 +1,8 @@
 {
   "name": "bioinfo-lab",
   "displayName": "Bioinfo Lab",
-  "version": "1.6.0",
-  "description": "Ten right-sized lab agents and 25 skills for sequencing, breeding, genomic prediction, association studies, and clinical genetics.",
+  "version": "2.0.0",
+  "description": "14 right-sized agents and 84 skills for bioinformatics, genetics, genomics and breeding research across all organisms.",
   "author": {
     "name": "Bioinfo Lab maintainers"
   },
@@ -14,6 +14,8 @@
     "genetics",
     "statistics",
     "breeding",
+    "microbial-genomics",
+    "phylogenetics",
     "clinical-genetics"
   ]
 }

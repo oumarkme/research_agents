@@ -1,60 +1,36 @@
 ---
 name: lab-team
-description: 'Use before delegating to an agent or planning multi-step work: the lab roster with model and effort, when not to delegate, and playbooks.'
+description: 'Use before delegating to an agent or planning multi-step work: routing rule, agent roster with when not to delegate, and escalation order.'
 ---
 
 # Lab team
 
-## Default: the main session
+## Default: route
 
-A multi-agent run uses about 15 times the tokens of a chat (Anthropic, 2025). Delegate only for isolation (output you will not reread), independence (a check not anchored on your reasoning), parallelism (many independent items), or a long build. Keep a task of a few tool calls, anything that needs this conversation, and the final answer in the main session. Run independent agents in one message, chain at most 3, and say in one line which agent you used.
+The main session, as deputy PI, routes. Send each step to the best-matching agent; work alone only when no agent fits, the task needs this conversation's context, or it needs 3 tool calls or fewer. A multi-agent run costs about 15 times the tokens of a chat (Anthropic, 2025), so give each agent a bounded task and a capped report. Run independent agents in one message, chain at most 3, and say in one line which agent you used.
 
-## Roster (cheapest sufficient tier)
+## Agents (14)
 
-| Agent | Model | Effort | Turns | Use for |
-|---|---|---|---|---|
-| `assistant` | Haiku | low | 15 | Search, lookups by public ID, log and job checks, test runs, exact edits |
-| `data-steward` | Haiku | medium | 20 | Layout, metadata, FAIR and MIAPPE checks, repository choice, data management plans |
-| `translator` | Sonnet | medium | 30 | Academic English to or from any language (default zh-TW) |
-| `writer` | Sonnet | medium | 30 | Manuscripts, grants, READMEs, reports |
-| `bioinformatician` | Sonnet | medium | 40 | Sequencing QC, calling, benchmarking, assembly, pipelines |
-| `software-engineer` | Sonnet | medium | 40 | Reusable tools and packages with tests (Python, R, C++, Rust) |
-| `breeder` | Sonnet | medium | 30 | Breeding design, trials, selection, genomic selection strategy |
-| `statistician` | Sonnet | high | 30 | Method choice, models, number checks |
-| `clinical-geneticist` | Sonnet | high | 30 | Variant classification, phenotype fit, physician reports |
-| `reviewer` | Opus | high | 20 | One independent review before results are reported |
+`assistant`, `literature-reviewer`, `data-steward`, `translator`, `writer`, `figure-maker`, `bioinformatician`, `microbial-genomicist`, `evolutionary-genomicist`, `software-engineer`, `breeder`, `statistician`, `clinical-geneticist`, `reviewer` (Opus). Descriptions in each agent's frontmatter.
 
-Escalate only after a cheaper tier fails twice: effort first, then model. Opus is for the reviewer and blind variant classification only.
+Roster, chains, and gaps: `${CLAUDE_SKILL_DIR}/references/roster.md`. Summary:
 
-## Effort by task size
+* Chains: assay planning -> `bioinformatician` -> `statistician` -> `reviewer` -> `writer`.
+* Variants: `bioinformatician` -> `clinical-geneticist` -> `reviewer`.
+* Outbreak: `microbial-genomicist` -> `evolutionary-genomicist` -> `reviewer`.
+* Breeding: `breeder` -> `statistician` -> `data-steward`.
+* The user is the PI; the main session is the deputy PI who briefs the group members and checks every return; scope, budget, ethics, and publication claims go to the PI.
+* Gaps (no assay liaison, HPC engineer, or coordinator agent) are listed in the roster.
 
-| Task | Agents | Tool calls each |
-|---|---|---|
-| Lookup, small edit, one file | none (main session) | 3 to 10 |
-| Compare 2 to 4 items, or a literature scan | 2 to 4 `assistant` in parallel | 10 to 15 |
-| Full analysis or manuscript | roles in sequence per the playbooks | up to the agent's turn limit |
+Model and effort are in each agent's frontmatter. Escalate only after a cheaper tier fails twice: effort first, then model. Opus is for the reviewer and blind variant classification only.
 
-Keep work whose parts share context or depend on each other in one session. These sizes come from vendor guidance (`references/design-basis.md`) and are untested on this plugin.
+## Next skills
 
-## Brief every agent with
-
-Objective, exact inputs and paths, output format and length, boundaries, and for jobs the CLAUDE.md compute rules. It sees none of this conversation. Name the skill to load for figures, prose, or translation, and the sources or tools to use. For multi-session work, point it to `PROGRESS.md` (`analysis-log`).
-
-## Playbooks
-
-* Small script or edit: main session with `coding-style`. No agents.
-* Sequencing pipeline: `bioinformatician` on a small input, then full run; `reviewer` once only if the output backs a reported result or a shared pipeline.
-* Breeding analysis or genomic prediction: `breeder` sets objective and scheme, `statistician` fits and validates (`quantitative-genetics`, `genomic-prediction`), `bioinformatician` prepares genotypes, `writer` reports to the breeder (`stakeholder-communication`).
-* GWAS or Mendelian randomization: `bioinformatician` QC, `statistician` model and thresholds (`association-studies`), `reviewer` on the claim.
-* Rare disease or diagnostic case: patient-level data stays in the main session and on the machines CLAUDE.md names. `assistant` batches public-ID lookups; `clinical-geneticist` classifies from the evidence table; `reviewer` (variant mode) classifies blind; adjudicate only discordant variants; the report goes to the physician (`stakeholder-communication`).
-* Manuscript or grant: main fixes claims and the design statement (`study-design`, `research-planning`); `assistant` collects literature in parallel; `writer` drafts; one `reviewer` claims audit before delivery. Translation after the English text is final. Brief `translator` with source path, language pair, audience, output path, and glossary path. For a final submission, add one `reviewer` claims check on Methods and Results of the translation.
-* Data release: `data-steward` prepares; the user decides on any consent or sharing question (`research-ethics`).
+Call Skill `agent-brief` to write a brief and verify returns, and `team-playbooks` for the agent order of a multi-step workflow.
 
 ## Checks and stop rules
 
-* Spot-check key numbers and citations in an agent report before using them.
 * Ask a reviewer for correctness and requirement gaps only; it always finds optional ones.
-* If an agent fails the same way twice, do the task in the main session.
 * Skip `reviewer` for exploratory work and for edits you tested yourself.
 
 Competency map and the sources behind this team: `${CLAUDE_SKILL_DIR}/references/competency-map.md`.

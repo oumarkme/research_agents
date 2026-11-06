@@ -1,31 +1,45 @@
 ---
 name: association-studies
-description: 'Use when running or reviewing GWAS, QTL mapping, or Mendelian randomization in humans, crops, or livestock: sample and marker QC, population structure, mixed models, thresholds, inflation, fine-mapping, replication, and reporting.'
+description: 'Use when running or reviewing GWAS, QTL mapping, or Mendelian randomization in humans, crops, or livestock. Not for general design (study-design) or prediction models (genomic-prediction).'
 ---
 
 # Association studies
 
-## Steps
+## Capability
 
-1. QC samples and markers before any test: call rate, sex check, heterozygosity, relatedness and duplicates, Hardy-Weinberg (controls or founders only), minor allele frequency. Record thresholds and counts removed at each step (Anderson et al., 2010; tools: PLINK, Purcell et al., 2007; Chang et al., 2015).
-2. Control structure: principal components (Price et al., 2006) and, with relatives or strong structure, a mixed model with a kinship matrix (GCTA, Yang et al., 2011; GEMMA, Zhou & Stephens, 2012; BOLT-LMM, Loh et al., 2015). Choose by sample size and relatedness.
-3. Phenotype: state the transformation, covariates, and for crops the adjusted means or breeding values (`quantitative-genetics`). Analyze environments separately before any joint model.
-4. Test, then check inflation: genomic inflation factor and a QQ plot. Inflation with a mixed model points to residual structure or a phenotype problem; do not fix it by rescaling statistics.
-5. Threshold: human common-variant GWAS use 5e-8; for other panels use a stated correction (Bonferroni on the effective number of independent tests, or FDR, Benjamini & Hochberg, 1995) and say how many tests.
-6. Interpret: define the locus by LD, fine-map with the right LD reference, name candidate genes as hypotheses, and replicate in an independent sample or environment before claiming a locus.
-7. Report effect size with interval and allele, frequency, build, imputation panel, and the software version (Uffelmann et al., 2021).
+Test genotype-phenotype association with controlled structure, a stated correction, and replication. See also `plant-field-trial-gwas`, `livestock-genotype-qc-imputation`, `polyploid-genotyping-dosage`.
 
-## Mendelian randomization
+## Decide
 
-* State the three instrument assumptions (relevance, independence from confounders, exclusion restriction) and the evidence for each.
-* Report the main estimate with at least two methods that relax different assumptions, heterogeneity, and a pleiotropy check. Ancestry of exposure and outcome samples must match.
-* Follow STROBE-MR for reporting (Skrivankova et al., 2021). Write "consistent with a causal effect", not "caused", unless the instrument assumptions hold.
+1. QC samples and markers before any test: call rate, sex, heterozygosity, relatedness, Hardy-Weinberg (controls or founders only; not inbred lines), allele frequency. Fix thresholds first; log counts removed per step.
+2. Structure: principal components; with relatives, a mixed model with kinship.
+3. Phenotype: state transformation and covariates; crops use adjusted means or breeding values (`quantitative-genetics`). Analyze environments separately before a joint model.
+4. Threshold: stated correction with the test count (effective independent tests, or FDR), or the field's convention.
+5. Locus: define by LD, fine-map with a matched LD reference; candidate genes are hypotheses.
+6. Mendelian randomization: defend relevance, independence, and exclusion. Use two or more estimators that relax different assumptions, plus heterogeneity and pleiotropy checks; match ancestry. Say "consistent with a causal effect".
+7. Crops and livestock: kinship, subpopulation terms, LD decay (sets resolution and test count).
 
-## Crops and livestock
+## Find current information
 
-* Use kinship and, where the panel is structured, subpopulation terms. Report LD decay, because it sets the mapping resolution and the number of independent tests.
-* Multi-environment data: test per environment and jointly, and keep G x E in mind before calling a locus stable.
+Follow `current-methods-lookup`. Ask:
+* Which software fits our sample size, relatedness, trait? (Docs, then recent benchmarks.)
+* Which threshold does the field use now for this ancestry and density?
+* Which reporting checklist applies (STROBE-MR, journal, consortium)?
+* Which LD reference and imputation panel match our population?
+Check release date, maintenance, organism fit.
 
-##
+## Verify
 
-DOIs of the cited papers: `${CLAUDE_SKILL_DIR}/references/sources.md`.
+* Inflation factor and QQ plot; polygenicity and sample size also raise it, so test the LD score regression intercept (humans) or permuted nulls before calling it confounding; do not rescale.
+* Permuted phenotype gives a null QQ and no hits.
+* A known or simulated causal variant is recovered with the right sign.
+* Replicate independently; direction and size agree.
+* Build, allele orientation, sample order match (`genomics-pitfalls`).
+
+## Failure modes
+
+Unmodeled structure; testing before QC; winner's curse; wrong-ancestry LD panel; overlapping MR samples; one-environment "stable" loci.
+
+## Record and report
+
+Effect, interval, allele and frequency, build, imputation panel, test count, threshold, inflation, software and version, QC counts. Seeds: `references/where-to-look.md`.

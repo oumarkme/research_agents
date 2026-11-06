@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Heuristic prose linter for the writing skill. Flags, does not fix.
 
-Usage: python lint_prose.py file.md [file2 ...]
+Usage: python lint_prose.py [--zh-tw] file.md [file2 ...]
+--zh-tw also applies the Taiwan Traditional Chinese checks (Simplified characters, Chinese technical terms, punctuation) to Chinese text; without it Chinese text is left alone.
 Skips YAML front matter, fenced code, HTML/style blocks, tables, and link targets.
 Checks: self-praise/priority words, filler, vague quantifiers, bare "This/It" openers,
 long sentences, undefined abbreviations, "significant" without a statistic, causal verbs,
@@ -41,6 +42,9 @@ INVISIBLE = "[\u200b-\u200f\u2060\ufeff\u00ad\u202a-\u202e\u2066-\u2069\ufe00-\u
 STD_ABBR = {"DNA", "RNA", "SD", "SEM", "CI", "PCR", "USA", "UK", "SI", "PDF", "HTML", "CSV", "PNG", "URL", "DOI", "APA", "SNP", "QTL", "GWAS", "ONT", "GPU", "CPU", "RAM", "README", "YAML", "ID", "OK"}
 
 
+ZH_TW = False
+
+
 def strip(text: str) -> str:
     text = re.sub(r"\A---\n.*?\n---\n", "", text, flags=re.S)
     text = re.sub(r"```.*?```", "", text, flags=re.S)
@@ -52,8 +56,9 @@ def strip(text: str) -> str:
 
 
 def lint(path: str) -> int:
-    raw = open(path, encoding="utf-8").read()
-    text = strip(raw)
+    with open(path, encoding="utf-8", newline=None) as f:
+        raw = f.read()
+    text = strip(raw.lstrip("\ufeff"))
     n = 0
 
     def flag(kind, snippet):
@@ -95,7 +100,7 @@ def lint(path: str) -> int:
             if m.group(0).lower() not in {"otherwise", "advise", "likewise", "precise", "exercise", "promise", "surprise", "wise", "premise", "expertise", "comprise", "enterprise", "compromise", "paradise", "disguise", "concise", "noise", "praise", "rising", "raises", "raising", "raised", "promises", "promising", "arising", "arises", "surprising", "comprising", "advertising", "exercising", "revising", "supervise", "supervised", "devise", "devised", "franchise", "treatise"}:
                 flag("British spelling (use American): " + m.group(0), s)
                 break
-        if re.search(r"[\u4e00-\u9fff]", s):
+        if ZH_TW and re.search(r"[\u4e00-\u9fff]", s):
             if _S2TWP is not None:
                 conv = _S2TWP.convert(s)
                 if conv != s:
@@ -156,6 +161,26 @@ def lint(path: str) -> int:
     return n
 
 
+def main(argv):
+    if not argv or any(a in ("-h", "--help") for a in argv):
+        print(__doc__)
+        return 0 if argv else 2
+    global ZH_TW
+    ZH_TW = "--zh-tw" in argv
+    argv = [a for a in argv if a != "--zh-tw"]
+    if not argv:
+        return 2
+    total = 0
+    for p in argv:
+        try:
+            total += lint(p)
+        except (OSError, UnicodeDecodeError) as e:
+            print(f"error: cannot read {p} as UTF-8 text ({e})")
+            return 2
+    return 1 if total else 0
+
+
 if __name__ == "__main__":
-    total = sum(lint(p) for p in sys.argv[1:])
-    sys.exit(1 if total else 0)
+    if hasattr(sys.stdout, "reconfigure"):  # Windows consoles default to a legacy code page
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.exit(main(sys.argv[1:]))

@@ -25,7 +25,7 @@ An Anthropic page dated 2026-08-14 (updated 2026-09-01) says Claude models launc
 2. The 2 August 2026 EU AI Act date comes from Anthropic and IEEE Spectrum. The Act text and any delay were not checked.
 3. OpenAI's current text-watermark status rests on 2024 news reports.
 4. The primary policy pages of Nature, Science, MDPI, and Cell Press were not read.
-5. No NSTC research-writing guideline and no NTUH policy were found.
+5. Funder and institution policies vary; check your own (example: `site-notes.md`).
 6. Syntax and vocabulary effect sizes come from GPT-4o and 2024 PubMed text. No peer-reviewed study separates Claude 4.x or 5, GPT-5, or Gemini 3, and no sourced list of zh-TW tells exists.
 
 Full source notes and the underlying report: `reports/Humanizing AI text methods.md` in the plugin repository.

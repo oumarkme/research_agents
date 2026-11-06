@@ -1,22 +1,42 @@
 ---
 name: research-planning
-description: 'Use when planning a research project, grant, or study: aims, design statement, analysis plan, resources, milestones, risks, and team roles. Follow the funder or journal template when one exists.'
+description: 'Use when planning a research project, grant, or study in human, animal, or plant genetics: aims, design, analysis plan, resources, risks. Follow the funder template. Not for analysis.'
 ---
 
 # Research planning
 
-Write the plan in this order, one short paragraph per item.
+## Capability
 
-1. Question and why it matters, for the people who will use the answer.
-2. Aims as testable statements, each with the result that would count as a yes or a no.
-3. Design statement (`study-design`): sample and source, comparison, model, covariates, multiple testing, effect size with interval, prespecified or exploratory.
-4. Analysis plan with the validation scheme, a baseline, and the stopping rule for dead ends.
-5. Resources: samples, sequencing and compute estimates, power or precision for the main contrast, people and weeks.
-6. Data, ethics, and sharing: approvals, consent scope, data management plan (`data-stewardship`, `research-ethics`).
-7. Milestones with dates and a go or no-go check after the riskiest step.
-8. Risks, each with a fallback.
-9. Roles: who does what, who reviews, authorship order agreed now.
+Turn a question into a plan a reviewer can judge. See `study-design`, `data-stewardship`, `research-ethics`.
 
-For a grant, rewrite these into the funder's sections (aims, significance, approach, feasibility) and follow its page limits; formats differ by funder. For a trainee, write a one-page expectations note: goals, meeting rhythm, code and data rules, and authorship.
+## Decide
 
-Do not plan beyond what a decision needs, and cut any aim whose result would not change what the group does next.
+One short paragraph each, in this order:
+1. Question and its users.
+2. Aims with a yes or no result; cut aims that change no decision.
+3. Design statement (`study-design`).
+4. Analysis plan: validation, baseline, stopping rule.
+5. Resources and power; ethics and data plan.
+6. Milestones, with a go or no-go after the riskiest step.
+7. Risks with fallbacks; roles; authorship order.
+
+## Find current information
+
+Follow `current-methods-lookup`. Ask:
+* What are the funder's current template and limits?
+* Is the main method feasible, per recent reviews?
+* What do the facility's quotes say now?
+
+## Verify
+
+* Each aim maps to one analysis and deliverable.
+* Pilot on the smallest input first.
+* A reader outside the group states the question and the result.
+
+## Failure modes
+
+Aims that cannot fail; no fallback; open authorship.
+
+## Record and report
+
+Dated plan, assumptions, decisions and owners. Seeds: `references/where-to-look.md`.
