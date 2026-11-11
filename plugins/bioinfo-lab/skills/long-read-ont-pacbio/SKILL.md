@@ -24,13 +24,13 @@ Follow `current-methods-lookup`. Ask: which basecaller and model match this chem
 * Human: score a GIAB sample per stratum; others: replicates or short-read concordance.
 * Methylation: compare a subset with bisulfite or another orthogonal assay.
 * Assembly: contiguity, base accuracy, completeness against a reference set.
-* Failing: model mismatch or batch shift; re-basecall before calling.
+* On failure, suspect model mismatch or batch shift; re-basecall before calling.
 
 ## Failure modes
 * Build or contig mismatch; wrong-chemistry model.
 * Dropped supplementary alignments; ONT homopolymer indels read as true.
 
 ## Record and report
-Log (`analysis-log`): question, date, sources, versions, unverified, recheck. Report chemistry, basecaller, model, depth, read length, quality, settings.
+Log (`analysis-log`): question, date, sources, versions, not verified, recheck date. Report chemistry, basecaller, model, depth, read length, quality, settings.
 
 Seeds: `${CLAUDE_SKILL_DIR}/references/where-to-look.md`.

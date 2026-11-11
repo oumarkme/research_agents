@@ -31,7 +31,7 @@ Check: release date, maintenance, scale.
 * After every join assert row counts, key uniqueness on both sides, null counts, and unmatched keys against an expectation.
 * Convert coordinates and back for 3 known records.
 * Record counts per chromosome match before and after.
-* Failing (unexplained count change): stop and trace the step.
+* Unexplained count change: stop and trace the step.
 
 ## Failure modes
 * Multiallelic rows exploded after a join; `chr1` against `1`.

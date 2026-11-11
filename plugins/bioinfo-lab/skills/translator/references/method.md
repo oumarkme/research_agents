@@ -3,7 +3,7 @@
 ## 1. Fidelity
 
 * Complete: every sentence, clause, number, qualifier, and citation in the source appears in the target. Do not summarize, merge, or omit; do not add explanation, evaluation, or background.
-* Precise: keep the source's strength of claim. keep the verb strength (*show*, *suggest*, *may*, *associated with*) in the target language equivalents (see the language file); never upgrade association to causation or soften a finding.
+* Precise: keep the source's strength of claim. Render the verbs (*show*, *suggest*, *may*, *associated with*) with their target-language equivalents (see the language file); never upgrade association to causation or soften a finding.
 * Keep scope words (*all, some, only, at least, approximately*), negation, quantifiers, comparators, and conditions exactly. Keep tense logic and modality.
 * Keep numbers, units, P values, confidence intervals, sample sizes, versions, gene and variant notation (HGVS), and identifiers character for character.
 * Keep the document's structure: headings, list order, paragraph breaks, table and figure references, citation positions. Citations (author names, years, titles) are never translated or reformatted except to the target style requested.

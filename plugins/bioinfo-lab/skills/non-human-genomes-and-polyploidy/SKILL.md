@@ -15,7 +15,7 @@ Set reference, ploidy, and genotype coding for non-human data.
 4. GBS and RADseq: high missingness; filter by site missing rate, then impute.
 5. Arrays: confirm probe positions on the current reference; drop multi-locus probes.
 6. Marker density from LD decay.
-7. Files: VCF GT of true ploidy; dosage matrix with the counted allele stated. Check tools assuming diploid human chromosomes.
+7. Files: VCF GT of true ploidy; dosage matrix with the counted allele stated. Check tools that assume diploid human chromosomes.
 
 ## Find current information
 Follow `current-methods-lookup`. Ask: which reference and annotation the species community uses; which polyploid, GBS, and assembly tools fit this ploidy. Sources in order: official docs and release notes; species consortium page; recent independent benchmarks (PubMed, Europe PMC); preprints, labeled. Check date, maintenance, benchmark, fit. Seeds: `references/`.

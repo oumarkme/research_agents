@@ -1,6 +1,6 @@
 ---
 name: fungal-genomics
-description: 'Use when assembling, annotating, or comparing fungal genomes (yeast, molds, plant and human pathogens). Evidence is thin; ask. Not for bacterial genomes (bacterial-genome-assembly-annotation) or amplicon community profiling.'
+description: 'Use when assembling, annotating, or comparing fungal genomes (yeast, molds, plant and human pathogens). Evidence is thin; ask. Not for bacterial genomes (bacterial-genome-assembly-annotation) or amplicon profiling (amplicon-metabarcoding-analysis).'
 ---
 
 # Fungal genomics
@@ -27,12 +27,12 @@ Follow `current-methods-lookup`. Questions: gene-prediction and repeat-masking t
 * Gene and intron counts near close relatives; RNA-seq reads map into predicted exons.
 * Telomere repeats at contig ends.
 * A known strain reproduces its published gene count.
-Failure: re-screen, change evidence, label draft.
+On failure, re-screen, change evidence, or label a draft.
 
 ## Failure modes
-* Mixed cultures called large genomes; lineage mismatch.
-* Gene counts compared across methods.
-* Mating type, aneuploidy ignored.
+* Mixed cultures read as large genomes; lineage mismatch.
+* Gene counts compared across annotation methods.
+* Mating type and aneuploidy ignored.
 
 ## Record and report
 Analysis-log: question, date, sources, versions, not verified, recheck date. Report assembly stats, contamination check, masking, gene evidence, lineage set, unrun checks.

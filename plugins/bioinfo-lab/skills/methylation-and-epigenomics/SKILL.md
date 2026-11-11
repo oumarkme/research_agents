@@ -22,7 +22,7 @@ Follow `current-methods-lookup`. Ask: which methylation tools fit this organism 
 
 ## Verify
 * Predicted sex matches recorded; replicates correlate.
-* PCA by batch, slide, age, sex, cell mix before testing; batch tied to group means stop and ask.
+* PCA by batch, slide, age, sex, cell mix before testing; batch tied to group: stop and ask.
 * Same-batch positive and negative controls behave.
 * Two normalizations or callers give concordant top regions.
 * Peaks reproduce across replicates.

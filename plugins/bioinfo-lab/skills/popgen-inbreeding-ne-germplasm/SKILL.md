@@ -35,6 +35,6 @@ Search: tool docs and release notes, recent reviews in PubMed, labeled preprints
 * Selfing breaks Hardy-Weinberg filters.
 
 ## Record and report
-Log: question, date, sources, versions, not verified, recheck. Report counts per group, kinship filter, K and error, ROH parameters, F and Ne with method, interval, generation. Mind `access-benefit-sharing-and-data-governance`.
+Log: question, date, sources, versions, not verified, recheck date. Report counts per group, kinship filter, K and error, ROH parameters, F and Ne with method, interval, generation. Mind `access-benefit-sharing-and-data-governance`.
 
 See `references/where-to-look.md`.

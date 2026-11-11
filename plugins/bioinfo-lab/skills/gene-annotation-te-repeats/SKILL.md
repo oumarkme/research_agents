@@ -24,14 +24,14 @@ Follow `current-methods-lookup`. Ask: (1) which TE annotation method suits this 
 * Translate CDS: internal stops and missing starts counted.
 * Protein-level completeness near the assembly score.
 * Gene, exon, intron counts and lengths within close relatives' range.
-* Genes overlapping masked TE or with TE domains should be few.
+* Few genes overlap masked TEs or carry TE domains.
 * Compare two methods; check disagreements by hand.
 
 ## Failure modes
 * Unmasked TEs yield false genes; over-masking hides multicopy genes.
 * Lift flags (partial, low identity) kept silently.
 * Mixed annotations in one comparison change expression estimates.
-* GTF and GFF3 converted by sed.
+* GTF and GFF3 converted with sed.
 
 ## Record and report
 Log: question, date, sources, versions, not verified, recheck date. Report assembly ID, library, masking percent by class, versions, commands, evidence, QC table, functional sources and versions.

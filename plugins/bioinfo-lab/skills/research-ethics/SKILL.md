@@ -7,7 +7,7 @@ description: 'Use when handling human, animal, or plant-germplasm data or sample
 
 * Humans: confirm the ethics approval and the consent scope cover the planned analysis and sharing before you start. Use the minimum data needed, de-identify, restrict access.
 * Law differs by place (for example GDPR and HIPAA; use your jurisdiction's law). Name the rule that applies to the dataset and check it against the official text; secondary summaries are not enough.
-* Results to participants: decide with the clinician whether and how incidental findings return. Use the current ACMG secondary-findings list, and check its version.
+* Results to participants: decide with the clinician whether and how incidental findings return. Use the current ACMG secondary-findings list and check its version.
 * Animals: approval from the institutional animal care committee, and the 3Rs (replace, reduce, refine).
 * Germplasm: check material transfer agreements and benefit-sharing rules (ITPGRFA, Nagoya Protocol) before moving or publishing material.
 * Authorship: ICMJE criteria (substantial contribution, drafting or revising, final approval, accountability). Agree on author order at project start.

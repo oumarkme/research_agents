@@ -7,7 +7,7 @@ Search these keywords; open the official or most-used current page. URLs change;
 - fastp, read QC
 - mosdepth, depth of coverage
 - NanoPlot, long-read QC
-- Chen , fastp paper
-- Ewels , MultiQC paper
-- Pedersen , mosdepth paper
-- Costello , index swaps
+- Chen et al., fastp paper
+- Ewels et al., MultiQC paper
+- Pedersen and Quinlan, mosdepth paper
+- Costello et al., index swaps

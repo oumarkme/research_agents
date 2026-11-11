@@ -8,5 +8,5 @@ Search these keywords; open the official or most-used current page. URLs change;
 - bcftools, normalization, query
 - pandas read_csv, missing values, dtype
 - polars scan_parquet, lazy frames
-- Ziemann , gene name errors in Excel
-- Huber , Bioconductor genomic analysis
+- Ziemann et al., gene name errors in Excel
+- Huber et al., Bioconductor genomic analysis

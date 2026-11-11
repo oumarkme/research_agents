@@ -2,10 +2,9 @@
 
 Search these keywords; open the official or most-used current page. URLs change; do not store them.
 
-- rrBLUP, genomic prediction R package
+- rrBLUP, genomic prediction R package (CRAN)
 - sommer, mixed models R package
 - lme4, mixed-effects models R package
 - ASReml-R mixed models
 - GCTA REML and GREML
 - TASSEL mixed models
-- rrBLUP CRAN package

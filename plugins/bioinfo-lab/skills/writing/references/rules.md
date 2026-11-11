@@ -39,7 +39,7 @@
 * README and project notes: compact, key points, same rules; bullet lists allowed where listing parallel items; start with what the project does and the main result.
 * Slides: text is short fragments, not full sentences; speaker notes and the references follow this skill.
 
-## 6. Field vocabulary
+## 5. Field vocabulary
 
 Use the exact terms, spellings, and abbreviations that recent papers in the sub-field use; repeat a technical term instead of paraphrasing it; prefer official nomenclature (HGNC, HGVS, GO, SO, SI units); copy a form the target journal or lab already uses. Before step 2 of the workflow, read `${CLAUDE_SKILL_DIR}/references/field-vocabulary.md` for the checklist and typical wording.
 

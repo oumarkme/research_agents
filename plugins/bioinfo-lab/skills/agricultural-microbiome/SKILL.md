@@ -10,7 +10,7 @@ Design and report a study so results survive batch, host, and site effects. A co
 
 ## Decide
 1. Question: composition (amplicon) or function, strains, genomes (shotgun).
-2. Replication unit: animal, plot, or plant; model it as random, never treat several samples per animal as independent.
+2. Replication unit: animal, plot, or plant; model it as a random effect; never treat several samples per animal as independent.
 3. Rumen: record route, time after feeding, diet; hold constant or model.
 4. Soil and rhizosphere: write the protocol in full (depth, horizon, moisture, pH, plant stage, rhizosphere separation).
 5. Controls in every batch: field blank, extraction blank, mock community; randomize samples over batches.

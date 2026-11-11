@@ -3,7 +3,7 @@
 Put this at the end of a domain SKILL.md. Fill the angle brackets. Name no tool, version, or threshold.
 
 ```
-## Look up current
+## Find current information
 Questions: <which tool or method fits X; which options; which database release; which guideline version>.
 Sources: official docs and release notes, then independent benchmarks or reviews (PubMed, labeled preprints).
 Checks: date and maintenance, fit to our data type, conflicts of interest; log it (`current-methods-lookup`).

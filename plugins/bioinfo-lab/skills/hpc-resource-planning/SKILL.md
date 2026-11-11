@@ -28,7 +28,7 @@ Check: release date, fit to our data size and hardware.
 
 ## Verify
 * Keep a sizing log: tool, version, input, threads, wall, CPU time, CPU use, peak memory, temp disk.
-* Forecast the full run from two pilot sizes, run it, compare. Failing (peak above request, wall far off): resize from the real run.
+* Forecast the full run from two pilot sizes, run it, compare. If peak exceeds request or wall is far off, resize from the real run.
 * Watch core use against the plan.
 * A cached pilot understates I/O; repeat cold.
 
@@ -38,6 +38,6 @@ Check: release date, fit to our data size and hardware.
 * Repeated reads from network storage (low CPU use).
 
 ## Record and report
-`analysis-log`: question, date retrieved, sources, version chosen, not verified, recheck date. Report pilot numbers, requested cores, memory, disk, GPUs, expected wall time, and the core total. Ask first before exceeding stated cores, half of RAM, all GPUs, or near-full temp space.
+`analysis-log`: question, date retrieved, sources, version chosen, not verified, recheck date. Report pilot numbers, requested cores, memory, disk, GPUs, expected wall time, and the core total. Ask before exceeding stated cores, half of RAM, all GPUs, or near-full temp space.
 
 Seeds: `references/`.

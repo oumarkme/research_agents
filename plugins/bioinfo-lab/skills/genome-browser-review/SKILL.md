@@ -26,11 +26,11 @@ Check: release date, build, fit to our platform.
 ## Verify
 * Review known true and known false calls first; the reviewer must separate them.
 * Compare calls with caller metrics; disagreement needs a note.
-* Two reviewers agree on a sample. Failing: revise the criteria.
+* Two reviewers agree on a sample; if not, revise the criteria.
 
 ## Failure modes
 * Downsampled view read as low support; hollow reads counted.
-* Wrong build or contig-name mismatch; one read as proof.
+* Wrong build or contig names; one read taken as proof.
 
 ## Record and report
 Table row: key (chrom, pos, ref, alt, build), sample, reviewer, date, browser version, tracks, settings, evidence counts, call, reason, screenshot path. Append; never overwrite. `analysis-log`: question, date, sources, version, not verified, recheck date.

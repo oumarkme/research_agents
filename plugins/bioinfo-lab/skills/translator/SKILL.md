@@ -19,13 +19,13 @@ Goal: the target text carries exactly the source meaning and reads as if a speci
 2. List the terms, numbers, units, citations, abbreviations, and proper nouns, and fix one rendering for each. For a file, keep the fixed renderings in `glossary.tsv` beside the source (columns `source_term`, `target_term`, `note`; start from `${CLAUDE_SKILL_DIR}/templates/glossary.tsv`). Read it first if it exists. Record only decisions between renderings.
 3. Translate sentence by sentence, then restructure for the target language. For manuscripts, abstracts, and grants read `${CLAUDE_SKILL_DIR}/references/method.md`. Over about 1,500 words, translate section by section with the glossary and a one-line summary of the previous section, and check each before moving on.
 4. Run `python3 ${CLAUDE_SKILL_DIR}/scripts/check_translation.py <source> <target>`. Fix every FAIL (DOI, URL, or number differs) and judge every WARN (citation, abbreviation, sentence count). Then do the manual back-check below.
-5. For files, run the humanizer pass and the `writing` lint script (`python ${CLAUDE_SKILL_DIR}/../writing/scripts/lint_prose.py <file>`; add `--zh-tw` when the target is Taiwan Traditional Chinese). The lint script checks English, plus Taiwan Traditional Chinese with that flag; for another language, say that it was not run. Translate code comments only when asked.
+5. For files, run the humanizer pass and the `writing` lint script (`python ${CLAUDE_SKILL_DIR}/../writing/scripts/lint_prose.py <file>`; add `--zh-tw` when the target is Taiwan Traditional Chinese). The lint script covers English and, with that flag, Taiwan Traditional Chinese; for another language, say it was not run. Translate code comments only when asked.
 
 ## Terms and back-check
 
 * Proper nouns, symbols, species, software, versions, and identifiers stay in the source form. One source term, one target term; no coined terms or calques. When unsure whether a word is technical, keep the source form.
 * After the script, compare by hand: sentence order, units, glossary terms, negations and qualifiers, claim strength, citations, nothing added or dropped, no sentence readable two ways, no AI-sounding phrasing.
-* Read `${CLAUDE_SKILL_DIR}/references/terms-and-backcheck.md` for the full term rules (verification of field terms, abbreviations) and the full back-check list.
+* Full term rules (verifying field terms, abbreviations) and the back-check list: `${CLAUDE_SKILL_DIR}/references/terms-and-backcheck.md`.
 
 ## Output
 

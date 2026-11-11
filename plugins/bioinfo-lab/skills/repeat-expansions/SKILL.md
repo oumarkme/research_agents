@@ -12,7 +12,7 @@ Human clinical (other species: species catalog, same logic). Short reads screen,
 1. Name locus, gene, motif (gene strand), build, disease. Stop if no locus.
 2. Use a versioned locus catalog (coordinates, motif, strand). Check the motif on both strands and all rotations.
 3. Short reads: an allele longer than the read has no spanning read. Report "at least N repeats", not a size.
-4. Compare each call with same-batch controls; flag outliers, not cut-offs copied from one paper.
+4. Compare each call with same-batch controls; flag outliers, not cutoffs copied from one paper.
 5. Long reads: read the full allele with interruptions; check support per allele, balance, and mapping.
 6. Classify by the disease's curated source (GeneReviews, ClinGen, lab SOP), with date.
 7. Confirm orthogonally: repeat-primed PCR (presence), fragment analysis (size), Southern blot or long reads (large alleles). Test FMR1 methylation separately.

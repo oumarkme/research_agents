@@ -25,7 +25,7 @@ Follow `current-methods-lookup`. Fetch and cite with retrieval date:
 * Does the institution have deposit or license rules? (research office)
 
 ## Verify
-Clone fresh on a clean machine, run the test dataset, and compare one output with a stored checksum. Check that deposit DOIs resolve, match the paper, and carry licenses, and that no absolute paths or credentials remain. A failed rerun, an unresolved DOI, or a statement that conflicts with journal policy means fix it or ask the journal editorial office before submission.
+Clone fresh on a clean machine, run the test dataset, and compare one output with a stored checksum. Check that deposit DOIs resolve, match the paper, and carry licenses, and that no absolute paths or credentials remain. A failed rerun, an unresolved DOI, or a statement that conflicts with journal policy means fix it or ask the journal editors before submission.
 
 ## Failure modes
 * Code "available on request."

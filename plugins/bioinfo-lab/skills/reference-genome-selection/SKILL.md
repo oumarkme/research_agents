@@ -12,7 +12,7 @@ Choose one assembly and one annotation for the question, reproducibly. A correct
 1. Name species, accession, cultivar or breed, and the question. Ask if the population differs from the reference.
 2. Reuse an indexed project reference with a checksum (location in CLAUDE.md if stated; else ask).
 3. List candidates from archives, portals, and the species consortium; prefer its release.
-4. Compare level, haplotype type, contiguity, completeness, QV, gaps, organelles, year. Prefer chromosome-scale, curated, and community-used.
+4. Compare level, haplotype type, contiguity, completeness, consensus quality (QV), gaps, organelles, year. Prefer chromosome-scale, curated, and community-used.
 5. Match the annotation to the assembly version; use one annotation per comparison.
 6. Check contig names across FASTA, GFF, and VCF; record which archive version you used.
 7. Build a new one only if none fits (wrong cultivar or breed with large SV content, draft, missing haplotype): `genome-assembly-and-curation`.

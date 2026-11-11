@@ -1,6 +1,6 @@
 # ICAR cattle parentage rules, May 2023
 
-Seed example. Authoritative text re-read on 2026-11-06 from the PDF at the ICAR URL in `where-to-look.md` (pdftotext of the file fetched that day). May be superseded: check the ICAR page for a newer edition. Cattle only; find the guideline for other species.
+Seed example. Authoritative text re-read on 2026-11-06 from the ICAR PDF (pdftotext of the file fetched that day; find it with the ICAR keyword in `where-to-look.md`). May be superseded: check the ICAR page for a newer edition. Cattle only; find the guideline for other species.
 
 Verification (about 200 ISAG SNP minus listed problem SNP). Conflict: animal and parent homozygous for different alleles.
 * Minimum SNP is 95% of the usable set (195 usable: 185 per animal; 175 shared per animal-parent pair).

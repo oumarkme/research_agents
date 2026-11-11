@@ -8,7 +8,7 @@ Logic below is statistical, not tool-specific. Confirm any cutoff with the lab's
 * At low VAF, binomial sampling alone spreads the observed value; expected alt reads = depth x VAF.
 
 ## Mosaic variants in germline cohorts
-* A caller run in a tumor-only mode also reports germline sites: filter by population frequency and by expected VAF below heterozygous.
+* A caller run in tumor-only mode also reports germline sites: filter by population frequency and by expected VAF below heterozygous.
 * Compare with parents or other tissues. A variant in one tissue at intermediate VAF and absent in parents is a mosaic candidate.
 * Rule out mapping artifacts in segmental duplications, cross-contamination, and index hopping.
 * Confirm with a second method before any clinical statement.

@@ -33,4 +33,4 @@ Failing: find the mismatch; re-run from reads.
 Mixed builds; strand flips; swapped REF; lifting SVs and X, Y, MT, unplaced contigs; wrong chain.
 
 ## Record and report
-Log: question, date retrieved, sources, version chosen, NOT verified, recheck date. Report build, FASTA checksum, contig naming, chain, tool version, unmapped counts, REF mismatches.
+Log: question, date retrieved, sources, version chosen, not verified, recheck date. Report build, FASTA checksum, contig naming, chain, tool version, unmapped counts, REF mismatches.

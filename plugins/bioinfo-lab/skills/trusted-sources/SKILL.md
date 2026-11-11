@@ -20,7 +20,7 @@ Prefer the last five years unless seminal. When Tier 1 sources disagree, report 
 
 ## Routing
 
-Route in this order: official API, client package, MCP server, bulk download with release number, web page. If a source is unreachable, say so, use the next route, and record which. Assume no server, conda, or containers. Read `routing.md` in `${CLAUDE_SKILL_DIR}/references/` for the "Which resource first" table (question to database) and access notes (POST-only APIs, rate limits).
+Route in this order: official API, client package, MCP server, bulk download with release number, web page. If a source is unreachable, say so, use the next route, and record which. Assume no server, conda, or containers. `${CLAUDE_SKILL_DIR}/references/routing.md` has the "Which resource first" table (question to database) and access notes (POST-only APIs, rate limits).
 
 ## Workflow
 

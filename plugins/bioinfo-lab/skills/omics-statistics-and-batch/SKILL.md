@@ -30,7 +30,7 @@ Check: release date, maintenance, benchmark data like ours.
 * Run with and without batch terms; flipped conclusions are fragile.
 * Permuted condition labels give few hits.
 * Replicates agree within and across batches.
-* Failing (inflation, flips): report it; do not trim the list.
+* Inflation or flipped conclusions: report them; do not trim the list.
 
 ## Failure modes
 * Batch removal in unbalanced groups creates false differences.

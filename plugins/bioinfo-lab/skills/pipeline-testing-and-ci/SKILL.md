@@ -33,4 +33,4 @@ Failing: fix the code, not the expectation.
 Blind snapshot updates; network-dependent tests; recall quoted for high-confidence regions only; unfixed seeds; data that never reaches the failure branch.
 
 ## Record and report
-Log: question, date retrieved, sources, versions, NOT verified, recheck date. Report layers present, tests and passes, runtime, uncovered parts, strata checked.
+Log: question, date retrieved, sources, versions, not verified, recheck date. Report layers present, tests and passes, runtime, uncovered parts, strata checked.

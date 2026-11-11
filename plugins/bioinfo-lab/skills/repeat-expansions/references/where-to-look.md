@@ -6,4 +6,4 @@ Search these keywords; open the official or most-used current page. URLs change;
 - ExpansionHunter Denovo, unknown repeat loci
 - TRGT, long-read tandem repeat genotyping
 - GangSTR, genome-wide STR genotyping
-- Depienne and Mandel , repeat expansion disorders
+- Depienne and Mandel, repeat expansion disorders

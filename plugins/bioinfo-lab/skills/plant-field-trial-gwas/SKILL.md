@@ -9,7 +9,7 @@ description: 'Use when running GWAS or QTL mapping on replicated, spatially mode
 Map markers on adjusted means that carry the trial design and stage-1 uncertainty. A correct result has no gradient posing as a QTL, calibrated statistics, replicating QTL. QC and reporting: `association-studies`; G x E: `quantitative-genetics`.
 
 ## Decide
-1. Record design, replicates, plot row and column, and check lines. No coordinates, stop.
+1. Record design, replicates, plot row and column, and check lines. Without plot coordinates, stop.
 2. Stage 1 per environment: design plus spatial terms, chosen by information criterion and residual maps.
 3. Carry each mean's weight into stage 2; unweighted means distort unbalanced data.
 4. Stage 2 across environments: environment, genotype, G x E terms. One environment: use stage-1 means.
@@ -37,6 +37,6 @@ Search: software docs and release notes, recent reviews in PubMed, labeled prepr
 * Winner's curse.
 
 ## Record and report
-Log: question, date, sources, versions, not verified, recheck. Report design, spatial model, heritability, weights, threshold rule, per-environment effects, validation.
+Log: question, date, sources, versions, not verified, recheck date. Report design, spatial model, heritability, weights, threshold rule, per-environment effects, validation.
 
 See `references/where-to-look.md`.

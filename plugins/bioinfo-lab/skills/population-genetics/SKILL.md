@@ -11,7 +11,7 @@ Describe structure, ancestry, relatedness, and selection from genotypes in any o
 ## Decide
 1. SNP set: biallelic autosomal, one build, stated call-rate and MAF filters, palindromic sites checked. Compare cohort allele frequencies.
 2. Relatedness before structure. Kinship cutoffs assume an outbred diploid; for inbred or selfing lines use `popgen-inbreeding-ne-germplasm` (judgment).
-3. PCA on unrelated, LD-pruned samples. Project relatives and references with the same SNPs and orientation; correct shrinkage.
+3. PCA on unrelated, LD-pruned samples. Project relatives and references with the same SNPs and orientation; correct projection shrinkage.
 4. Ancestry. Human: project onto a public panel; add local samples if none represents the study (judgment). Other species: a species panel or the project's own samples.
 5. Admixture models: several K, replicate seeds, a fit criterion. Barplots do not prove admixture; test it with f-statistics.
 6. Fst: state estimator, how per-SNP values combine, SNP selection, sample sizes.

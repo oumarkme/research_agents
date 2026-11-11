@@ -31,7 +31,7 @@ Check release date and build. Seeds: `references/where-to-look.md`.
 * Row counts match before and after.
 * Reproduce a few frequencies from the source file.
 * A second tool on a sample: explain each difference.
-Failing: check cache build and release against the FASTA.
+Failure: check cache build and release against the FASTA.
 
 ## Failure modes
 Transcript or release mismatch; versionless columns; wrong-build databases; unstated subsets.

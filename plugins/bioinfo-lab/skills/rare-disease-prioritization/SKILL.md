@@ -31,4 +31,4 @@ Check date, ancestry fit. Seeds: `references/where-to-look.md`.
 Frequency cutoffs over-filter some groups; general HPO terms flatten ranks; versions differ within a family; homozygous may hide a deletion.
 
 ## Record and report
-Log: question, date retrieved, sources, versions chosen, NOT verified, recheck date. Set reanalysis date and triggers at the first report (current guideline); rerun with new versions; list what was not examined.
+Log: question, date retrieved, sources, versions chosen, not verified, recheck date. Set reanalysis date and triggers at the first report (current guideline); rerun with new versions; list what was not examined.

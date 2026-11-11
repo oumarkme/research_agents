@@ -29,7 +29,8 @@ Failure: unexplained discordance; check assembly, nomenclature, and rules before
 
 ## Failure modes
 * Gene present but inactive; efflux, copy number, and regulatory changes missed.
-* Plasmid genes split across contigs; runs from different database releases compared.
+* Plasmid genes split across contigs.
+* Runs from different database releases compared.
 
 ## Record and report
 Analysis-log: question, date, sources, versions, not verified, recheck date. Report tool versions, database release, limits, hit and discordance tables, untested drug-organism pairs.

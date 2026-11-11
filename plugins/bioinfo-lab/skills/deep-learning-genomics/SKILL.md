@@ -38,4 +38,4 @@ Check: release date, training-data overlap with our test set.
 ## Record and report
 `analysis-log`: question, date, sources, versions, not verified, recheck date. Report split rule, baseline, metrics with intervals, calibration, versions, hardware, seeds.
 
-Seeds: `references/`.
+Seeds: `references/where-to-look.md`.

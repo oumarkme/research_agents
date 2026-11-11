@@ -13,7 +13,7 @@ Show each sample is who the sheet says, related as recorded, and clean before in
 2. Fix one build and one site set (common, unlinked, biallelic). Other species: build it from the cohort or a population VCF.
 3. Sex: compare sex-chromosome coverage and heterozygosity with the record, by the species' system (XY, ZW, haplodiploid; skip if none). Aneuploidy and mosaicism look like mismatches.
 4. Relatedness: compare kinship with the pedigree; check duplicates, parent-child pairs, Mendelian errors. Inbred lines and clones are near-identical.
-5. Contamination: estimate it, check het allele balance, report depth beside it (low depth inflates it).
+5. Contamination: estimate it, check heterozygous allele balance, and report depth beside it (low depth inflates the estimate).
 6. Compare with the array or earlier sample on the same sites; check plate neighbors of a failure.
 7. On failure, read `${CLAUDE_SKILL_DIR}/references/decisions.md`.
 8. Ask when a clinical sample is swapped or a re-draw is needed.

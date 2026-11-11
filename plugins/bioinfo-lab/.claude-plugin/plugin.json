@@ -1,7 +1,7 @@
 {
   "name": "bioinfo-lab",
   "displayName": "Bioinfo Lab",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "14 right-sized agents and 84 skills for bioinformatics, genetics, genomics and breeding research across all organisms.",
   "author": {
     "name": "Bioinfo Lab maintainers"

@@ -4,7 +4,6 @@ Search these keywords; open the official or most-used current page. URLs change;
 
 - HyPhy selection methods
 - ASTRAL repository
-- ASTRAL
 - ASTRAL-III
 - MEME
 - BUSTED

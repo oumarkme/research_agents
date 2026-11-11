@@ -20,7 +20,7 @@ Show with evidence that a locked pipeline performs as claimed per variant class.
 9. Plan, report, SOP, limitations, audit trail, sign-off.
 
 ## Find current information
-Follow `current-methods-lookup`. Ask: which standard applies (accreditor, ISO, society); which truth sets are current; which changes need revalidation. Sources in order: accreditor and standards pages, society guidelines, GIAB and GA4GH, independent validation papers (PubMed). Retrieve current text, record the date; never cite criteria from memory. Seeds: `references/`.
+Follow `current-methods-lookup`. Ask: which standard applies (accreditor, ISO, society); which truth sets are current; which changes need revalidation. Sources in order: accreditor and standards pages, society guidelines, GIAB and GA4GH, independent validation papers (PubMed). Retrieve current text, record the date; never cite criteria from memory. Seeds: `references/where-to-look.md`.
 
 ## Verify
 * Known-answer run meets pre-set criteria.

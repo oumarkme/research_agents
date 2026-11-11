@@ -33,4 +33,4 @@ Failing: no call; do not guess.
 Missing read as reference; unresolved CYP2D6 structure; mixed releases; sample order errors.
 
 ## Record and report
-Log: question, date retrieved, sources, versions, NOT verified, recheck date. Report gene, diplotype, phenotype, guideline version, build, tool versions, confidence, confirmation.
+Log: question, date retrieved, sources, versions, not verified, recheck date. Report gene, diplotype, phenotype, guideline version, build, tool versions, confidence, confirmation.

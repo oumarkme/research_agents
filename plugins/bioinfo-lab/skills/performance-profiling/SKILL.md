@@ -39,4 +39,4 @@ Check: release date, maintenance, benchmark data and hardware like ours, output 
 ## Record and report
 `analysis-log`: question, date retrieved, sources, version chosen, not verified, recheck date. Report before and after: wall, CPU hours, peak memory, threads, input size, output check, command line.
 
-Seeds: `references/`.
+See `references/where-to-look.md`.

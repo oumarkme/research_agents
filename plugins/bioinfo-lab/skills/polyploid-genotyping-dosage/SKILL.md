@@ -36,4 +36,4 @@ Search: caller docs and release notes, then recent benchmarks (PubMed, Europe PM
 ## Record and report
 Log: question, date retrieved, sources, caller and version, prior, not verified, recheck date. Report ploidy evidence, markers dropped per filter, allele-ratio plots, concordance, and how uncertainty entered the model.
 
-See `references/where-to-look.md`. See `genomic-prediction`, `association-studies`.
+See `references/where-to-look.md`, `genomic-prediction`, and `association-studies`.

@@ -16,7 +16,7 @@ Composition, function, or genomes of a community. A correct result separates sig
 5. Bin only for genomes; label bins by a community quality standard.
 6. Use a compositional method with batch and host covariates; fix filters before unblinding. Differential-abundance methods disagree: run two, report the overlap.
 7. Report with STORMS (human) and MIxS (environmental).
-8. Ask if blanks are missing or match samples, batch equals group, or sharing consent is unclear.
+8. Ask if blanks are missing or share taxa with samples, batch equals group, or sharing consent is unclear.
 
 ## Find current information
 Follow `current-methods-lookup`. Questions: profilers and databases for this sample type; contaminant and compositional methods; bin standard; current STORMS and MIxS versions. Sources in order: tool docs and release notes; GSC (MIxS), CAMI, STORMS pages; independent benchmarks (PubMed, recent years); preprints, labeled. Check date, maintenance, benchmark on this sample type.
@@ -27,7 +27,7 @@ Follow `current-methods-lookup`. Questions: profilers and databases for this sam
 * Two profilers on the mock and one real sample agree.
 * Read-loss log (raw, trimmed, host-removed, classified): most reads lost at host removal means too little microbial signal; flag, do not rescale.
 * Replicates cluster together; no batch separation.
-Failure: fix controls or pipeline first.
+Failure: fix controls or pipeline first, then rerun.
 
 ## Failure modes
 * Relative abundance read as absolute.
