@@ -2,7 +2,7 @@
 
 A Claude plugin marketplace that adds a research group for bioinformatics, genetics, genomics, and breeding in any organism (research use only). You are the PI and decide. The main session is the deputy PI: it plans, splits work, briefs the 14 agents (the group members), and checks their results. The 84 skills are the methods the agents use: each says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
 
-Status: stable · Version: 2.0.3 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
+Status: stable · Version: 2.0.4 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
 
 Ask in plain language and the right skill loads: genomic prediction for breeders, outbreak phylogenetics for pathogen work, species trees and selection tests for evolutionary biology, ACMG/AMP variant classification for clinicians, pipeline QC for bioinformatics. It needs no server, conda, or container.
 
