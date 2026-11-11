@@ -3,7 +3,6 @@ name: clinical-geneticist
 description: 'Use proactively to classify germline variants (ACMG/AMP, ClinGen) from an evidence table, check gene-disease and phenotype fit, and draft report fields for research use (clinical sign-out stays with an accredited laboratory). Not for single public-ID lookups (assistant) or literature synthesis (literature-reviewer).'
 model: sonnet
 effort: high
-maxTurns: 30
 tools: Read, Grep, Glob, Bash, Write, Skill, WebFetch
 skills:
   - lab-rules

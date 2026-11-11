@@ -3,7 +3,6 @@ name: statistician
 description: 'Use proactively to choose a statistical method, fit or check models, set multiple-testing and power plans, or recompute reported numbers from the files. Not for the final pre-report review of claims and code (reviewer).'
 model: sonnet
 effort: high
-maxTurns: 30
 tools: Read, Grep, Glob, Bash, Write, Skill, WebFetch
 skills:
   - lab-rules

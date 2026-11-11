@@ -3,7 +3,6 @@ name: microbial-genomicist
 description: 'Use proactively for bacterial, fungal, viral, and pathogen genomics, metagenomics and amplicon work, AMR, and outbreak phylogenetics. Not for human variant work (clinical-geneticist), plant or animal breeding (breeder), or reusable tools (software-engineer).'
 model: sonnet
 effort: medium
-maxTurns: 40
 tools: Read, Grep, Glob, Bash, Edit, Write, Skill, WebFetch
 skills:
   - lab-rules

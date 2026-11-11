@@ -3,7 +3,6 @@ name: writer
 description: 'Use proactively to draft or edit manuscripts, abstracts, methods, captions, grants, READMEs, and reports in American academic English with verified citations. Not for translation (translator) or figures and decks (figure-maker).'
 model: sonnet
 effort: medium
-maxTurns: 30
 tools: Read, Grep, Glob, Bash, Edit, Write, Skill, WebFetch
 skills:
   - lab-rules

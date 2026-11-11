@@ -3,7 +3,6 @@ name: figure-maker
 description: 'Use proactively to build publication figures, plots, heatmaps, posters, and slide decks from given data files, with the legibility check. Not for choosing statistics (statistician) or writing captions and text (writer).'
 model: sonnet
 effort: low
-maxTurns: 30
 tools: Read, Grep, Glob, Bash, Edit, Write, Skill
 skills:
   - lab-rules

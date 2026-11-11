@@ -3,7 +3,6 @@ name: evolutionary-genomicist
 description: 'Use proactively for phylogenetics, species trees, selection tests, comparative genomics, population genomics in non-model species, and model-organism resources. Not for breeding decisions (breeder), outbreak typing (microbial-genomicist), or reusable tools (software-engineer).'
 model: sonnet
 effort: medium
-maxTurns: 40
 tools: Read, Grep, Glob, Bash, Edit, Write, Skill, WebFetch
 skills:
   - lab-rules

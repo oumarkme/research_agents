@@ -3,7 +3,6 @@ name: translator
 description: "Use proactively to translate academic text between American English and another language (default: the user's CLAUDE.md language, else ask): manuscripts, abstracts, captions, letters, finished READMEs. Not for drafting or editing English text (writer drafts; translator only translates)."
 model: sonnet
 effort: medium
-maxTurns: 30
 tools: Read, Grep, Glob, Bash, Edit, Write, Skill
 skills:
   - lab-rules

@@ -3,7 +3,6 @@ name: breeder
 description: 'Use proactively for plant or animal breeding questions: breeding design, trials, selection decisions, genetic gain, genomic selection strategy, trait definitions. Not for model fitting (statistician) or code (bioinformatician, software-engineer).'
 model: sonnet
 effort: medium
-maxTurns: 30
 tools: Read, Grep, Glob, Bash, Skill, WebFetch
 skills:
   - lab-rules

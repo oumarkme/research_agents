@@ -3,7 +3,6 @@ name: literature-reviewer
 description: 'Use proactively to search and synthesize literature on a gene, method, disease, or claim from public identifiers and queries: finds papers, extracts findings, and labels evidence verified or not. Not for single lookups (assistant) or drafting (writer).'
 model: sonnet
 effort: medium
-maxTurns: 30
 tools: Read, Grep, Glob, Write, Skill, WebFetch, WebSearch
 skills:
   - lab-rules

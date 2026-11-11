@@ -3,7 +3,6 @@ name: data-steward
 description: 'Use proactively when data need a directory layout, metadata, a data dictionary, a FAIR or MIAPPE check, a repository choice, a data management plan, or a consent-scope check before sharing. Not for decisions on consent or law; it reports them to the user.'
 model: sonnet
 effort: low
-maxTurns: 20
 tools: Read, Grep, Glob, Bash, Edit, Write, Skill, WebFetch
 skills:
   - lab-rules

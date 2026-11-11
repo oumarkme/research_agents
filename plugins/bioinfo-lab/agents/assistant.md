@@ -3,7 +3,6 @@ name: assistant
 description: 'Use proactively for cheap volume work: file, log, and code search; lookups by public identifier (rsID, gene, PMID, DOI); job and log checks; running tests; exact mechanical edits. Not for judgment, drafting, or literature synthesis (literature-reviewer).'
 model: haiku
 effort: low
-maxTurns: 15
 tools: Read, Grep, Glob, Bash, Edit, Write, Skill, WebFetch, WebSearch
 skills:
   - lab-rules

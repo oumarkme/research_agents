@@ -3,7 +3,6 @@ name: bioinformatician
 description: "Use proactively to run one-off sequencing analyses of any organism and long jobs on the user's compute host: QC, alignment, calling, assembly, workflows, sample and genotype tables. Not for reusable tools or packages (software-engineer) or model choice (statistician)."
 model: sonnet
 effort: medium
-maxTurns: 40
 tools: Read, Grep, Glob, Bash, Edit, Write, Skill, WebFetch
 skills:
   - lab-rules

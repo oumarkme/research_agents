@@ -3,7 +3,6 @@ name: reviewer
 description: 'Use proactively once before results are reported or shared: independent read-only review of a code diff, manuscript or analysis claims, or a blind variant classification. Not for exploratory work, your own tested edits, or choosing methods (statistician).'
 model: opus
 effort: high
-maxTurns: 20
 tools: Skill, Read, Grep, Glob, Bash, WebFetch
 skills:
   - lab-rules

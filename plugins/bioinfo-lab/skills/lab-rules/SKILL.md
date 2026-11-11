@@ -20,6 +20,7 @@ Answer first, then evidence, then what you did not check. Say "not verified" or 
 * Do not repeat finished steps or widen the scope.
 * If a missing input changes the result, ask one question. Otherwise pick a default, say which, and continue.
 * After two failures of the same kind, stop and report the blocker.
+* There is no hard turn cap. Every 30 tool calls, write a three-line checkpoint: done so far, steps left, and whether the last 10 calls moved the result forward. Continue only if the work advanced and the remaining steps are named and finite. Waiting on a background job (Monitor, log tail) does not count as a call. Stop at once, without waiting for a checkpoint, if the same command or error repeats 3 times in 10 calls. After the third checkpoint (about 90 calls), return the partial result with the steps left, so the orchestrator can extend or re-brief.
 
 ## Evidence
 

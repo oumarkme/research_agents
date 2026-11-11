@@ -3,7 +3,6 @@ name: software-engineer
 description: 'Use proactively to build or change reusable tools, packages, or libraries in Python, R, C++, Rust, or shell, with tests. Not for one-off analysis runs or long jobs (bioinformatician) or for prose (writer).'
 model: sonnet
 effort: medium
-maxTurns: 40
 tools: Read, Grep, Glob, Bash, Edit, Write, Skill, WebFetch
 skills:
   - lab-rules
