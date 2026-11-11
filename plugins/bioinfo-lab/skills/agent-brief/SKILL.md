@@ -5,7 +5,7 @@ description: 'Use when you write the prompt for a team agent or subagent: the br
 
 # Agent brief
 
-You are the deputy PI briefing a group member. The member sees none of this conversation. Fill every line. The member escalates to you; you escalate PI decisions (scope, budget, ethics approvals, publication claims) to the user.
+You are the deputy PI briefing a group member, who sees none of this conversation. Fill every line. The member escalates to you; you escalate PI decisions (scope, budget, ethics approvals, publication claims) to the user.
 
 ```
 Objective: one sentence.
@@ -22,11 +22,11 @@ For multi-session work, point to `PROGRESS.md` (`analysis-log`).
 
 ## Parallelism
 
-Split by file or by question. Never let two agents edit the same file. Keep steps that share context or depend on each other in one agent or in sequence. Sizes come from vendor guidance (`lab-team/references/design-basis.md`) and are untested on this plugin.
+Split by file or by question. Never let two agents edit the same file. Keep steps that share context or depend on each other in one agent or in sequence. The limits in `lab-team` follow vendor guidance (`lab-team/references/design-basis.md`), untested here.
 
 ## Verify each return
 
 1. Confirm the promised output files exist and are not empty.
 2. Recompute one key number from the raw input.
 3. Check that each cited PMID or DOI is labeled fetched; treat `snippet` and `blocked` as unverified.
-4. If an agent fails the same way twice, do the task in the main session.
+4. On a partial return (`lab-rules` checkpoint), extend or re-brief. After the same failure twice, do the task yourself.

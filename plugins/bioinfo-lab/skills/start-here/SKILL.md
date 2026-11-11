@@ -5,7 +5,7 @@ description: 'Use when a user asks what this plugin can do, where to start, or w
 
 # Start here
 
-Vision: skills are capabilities that look up current methods and verify results; agents are the group members; you are the PI who decides; the main session is the deputy PI.
+Vision: skills look up current methods and verify results; agents are the group members; the user is the PI who decides; the main session is the deputy PI.
 
 This plugin supports research in bioinformatics, genetics, genomics, and breeding on any organism: human, animal, plant, microbial, viral, fungal, and wild populations. Ask at most two questions, only if the answers change the route: what is the organism and goal, and what data exist (none is fine). Infer the user's level from their words; no programming skill is required.
 

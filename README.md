@@ -1,10 +1,10 @@
 # research_agents
 
-A Claude plugin marketplace that adds a complete research group for bioinformatics, genetics, genomics and breeding across all organisms (research use only). You are the PI and decide. The main session is the deputy PI: it plans, splits work, briefs the 14 agents (the group members), and checks and integrates their results. The 84 skills are capabilities: each says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
+A Claude plugin marketplace that adds a research group for bioinformatics, genetics, genomics, and breeding in any organism (research use only). You are the PI and decide. The main session is the deputy PI: it plans, splits work, briefs the 14 agents (the group members), and checks their results. The 84 skills are the methods the agents use: each says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
 
 Status: stable · Version: 2.0.1 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
 
-Ask in plain language, and the right method loads: genomic prediction for breeders, outbreak phylogenetics for pathogen work, species trees and selection tests for evolutionary biology, ACMG/AMP variant classification for clinicians, pipeline QC for bioinformatics. No server, conda, or container is required.
+Ask in plain language and the right skill loads: genomic prediction for breeders, outbreak phylogenetics for pathogen work, species trees and selection tests for evolutionary biology, ACMG/AMP variant classification for clinicians, pipeline QC for bioinformatics. It needs no server, conda, or container.
 
 ## Install
 
@@ -23,14 +23,14 @@ Slides: ask for a talk and the `slides` skill downloads the newest [slide_templa
 
 ## Quick start
 
-Type a request. Skills load by themselves; call one directly as `/bioinfo-lab:<skill>`.
+Type a request. Skills load on their own; to call one directly, use `/bioinfo-lab:<skill>`.
 
 ```text
 /bioinfo-lab:start-here
 Rank my 300 wheat lines for yield with genomic prediction, and tell me how to validate it.
 ```
 
-Intended behavior (not yet tested end to end): the breeder agent states the objective and validation scheme (`quantitative-genetics`, `genomic-prediction`), asks at most one question, and answers with the baseline model and the metrics to report.
+Intended behavior (not tested end to end): the breeder agent states the objective and validation scheme (`quantitative-genetics`, `genomic-prediction`), asks at most one question, and answers with the baseline model and the metrics to report.
 
 ## Usage
 
@@ -63,7 +63,7 @@ Intended behavior (not yet tested end to end): the breeder agent states the obje
 
 ## Skills by area
 
-The task skills below load on demand; the agents call them by name (`start-here` has the routing).
+The 57 task skills below load on demand; the agents call them by name (`start-here` has the routing).
 
 | Skill | Purpose |
 |---|---|
@@ -131,10 +131,10 @@ If you run jobs on a shared server or cluster, put its rules (host, limits, read
 
 1. Scope: skills map to the ISCB bioinformatics core competencies (Mulder et al., 2018) and to domain standards for breeding, prediction, association studies, sequencing, microbial and evolutionary genomics, clinical genetics, and data stewardship. The map is in `plugins/bioinfo-lab/skills/lab-team/references/competency-map.md`.
 2. Evidence: each skill cites primary sources. On 2026-10-22 the 45 cited DOIs were checked in Crossref and 136 resource URLs with live requests; failures are flagged in the catalog.
-3. Cost control: each agent preloads `lab-rules` (under 3 KB) and at most one core skill for its role (for example, `writer` preloads `writing`); every other skill, including the 60 task skills, loads on demand when the agent calls it. Detail sits in `references/` files that load on demand. Each agent has a model and effort tier and no hard turn cap; it writes a checkpoint every 30 tool calls (`lab-rules`), and the main session handles small work (`lab-team`).
+3. Cost control: each agent preloads `lab-rules` (under 3 KB) and at most one core skill for its role (for example, `writer` preloads `writing`); every other skill, including the 57 task skills, loads on demand. Detail sits in `references/` files that load on demand. Each agent has a model and effort tier, no hard turn cap, and writes a checkpoint every 30 tool calls (`lab-rules`); the main session routes, integrates, and handles only trivial steps (`lab-team`).
 4. Long work: `analysis-log` keeps a progress file, a claims ledger, and provenance, so a new session resumes from the files and not from memory.
 5. Design basis: delegation, context, and testing choices follow Anthropic's published engineering guidance; each choice and its source is listed in `plugins/bioinfo-lab/skills/lab-team/references/design-basis.md`.
-6. Layout: `.claude-plugin/marketplace.json`; `plugins/bioinfo-lab/` with `agents/`, `skills/<name>/SKILL.md`, and `.claude-plugin/plugin.json`; `tests/` with the CI checks.
+6. Layout: `.claude-plugin/marketplace.json`; `plugins/bioinfo-lab/` with `agents/`, `skills/<name>/SKILL.md`, and `.claude-plugin/plugin.json`; `plugins/bioinfo-lab/tests/` (pytest checks); `.github/workflows/ci.yml` runs them and a metadata check.
 
 Limits: skills are guidance, not validated pipelines, and no skill has been tested end to end on real data. Instructions are advice, not enforcement: a rule that must never be skipped belongs in a hook or permission rule in your own settings. Policy items taken from secondary sources (ICMJE and Springer Nature AI rules, national data-protection and access-and-benefit-sharing law) must be checked against the official text. Some sites block scripts (OMIM, UK Biobank, TAIR); use a browser.
 
@@ -142,7 +142,7 @@ Limits: skills are guidance, not validated pipelines, and no skill has been test
 
 * Add a skill: `plugins/bioinfo-lab/skills/<name>/SKILL.md` with `name` (equal to the folder) and a "Use when ..." `description`. Keep `SKILL.md` near 2.5 KB for new skills and under 3.6 KB for older ones (the trigger, core steps, and pointers), and put long material in `references/`.
 * Add an agent: `plugins/bioinfo-lab/agents/<role>.md` with `model`, `effort`, `tools`, and `skills`. Choose the cheapest tier that works.
-* Check with `claude plugin validate . --strict`, test with `claude --plugin-dir ./plugins/bioinfo-lab`, run the checks in `tests/` (also run by CI), and raise `version` in `plugin.json` for each release.
+* Check with `claude plugin validate . --strict`, test with `claude --plugin-dir ./plugins/bioinfo-lab`, run `python -m pytest plugins/bioinfo-lab/tests -q` (CI runs the same), and raise `version` in `plugin.json` for each release.
 
 ## References
 
