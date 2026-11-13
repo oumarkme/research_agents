@@ -19,6 +19,13 @@ description: 'Use before writing, changing, or reviewing code in Python, R, C++,
 * Each project and subproject has a compact `README.md`; load `project-readme` before writing it.
 * Software environment: record exact versions in whatever your setup uses (conda or mamba file, renv, pip lock file, module list, container recipe, or a plain versions file). Containers are optional.
 
+## Version numbers
+
+* Format `vx.x.x` (major.minor.patch, for example v0.1.0). A new project starts at v0.1.0.
+* Bug fix: patch +0.0.1. New function: minor +0.1.0 (patch resets to 0). Major +1.0.0 only when the user asks for it; never bump major on your own.
+* Apply the bump yourself in the same change as the edit, every time, without asking the user. Choose the level from the change (fix or new function); ask only for a major bump.
+* Keep one source of truth for the version (package file, `VERSION`, or tag), match it in the README (`project-readme`), and state old and new version in the report.
+
 ## Reproducibility and tests
 
 * Pin versions, set and log random seeds, log all parameters and the command line, and write outputs deterministically.

@@ -15,7 +15,7 @@ Goal: a first-time visitor knows within one screen what the project is, how to i
 4. Methodology: numbered steps, each with tool, version, and key parameters; validation or benchmark results with numbers; known limits; references in APA, verified (`trusted-sources`). Add one diagram or figure only if it explains the flow.
 5. Cut: badges that carry no information, project history, a table of contents in a short file, text copied from other docs, marketing language, TODO lists. Move detail to `docs/` or a `references/` folder and link it.
 6. Length: tool or pipeline up to about 150 lines; analysis project up to about 100; subproject up to about 50.
-7. State status (stable, experimental, archived), version, and license near the top.
+7. State status (stable, experimental, archived), version (format vx.x.x, new project v0.1.0; bump rules in `coding-style`), and license near the top.
 8. Update the README in the same change as the code.
 9. Never put credentials, machine names, or local paths in it.
 

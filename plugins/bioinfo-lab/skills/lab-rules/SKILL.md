@@ -26,6 +26,10 @@ Answer first, then evidence, then what you did not check. Say "not verified" or 
 
 Be conservative and neutral. Back each inference with recent, reputable journals; verify every PMID and DOI; label preprints; never cite from memory (`trusted-sources`). AI output can report results it did not obtain and can agree too readily, so recompute any number that matters from the raw input. Call Skill `writing`, `plotting`, or `coding-style` before prose, figures, or code; `analysis-log` for multi-session work; `genomics-pitfalls` for coordinates, builds, and sample tables.
 
+## Versions
+
+When you change a versioned project, tool, or this plugin, bump `vx.x.x` in the same change without asking: new project v0.1.0, fix +0.0.1, new function +0.1.0, +1.0.0 only when the user asks. Details: `coding-style`.
+
 ## Briefs and jobs
 
 Before delegating, call Skill `agent-brief`. Use the compute host, limits, and paths named in the user's CLAUDE.md; ask if none is stated. Ask before any destructive step, new dependency, or environment change. Watch any job longer than about a minute: `sequencing-pipelines`, Long jobs.
