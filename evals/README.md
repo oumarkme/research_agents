@@ -12,6 +12,6 @@ Notes: eval workspaces load no CLAUDE.md, so the `claude-md-setup` cases read fi
 
 ## Model experiments
 
-* Lookup accuracy (Haiku vs Sonnet): run `lookup-accuracy-release-facts` with the shipped `assistant` (Haiku), then again after changing `model: haiku` to `model: sonnet` in `agents/assistant.md` on a scratch copy. Facts are in that case's `FACTS.md`; refresh them first.
-* Judgment roles: run the `gp-validation-leakage`, `planted-coordinate-bugs`, and `reviewer-number-mismatch` cases with `--model` set to Sonnet at `--effort`-equivalent settings versus Opus; the effort of a main session is set in the session, not in the suite.
-* Compare arms with `--ablation none`: tag `v2.1.0` (14 agents, 84 skills) against the current `main` (2 agents, 87 skills). Check out the tag in a separate worktree to run it. Run the two-arm mode once on one arm to confirm the plugin adds value over no plugin.
+* Lookup accuracy (Haiku vs Sonnet): run `lookup-accuracy-release-facts` once with the subagent's `model` set to `haiku` and once to `sonnet` (state it in the prompt). Facts are in that case's `FACTS.md`; refresh them first.
+* Judgment roles: run the `gp-validation-leakage`, `planted-coordinate-bugs`, and `independent-review-number-mismatch` cases with `--model` set to Sonnet at `--effort`-equivalent settings versus Opus; the effort of a main session is set in the session, not in the suite.
+* Compare arms with `--ablation none`: tag `v2.1.0` (14 agents, 84 skills) against the current `main` (no agents, 88 skills). Check out the tag in a separate worktree to run it. Run the two-arm mode once on one arm to confirm the plugin adds value over no plugin.

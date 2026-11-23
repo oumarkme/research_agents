@@ -5,7 +5,7 @@ description: 'Use when a user asks what this plugin can do, where to start, or w
 
 # Start here
 
-Skills look up current methods and verify results; two agents (`assistant`, `reviewer`) help with bulk work and independent review.
+Skills look up current methods and verify results; Claude Code's built-in agents (`Explore`, `Plan`, `general-purpose`) and `/advisor` help with bulk work, planning, and review (`lab-team`).
 
 This plugin supports research in bioinformatics, genetics, genomics, and breeding on any organism: human, animal, plant, microbial, viral, fungal, and wild populations. Ask only if the organism, goal, or data would change the route (no data yet is fine). Infer the user's level from their words; no programming skill is required.
 

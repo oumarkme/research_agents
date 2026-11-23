@@ -12,6 +12,8 @@ A subagent sees none of this conversation, so the prompt must stand alone. Inclu
 * Output: format, destination path, and what "done" means in checkable terms.
 * Skills to call, and where it may write.
 
+Built-in agents do not preload `lab-rules`: paste the rules the task needs (look up version-sensitive facts, verify citations). For an independent review, give only the specification, files, and evidence, not your conclusion.
+
 For multi-session work, point to `PROGRESS.md` (`analysis-log`).
 
 ## Parallelism

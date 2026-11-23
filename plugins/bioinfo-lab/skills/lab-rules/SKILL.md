@@ -1,6 +1,6 @@
 ---
 name: lab-rules
-description: 'Use at the start of any research task: the few shared evidence rules (look up version-sensitive facts, verify citations, recompute key numbers). Every agent preloads it.'
+description: 'Use at the start of any research task: the few shared evidence rules (look up version-sensitive facts, verify citations, recompute key numbers).'
 ---
 
 # Lab rules

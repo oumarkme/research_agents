@@ -30,10 +30,10 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 | Bioinformatician | "Build and benchmark a calling pipeline" | `sequencing-pipelines` |
 | Statistician | "Check this mixed model" | `study-design` |
 | Newcomer to a method | "Explain GWAS, then show the steps" | `association-studies` in plain language |
-| Project lead | "Plan aims; check my manuscript claims" | `research-planning`; `writing`, `reviewer` |
+| Project lead | "Plan aims; check my manuscript claims" | `research-planning`; `writing`; independent review (`lab-team`) |
 | Data manager or curator | "Document this dataset for sharing" | `data-stewardship` |
 | Anyone with a consent, permit, or privacy question | "Can I share these data or samples?" | `research-ethics`, `access-benefit-sharing-and-data-governance` (stop and ask the data owner) |
-| Anyone needing one fact or reference | "Is this PMID real?" | `assistant`; `trusted-sources` |
+| Anyone needing one fact or reference | "Is this PMID real?" | `trusted-sources`, `current-methods-lookup` |
 | Anyone needing a translation | "Translate this abstract" (target language as the user states it) | `translator` |
 | Anyone needing slides, a talk, or a figure | "Make a 10-minute talk" (HTML default, PDF on request) | `slides`, `plotting` |
 | Anyone needing a literature review | "What is known about this gene?" | `literature-review`; `trusted-sources` |
