@@ -4,7 +4,7 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 
 | Area | Skills |
 |---|---|
-| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `update`, `claude-md-setup` |
+| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `update`, `claude-md-setup`, `literature-review`, `long-analysis-job` |
 | Calling and QC | `run-qc-and-demultiplexing`, `short-read-germline-calling`, `exome-and-panel-analysis`, `sample-identity-and-contamination`, `sv-cnv-calling`, `somatic-calling`, `repeat-expansions`, `long-read-ont-pacbio`, `difficult-genes-and-mito`, `genome-browser-review` |
 | Assembly, annotation, references | `genome-assembly-and-curation`, `gene-annotation-te-repeats`, `pangenome-and-pav`, `reference-genome-selection`, `reference-genomes-and-liftover` |
 | Interpretation (human) | `variant-interpretation`, `annotation-and-databases`, `rare-disease-prioritization`, `pharmacogenomics-and-hla`, `clinical-pipeline-validation` |
@@ -37,6 +37,8 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 | Anyone needing a translation | "Translate this abstract" (target language as the user states it) | `translator` |
 | Anyone needing slides, a talk, or a figure | "Make a 10-minute talk" (HTML default, PDF on request) | `slides`, `plotting` |
 | Anyone needing a literature review | "What is known about this gene?" | `literature-review`; `trusted-sources` |
-| Anyone asking about plugin version or updates | "Is there a newer version?" | `update`, `claude-md-setup` |
+| Anyone asking about plugin version or updates | "Is there a newer version?" | `update` |
+| Anyone setting up their CLAUDE.md | "Check my global and project CLAUDE.md" | `claude-md-setup` |
 | Anyone with a long, multi-step analysis | "Resume the pipeline from last week" | `analysis-log` |
-| Anyone planning a multi-agent workflow | "Plan a GWAS with the team" | `lab-team`; `team-playbooks`, `agent-brief` |
+| Anyone planning delegation or a multi-step workflow | "Plan a GWAS in steps" | `lab-team`; `team-playbooks`, `agent-brief` |
+| Anyone with a heavy analysis that should run in its own context | "Run QC and alignment on these 40 samples" | `long-analysis-job` |

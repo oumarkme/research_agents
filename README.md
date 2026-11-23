@@ -1,14 +1,12 @@
 # research_agents
 
-A Claude plugin marketplace that adds a research group for bioinformatics, genetics, genomics, and breeding in any organism (research use only). The 87 skills hold the methods; two agents (`assistant`, `reviewer`) and two forked skills (`literature-review`, `long-analysis-job`) help with bulk, independent, or long-context work. You decide and keep control of your data. Each skill says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
+A Claude plugin marketplace with one plugin, `bioinfo-lab`: 87 skills for bioinformatics, genetics, genomics, and breeding in any organism (research use only), plus two agents. Each skill says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
 
-Status: stable · Version: 2.3.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
+Status: stable · Version: 2.3.0 · License: MIT · Install as `bioinfo-lab@research_agents`
 
-Ask in plain language and the right skill loads: genomic prediction for breeders, outbreak phylogenetics for pathogen work, species trees and selection tests for evolutionary biology, ACMG/AMP variant classification for clinicians, pipeline QC for bioinformatics. It needs no server, conda, or container, and ships no hooks, scripts that run on their own, or settings.
+Ask in plain language and the right skill loads: genomic prediction for breeders, outbreak phylogenetics for pathogen work, species trees and selection tests for evolutionary biology, ACMG/AMP classification for variant work, pipeline QC for sequencing. No server, conda, container, hook, or setting is needed.
 
 ## Install
-
-Claude web app: Customize > Plugins > Add > Add marketplace, enter `oumarkme/research_agents`, then select `bioinfo-lab` and Add. For a private repository, connect GitHub and allow the Claude GitHub App when asked.
 
 Claude Code:
 
@@ -17,145 +15,64 @@ Claude Code:
 /plugin install bioinfo-lab@research_agents
 ```
 
-Skills work in chat, Cowork, and Claude Code. Agents work in Cowork and Claude Code. Ask for `/bioinfo-lab:update` to compare your version with the latest release and get the exact commands: `/plugin marketplace update research_agents`, `/plugin update bioinfo-lab@research_agents`, then `/reload-plugins`.
+Claude web app: Customize > Plugins > Add > Add marketplace, enter `oumarkme/research_agents`, select `bioinfo-lab`. Skills work in chat, Cowork, and Claude Code; agents in Cowork and Claude Code.
 
-Slides: ask for a talk and the `slides` skill downloads the newest [slide_template](https://github.com/oumarkme/slide_template) and builds an HTML deck (PDF on request).
+Update: ask for `/bioinfo-lab:update`. It prints `/plugin marketplace update research_agents`, `/plugin update bioinfo-lab@research_agents`, and `/reload-plugins`.
 
 ## Quick start
 
-Type a request. Skills load on their own; to call one directly, use `/bioinfo-lab:<skill>`.
+Type a request; skills load by trigger, or call one with `/bioinfo-lab:<skill>`. `/bioinfo-lab:start-here` lists what is available.
 
 ```text
-/bioinfo-lab:start-here
 Rank my 300 wheat lines for yield with genomic prediction, and tell me how to validate it.
 ```
 
-Intended behavior (not tested end to end): Claude states the objective and validation scheme (`quantitative-genetics`, `genomic-prediction`) and answers with the baseline model and the metrics to report.
+Intended behavior (not tested end to end): Claude states the objective and validation scheme (`quantitative-genetics`, `genomic-prediction`), then gives the baseline model and the metrics to report.
 
-## Usage
+## What is in it
 
-| Agent | Model | Effort | Role |
-|---|---|---|---|
-| `assistant` | Haiku | low | Search, lookups, log checks, test runs |
-| `reviewer` | Opus | high | One independent, read-only review before results are reported |
-
-Forked skills (own context, `model: sonnet`): `literature-review`, `long-analysis-job`. All other roles (statistics, breeding, variant interpretation, data stewardship, writing, figures, code) are skills the main session loads. The earlier 14-agent layout is tag `v2.1.0`.
-
-| Group | Skills |
+| Part | Contents |
 |---|---|
-| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `update`, `claude-md-setup` |
-| Quantitative | `study-design`, `quantitative-genetics`, `genomic-prediction`, `association-studies` |
-| Data and sequencing | `sample-and-assay-planning`, `sequencing-pipelines`, `genomics-pitfalls`, `data-stewardship` |
-| Clinical | `variant-interpretation` |
-| Code and projects | `coding-style`, `project-readme`, `analysis-log`, `slides` |
-| Evidence and writing | `trusted-sources`, `writing`, `humanizer`, `translator`, `plotting` |
-| Communication and compliance | `stakeholder-communication`, `research-ethics`, `research-planning` |
-
-## Skills by area
-
-The 57 task skills below load on demand; Claude loads them by trigger (`start-here` has the routing).
-
-| Skill | Purpose |
-|---|---|
-| `run-qc-and-demultiplexing` | A new Illumina or ONT run arrives and needs demultiplexing, FASTQ or run QC, and a pass or re-run call |
-| `short-read-germline-calling` | Aligning short reads and calling, joint genotyping, filtering, or benchmarking germline SNVs and indels from WGS, WES, or panels |
-| `exome-and-panel-analysis` | Analyzing WES or targeted panels: capture kit and BED, coverage metrics, per-gene gaps, padding, kit and panel versions, capture CNV |
-| `sample-identity-and-contamination` | Confirming sample sex, relatedness, pedigree, cross-sample contamination, or a suspected swap in sequencing or array data |
-| `sv-cnv-calling` | Detecting, merging, filtering, or benchmarking structural variants or copy-number changes from short-read, exome, or long-read data |
-| `repeat-expansions` | Genotyping short tandem repeats or testing for pathogenic repeat expansions (FMR1, C9orf72, RFC1, HTT) from short or long reads |
-| `long-read-ont-pacbio` | Processing ONT or PacBio reads: basecalling, model choice, alignment, small variants, SV, phasing, methylation, assembly, or run metrics |
-| `difficult-genes-and-mito` | A gene has a paralog, pseudogene, or segmental duplication (SMN1, GBA1, CYP2D6, HBA1) or a mitochondrial variant needs calling |
-| `somatic-calling` | Calling somatic SNVs and indels from tumor-normal, tumor-only, or low-VAF mosaic data and filtering them |
-| `reference-genomes-and-liftover` | Choosing a reference build or contig naming, or converting coordinates and VCFs between builds |
-| `annotation-and-databases` | Annotating variants or choosing VEP, ANNOVAR, snpEff, transcripts, or gnomAD and ClinVar releases |
-| `rare-disease-prioritization` | Ranking candidate variants in a proband, trio, or family: filter ladder, inheritance models, HPO ranking, reanalysis |
-| `pharmacogenomics-and-hla` | Calling star alleles, diplotypes, or HLA types from WGS, WES, RNA, or arrays, or reporting CPIC drug-gene results |
-| `population-genetics` | Computing PCA, ancestry, admixture, kinship, IBD, Fst, or selection scans, or building a reference panel |
-| `array-genotyping-and-imputation` | Processing SNP-array or low-pass data: array QC, strand and build, phasing, imputation, panel choice, info filters |
-| `rna-seq-and-splicing` | Analyzing bulk RNA-seq: strandedness, QC, quantification, differential expression, splicing, fusions, or outlier expression for rare disease |
-| `methylation-and-epigenomics` | Analyzing methylation arrays, bisulfite, EM-seq, or ONT methylation, ChIP-seq or ATAC-seq peaks, episignatures, or cell-type composition |
-| `metagenomics` | Analyzing 16S or shotgun microbiome data: host removal, taxonomic and functional profiling, assembly and binning, contamination controls, compositional statistics, STORMS reporting |
-| `proteomics-metabolomics-integration` | Adding proteomics or metabolomics to genomic data: pQTL, colocalization, identifier mapping, normalization, missing values, multi-omics factor models |
-| `non-human-genomes-and-polyploidy` | Working on plant or livestock genomes: reference choice, assembly and annotation, polyploid genotype calling, GBS, SNP arrays, marker files |
-| `workflow-engines-and-containers` | Choosing, writing, or debugging a Nextflow, Snakemake, or WDL workflow, or setting up Apptainer, Docker, or conda software |
-| `hpc-resource-planning` | Sizing cores, memory, disk, GPU, and runtime for a job, or splitting parallel jobs under the host limit |
-| `troubleshooting-failed-jobs` | A pipeline step, container, or job fails, hangs, is killed, or leaves empty or truncated output |
-| `pipeline-testing-and-ci` | Adding tests, regression checks, or continuous integration to a Nextflow, Snakemake, Python, or R pipeline |
-| `performance-profiling` | A step is slower or heavier than expected and you must find the bottleneck and tune threads, I/O, compression, or indexing |
-| `storage-and-data-lifecycle` | Planning storage, compression, transfer, checksums, backup, retention, or cleanup of FASTQ, pod5, BAM, CRAM, and VCF |
-| `omics-statistics-and-batch` | Testing expression, methylation, or count data, sizing replicates, or detecting and correcting batch effects |
-| `omics-data-wrangling` | Reshaping, filtering, or joining large genomic tables and intervals in pandas, polars, R, Bioconductor, bcftools, bedtools, or tabix |
-| `deep-learning-genomics` | Training, validating, or applying neural models to genomic data (variant effect predictors, sequence models, basecallers) |
-| `genome-browser-review` | Visually reviewing variants, SVs, repeats, or splicing in IGV or a similar browser, or saving screenshots and review decisions |
-| `clinical-pipeline-validation` | Validating, freezing, or changing a diagnostic NGS bioinformatics pipeline, or preparing evidence for accreditation |
-| `ai-tools-in-analysis` | An AI coding or writing assistant helps with analysis code, numbers, or text: what to delegate, verification, provenance, disclosure |
-| `bacterial-genome-assembly-annotation` | Assembling, polishing, annotating, and quality-checking a bacterial isolate genome from long or hybrid reads |
-| `amr-genotype-phenotype` | Detecting antimicrobial resistance genes and mutations in bacterial genomes and relating them to phenotype |
-| `pangenome-analysis-prokaryote` | Comparing gene content across many bacterial or archaeal genomes: core and accessory genes, method choice, annotation consistency, recombination |
-| `pathogen-genomic-epidemiology` | Turning pathogen sequence data into consensus genomes, lineages, phylogenies, time trees, and outbreak reports with metadata and data sharing |
-| `fungal-genomics` | Assembling, annotating, or comparing fungal genomes (yeast, molds, plant and human pathogens) |
-| `amplicon-metabarcoding-analysis` | Analyzing 16S, 18S, ITS, or other amplicon or eDNA metabarcoding reads: ASV inference, taxonomy, controls, contamination, reporting |
-| `phylogenetic-inference` | Building a maximum-likelihood tree from DNA, codon, or protein sequences of any organism: alignment, trimming, model choice, support, rooting, reporting |
-| `species-tree-and-selection` | Estimating a species tree from many gene trees, or testing selection on codon alignments (HyPhy) |
-| `orthology-comparative-genomics` | Inferring orthogroups, gene-family gain and loss, synteny, or whole-genome duplication across species of any kingdom |
-| `model-organism-resources` | Looking up genes, alleles, phenotypes, orthologs, or GO annotations for fly, worm, zebrafish, mouse, rat, frog, or yeast, or citing and downloading these resources |
-| `popgen-inbreeding-ne-germplasm` | Estimating structure, inbreeding, ROH, or effective population size in non-model, crop, livestock, or genebank samples |
-| `genome-assembly-and-curation` | Assembling a eukaryotic genome from long reads and Hi-C: haplotype strategy, scaffolding, contamination screening, QC, curation, reporting |
-| `gene-annotation-te-repeats` | Annotating repeats, transposable elements, and genes on a eukaryotic assembly, or transferring an annotation |
-| `pangenome-and-pav` | Building or using a eukaryotic pangenome (graph or linear), calling presence/absence variation, or genotyping SVs across accessions or breeds |
-| `reference-genome-selection` | Choosing or recording the reference assembly and annotation for a non-human eukaryote project, or deciding to build a new one |
-| `polyploid-genotyping-dosage` | Calling or analyzing genotypes in tetraploid, hexaploid, or other polyploid crops as allele dosage |
-| `reduced-representation-genotyping` | Designing or analyzing GBS, RAD, DArT, or skim-sequencing data, with or without a reference, including filters and low-coverage imputation |
-| `livestock-genotype-qc-imputation` | Cleaning livestock SNP-array genotypes: parentage and pedigree checks, sex and breed checks, imputation to a denser panel |
-| `plant-field-trial-gwas` | Running GWAS or QTL mapping on replicated, spatially modelled field trials, single or multi-environment |
-| `agricultural-microbiome` | Planning or reporting rumen, soil, or rhizosphere microbiome studies: sampling, controls, amplicon versus shotgun, host reads, reporting standards |
-| `breeding-metadata-and-archives` | Describing or sharing phenotype, sample, and sequence data from breeding or agricultural projects (MIAPPE, BrAPI, ontologies, FAANG, ENA, EVA) |
-| `access-benefit-sharing-and-data-governance` | Sample, sequence, or share data from wild, germplasm, microbial, or community-held material across borders |
-| `animal-research-ethics-3rs` | Planning or reporting animal experiments or field and wildlife sampling: 3Rs, ARRIVE 2.0, sample size, approvals, and permits |
-| `open-science-reproducible-paper` | Assemble the reproducibility package for a paper: code, environment, workflow, deposits with DOIs, preprint, and TOP checks |
-| `current-methods-lookup` | A decision depends on version-sensitive facts: choosing a tool, options, thresholds, database releases, benchmarks, or guidelines |
-
-The plugin does not handle environment, safety, resource limits, privacy, data governance, or reply language, and it never reads or asks about your `CLAUDE.md`. You set those in your own global or project `CLAUDE.md`; `/bioinfo-lab:claude-md-setup` helps you do that at the right scope.
+| Agents | `assistant` (Haiku, low): searches, lookups, log checks, test runs. `reviewer` (Opus, high, read-only): one independent review before results are reported. |
+| Forked skills | `literature-review` and `long-analysis-job` run in their own context (`model: sonnet`). |
+| Method skills | 68 method skills: calling and QC, assembly and annotation, human variants, breeding, microbial, evolution, omics, engineering, statistics. Full map: `plugins/bioinfo-lab/skills/start-here/references/skill-map.md`. |
+| Support skills | `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `trusted-sources`, `current-methods-lookup`, `analysis-log`, `coding-style`, `writing`, `humanizer`, `translator`, `plotting`, `slides`, `project-readme`, `research-ethics`, `update`. |
+| `claude-md-setup` | Audits and sets up your `CLAUDE.md` at global, project, and local scope. Runs only when you call it; writes only after you approve a diff. |
 
 ## Design principles
 
-1. As few restrictions as possible; let the model do what it is good at.
-2. The plugin does not handle environment, safety, resource limits, privacy, data governance, or reply language. Users set those in their own `CLAUDE.md`.
-3. No hooks, `userConfig`, plugin `settings.json`, permission rules, or hard-coded site values.
-4. One setup skill, `claude-md-setup`, helps with `CLAUDE.md` at global, project, and local scope. It is user-invoked only.
-5. Users are researchers in many fields and own their data decisions.
+1. As few restrictions as possible; the model does what it is good at.
+2. The plugin does not handle environment, safety, resource limits, privacy, data governance, or reply language, and never reads or asks about your `CLAUDE.md`. You set those yourself.
+3. No hooks, `userConfig`, plugin `settings.json`, permission rules, or site-specific values.
+4. One setup skill (`claude-md-setup`).
+5. You own your data decisions.
 
-## What was optimized (v2.3)
+## What v2.3 changed
 
-* **Skills:** descriptions lead with the trigger and carry a "Not for" pointer; `update` and `claude-md-setup` run only when invoked; five skills were rewritten as compact decision criteria as a pilot; process and environment rules were removed and the domain knowledge kept. Removed rules are listed in `docs/removed-rules.md`.
-* **Agents:** only `assistant` (cheap, isolated bulk work) and `reviewer` (independent, read-only) remain; the other 12 roles became skills, with their domain rules folded into the matching skill.
-* **Models:** the frontmatter aliases (`sonnet`, `opus`, `haiku`) follow the latest model of that family, on purpose. A plugin cannot set the main model.
-* **Efforts:** `reviewer` (high) and `assistant` (low) are pinned on purpose; other effort levels are experiments (see `evals/README.md`).
+* **Skills:** descriptions lead with the trigger and carry a "Not for" pointer; process and environment rules are gone and domain knowledge is kept (`docs/removed-rules.md`); `update` and `claude-md-setup` are user-invoked only; five skills were rewritten as compact decision criteria.
+* **Agents:** 14 agents became 2. The other 12 roles are skills, with their domain rules folded into the matching skill. The 14-agent layout is tag `v2.1.0`.
+* **Delegation:** optional guidance in `lab-team`. A subagent starts with no history and multi-agent runs used about 15 times the tokens of a chat, so delegate parallel, breadth-first, or bulky work and keep dependent steps in the main session.
+* **Models and effort:** `sonnet`, `opus`, and `haiku` in frontmatter follow the latest model of that family, on purpose. Only `reviewer` (high) and `assistant` (low) pin an effort. A plugin cannot set the main model.
 
-Example model guidance (not prescribed): Sonnet at `medium` as the default; `opusplan` or `/model opus` for judgment-heavy sessions such as study design or claim audits; `xhigh` and `max` rarely, because they cost more without a clear gain. In Opus sessions, `CLAUDE_CODE_SUBAGENT_MODEL=sonnet` keeps subagents on Sonnet (Claude Code v2.1.251 or later).
+Example model guidance (not prescribed): Sonnet at `medium` by default; `opusplan` or `/model opus` for judgment-heavy sessions such as study design or claim audits; `xhigh` and `max` rarely. In Opus sessions, `CLAUDE_CODE_SUBAGENT_MODEL=sonnet` keeps subagents on Sonnet (Claude Code v2.1.251 or later).
 
-## Methodology
+## Limits
 
-1. Scope: skills map to the ISCB bioinformatics core competencies (Mulder et al., 2018) and to domain standards for breeding, prediction, association studies, sequencing, microbial and evolutionary genomics, clinical genetics, and data stewardship. The map is in `plugins/bioinfo-lab/skills/lab-team/references/competency-map.md`.
-2. Evidence: each skill cites primary sources. On 2026-10-22 the 45 cited DOIs were checked in Crossref and 136 resource URLs with live requests; failures are flagged in the catalog.
-3. Cost control: both agents preload `lab-rules` (under 1 KB); every other skill, including the 57 task skills, loads on demand. Detail sits in `references/` files that load on demand. `lab-rules` holds only the shared evidence rules; delegation is optional guidance (`lab-team`), because a subagent starts with no history and multi-agent runs used about 15 times the tokens of a chat.
-4. Long work: `analysis-log` keeps a progress file, a claims ledger, and provenance, so a new session resumes from the files and not from memory.
-5. Design basis: delegation, context, and testing choices follow Anthropic's published engineering guidance; each choice and its source is listed in `plugins/bioinfo-lab/skills/lab-team/references/design-basis.md`.
-6. Layout: `.claude-plugin/marketplace.json`; `plugins/bioinfo-lab/` with `agents/`, `skills/<name>/SKILL.md`, and `.claude-plugin/plugin.json`; `plugins/bioinfo-lab/tests/` (pytest checks); `.github/workflows/ci.yml` runs them and a metadata check.
-
-Limits: skills are guidance, not validated pipelines, and no skill has been tested end to end on real data. Instructions are advice, not enforcement: a rule that must never be skipped belongs in a hook or permission rule in your own settings. Policy items taken from secondary sources (ICMJE and Springer Nature AI rules, national data-protection and access-and-benefit-sharing law) must be checked against the official text. Some sites block scripts (OMIM, UK Biobank, TAIR); use a browser.
+Skills are guidance, not validated pipelines, and no skill has been tested end to end on real data. The eval suite in `evals/` has not been run. Instructions are advice, not enforcement: a rule that must never be skipped belongs in a hook or permission rule in your own settings. Policy items taken from secondary sources (ICMJE and Springer Nature AI rules, data-protection and access-and-benefit-sharing law) must be checked against the official text. Some sites block scripts (OMIM, UK Biobank, TAIR); use a browser.
 
 ## Develop
 
-* Add a skill: `plugins/bioinfo-lab/skills/<name>/SKILL.md` with `name` (equal to the folder) and a "Use when ..." `description`. Keep `SKILL.md` near 2.5 KB for new skills and under 3.6 KB for older ones (the trigger, core steps, and pointers), and put long material in `references/`.
-* Add an agent only when it gives isolation, cheap routing, or independence a skill cannot. Set `model` and `skills`; add `tools` only to restrict.
-* Check with `claude plugin validate . --strict`, test with `claude --plugin-dir ./plugins/bioinfo-lab`, run `python -m pytest plugins/bioinfo-lab/tests -q` (CI runs the same), and raise `version` in `plugin.json` for each release (`vx.x.x`: +0.1.0 for new functions, +0.0.1 for fixes; major only on request). Evals live in `evals/`, outside the installed plugin.
+* Layout: `.claude-plugin/marketplace.json`; `plugins/bioinfo-lab/` with `agents/`, `skills/<name>/SKILL.md`, `tests/`, and `.claude-plugin/plugin.json`; `evals/` (outside the installed plugin, see `evals/README.md`); `docs/removed-rules.md`; `.github/workflows/ci.yml`.
+* Add a skill: a folder with `SKILL.md`, `name` equal to the folder, and a "Use when ..." `description` under 400 characters that states the trigger first and ends with "Not for ... (other-skill)". Keep `SKILL.md` short and put detail in `references/`.
+* Add an agent only when it gives isolation, cheap routing, or independence a skill cannot.
+* Check: `claude plugin validate .` in `plugins/bioinfo-lab`, then `python -m pytest plugins/bioinfo-lab/tests -q`. CI also checks versions, front matter, agent pins, description and line limits, and counts.
+* Version `vx.x.x` in `plugin.json`, this README, and the marketplace entry must agree: +0.1.0 for a new function, +0.0.1 for a fix, major only on request.
 
 ## References
 
-Mulder, N. J., et al. (2018). The development and application of bioinformatics core competencies to improve bioinformatics training and education. *PLOS Computational Biology, 14*(2), e1005772. https://doi.org/10.1371/journal.pcbi.1005772
+Mulder, N. J., et al. (2018). The development and application of bioinformatics core competencies to improve bioinformatics training and education. *PLOS Computational Biology, 14*(2), e1005772. https://doi.org/10.1371/journal.pcbi.1005772 (basis of `plugins/bioinfo-lab/skills/lab-team/references/competency-map.md`).
 
-Claude documentation (checked 2026-10-22): [Create a marketplace](https://code.claude.com/docs/en/plugin-marketplaces), [Plugin components](https://code.claude.com/docs/en/plugins/components), [Plugins on claude.ai](https://claude.com/docs/plugins/overview).
+Claude documentation: [Create a marketplace](https://code.claude.com/docs/en/plugin-marketplaces), [Plugin components](https://code.claude.com/docs/en/plugins/components), [Plugin evals](https://code.claude.com/docs/en/plugin-evals).
 
 ## License
 
