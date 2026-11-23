@@ -2,7 +2,7 @@
 
 A Claude plugin marketplace with one plugin, `bioinfo-lab`: 88 skills for bioinformatics, genetics, genomics, and breeding in any organism (research use only), plus two agents. Each skill says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
 
-Status: stable · Version: 2.4.0 · License: MIT · Install as `bioinfo-lab@research_agents`
+Status: stable · Version: 2.5.0 · License: MIT · Install as `bioinfo-lab@research_agents`
 
 Ask in plain language and the right skill loads: genomic prediction for breeders, outbreak phylogenetics for pathogen work, species trees and selection tests for evolutionary biology, ACMG/AMP classification for variant work, pipeline QC for sequencing. No server, conda, container, hook, or setting is needed.
 
@@ -49,7 +49,7 @@ Intended behavior (not tested end to end): Claude states the objective and valid
 
 ## Clean git history
 
-`git-versioning` applies the `vx.x.x` rule (+0.0.1 fix, +0.1.0 new function, +1.0.0 only when you ask) and keeps Claude out of commits, pull requests, and docs that reach GitHub: no `Co-Authored-By` trailer, no "Generated with" line, no mention in tracked files. Claude Code adds those by default, so also set `"attribution": {"commit": "", "pr": "", "sessionUrl": false}` in your own `settings.json` (v2.1.281 or later accepts `"attribution": false`).
+`git-versioning` applies the `vx.x.x` rule (+0.0.1 fix, +0.1.0 new function, +1.0.0 only when you ask), gives each project an MIT `LICENSE` by default and a stranger-friendly README (`project-readme`), and keeps Claude out of commits, pull requests, and docs that reach GitHub: no `Co-Authored-By` trailer, no "Generated with" line, no mention in tracked files. Claude Code adds those by default, so also set `"attribution": {"commit": "", "pr": "", "sessionUrl": false}` in your own `settings.json` (v2.1.281 or later accepts `"attribution": false`).
 
 ## What v2.3 changed
 

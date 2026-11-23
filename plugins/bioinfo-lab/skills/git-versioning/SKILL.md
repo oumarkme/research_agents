@@ -12,6 +12,15 @@ description: 'Use when committing, tagging, versioning, or writing docs, changel
 * Apply the bump yourself in the same change as the edit, without asking. Choose the level from the change (fix or new function); ask only for a major bump.
 * Keep one source of truth for the version (package file, `VERSION`, or tag) and match it in the README and any changelog. State old and new version in the report. Tag a release (`vx.x.x`) only when the user asks.
 
+## Project defaults
+
+Every project that follows this skill has, at the repository root:
+
+* **`LICENSE`:** MIT unless the user names another license. Copyright line: the current year and the holder's name from the user (or `git config user.name`; ask if neither is known). Mirror the license in the package metadata.
+* **`README.md`:** written for strangers who may want to use the project, on GitHub's first screen. Follow `project-readme`: tagline, what and why, install, a tested quick start, usage, status, version, license, and where to get help (issues). Update it in the same change as the code.
+* **`.gitignore`** for the language and tooling, with scratch notes, credentials, and large data excluded; never commit secrets.
+* **Version file** as the single source of truth for the version rule above.
+
 ## Commits, docs, and pull requests
 
 Nothing that reaches GitHub names Claude, Anthropic, or AI assistance. The commit author and committer stay the user's own git identity.
