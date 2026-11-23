@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: dependent-two-step-no-fanout
+context:
+  scaffold_script: fixture.sh
