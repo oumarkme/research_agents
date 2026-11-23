@@ -20,6 +20,10 @@ description: 'Use before writing, changing, or reviewing code in Python, R, C++,
 * Software environment: record exact versions in whatever your setup uses (conda or mamba file, renv, pip lock file, module list, container recipe, or a plain versions file). Containers are optional.
 
 
+## Version numbers and commits
+
+Follow `git-versioning`: the `vx.x.x` rule and commit messages with no mention of Claude.
+
 ## Reproducibility and tests
 
 * Pin versions, set and log random seeds, log all parameters and the command line, and write outputs deterministically.

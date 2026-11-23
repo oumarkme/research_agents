@@ -12,7 +12,7 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 | Microbial and pathogen | `bacterial-genome-assembly-annotation`, `amr-genotype-phenotype`, `pangenome-analysis-prokaryote`, `pathogen-genomic-epidemiology`, `fungal-genomics`, `metagenomics`, `amplicon-metabarcoding-analysis` |
 | Evolution and comparative | `phylogenetic-inference`, `species-tree-and-selection`, `orthology-comparative-genomics`, `population-genetics`, `model-organism-resources` |
 | Omics assays | `rna-seq-and-splicing`, `methylation-and-epigenomics`, `proteomics-metabolomics-integration` |
-| Engineering and HPC | `workflow-engines-and-containers`, `sequencing-pipelines`, `hpc-resource-planning`, `troubleshooting-failed-jobs`, `pipeline-testing-and-ci`, `performance-profiling`, `storage-and-data-lifecycle`, `omics-data-wrangling`, `coding-style`, `genomics-pitfalls` |
+| Engineering and HPC | `git-versioning`, `workflow-engines-and-containers`, `sequencing-pipelines`, `hpc-resource-planning`, `troubleshooting-failed-jobs`, `pipeline-testing-and-ci`, `performance-profiling`, `storage-and-data-lifecycle`, `omics-data-wrangling`, `coding-style`, `genomics-pitfalls` |
 | Statistics | `study-design`, `association-studies`, `omics-statistics-and-batch`, `deep-learning-genomics` |
 | Planning and data | `sample-and-assay-planning`, `research-planning`, `data-stewardship`, `analysis-log` |
 | Research conduct | `research-ethics`, `animal-research-ethics-3rs`, `access-benefit-sharing-and-data-governance`, `open-science-reproducible-paper`, `trusted-sources`, `current-methods-lookup`, `ai-tools-in-analysis` |
@@ -38,6 +38,7 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 | Anyone needing slides, a talk, or a figure | "Make a 10-minute talk" (HTML default, PDF on request) | `slides`, `plotting` |
 | Anyone needing a literature review | "What is known about this gene?" | `literature-review`; `trusted-sources` |
 | Anyone asking about plugin version or updates | "Is there a newer version?" | `update` |
+| Anyone versioning or committing a software project | "Commit this fix and bump the version" | `git-versioning` |
 | Anyone setting up their CLAUDE.md | "Check my global and project CLAUDE.md" | `claude-md-setup` |
 | Anyone with a long, multi-step analysis | "Resume the pipeline from last week" | `analysis-log` |
 | Anyone planning delegation or a multi-step workflow | "Plan a GWAS in steps" | `lab-team`; `team-playbooks`, `agent-brief` |
