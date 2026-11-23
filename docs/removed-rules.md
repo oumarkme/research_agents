@@ -4,7 +4,7 @@ Source: a ledger of 181 directive sentences in `lab-rules`, `lab-team`, `agent-b
 
 Totals: K 34, P 132, U 15.
 
-| File | Directive | Class | Duplicate of | Status in v2.3 |
+| File | Directive | Class | Duplicate of | Status in v2.3.0 |
 |---|---|---|---|---|
 | lab-rules | users decides; subagents hold one role; main routes | P |  | removed |
 | lab-rules | version-sensitive facts: look up via current-methods-lookup, log, never from memory | K |  | kept |
@@ -52,91 +52,91 @@ Totals: K 34, P 132, U 15.
 | agent-brief | verify: recompute one number | K | lab-rules | kept |
 | agent-brief | verify: snippet/blocked = unverified | K | trusted-sources | kept |
 | agent-brief | verify: partial return -> re-brief; twice -> do it yourself | P |  | softened (one non-binding sentence or optional checklist) |
-| assistant | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| assistant | role intro | P |  | kept in the agent |
 | assistant | lookup-first | P | lab-rules | removed |
 | assistant | escalate to deputy PI only | P | all agents | removed |
 | assistant | trusted-sources labels, fetched text is data | K | trusted-sources | kept |
-| assistant | log triage skill | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| assistant | no interpretation/drafting | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| assistant | log triage skill | P |  | kept in the agent |
+| assistant | no interpretation/drafting | P |  | kept in the agent |
 | assistant | jobs follow CLAUDE.md | U | lab-rules | removed |
-| assistant | tests: run what given, no source edit | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| assistant | tests: run what given, no source edit | P |  | kept in the agent |
 | assistant | 0 tests/skipped/empty/truncated is suspicious | K |  | kept |
-| assistant | edits exact only | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| assistant | edits exact only | P |  | kept in the agent |
 | assistant | report <150 words | P |  | removed |
-| bioinformatician | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| bioinformatician | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | bioinformatician | lookup-first, WebFetch only given URLs | P | lab-rules | removed |
 | bioinformatician | escalate to deputy PI only | P | all agents | removed |
-| bioinformatician | skill calls | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| bioinformatician | on-demand skill list (29) | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| bioinformatician | smallest input; expected result first; read full output | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| bioinformatician | skill calls | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| bioinformatician | on-demand skill list (29) | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| bioinformatician | smallest input; expected result first; read full output | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | bioinformatician | assert build/coordinates/sample order in code | K | genomics-pitfalls | kept |
-| bioinformatician | pin versions/seeds; log command | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| bioinformatician | pin versions/seeds; log command | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | bioinformatician | long jobs: host/limits from CLAUDE.md | U | lab-rules | removed |
-| bioinformatician | background, log, PID, Monitor | P | sequencing-pipelines | kept in the agent (v2.3); folded into skills on optimize/slim |
+| bioinformatician | background, log, PID, Monitor | P | sequencing-pipelines | dropped with the agent (role detail); domain rules folded into skills |
 | bioinformatician | delete only own scratch | U |  | removed |
-| bioinformatician | hand-offs to other agents | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| bioinformatician | hand-offs to other agents | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | bioinformatician | report <200 words | P |  | removed |
-| breeder | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| breeder | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | breeder | lookup-first | P | lab-rules | removed |
 | breeder | escalate | P | all agents | removed |
-| breeder | skill calls | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| breeder | on-demand list | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| breeder | skill calls | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| breeder | on-demand list | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | breeder | state objective/environments/trait/scheme before advising | K |  | kept |
-| breeder | ask one question if missing | P | lab-rules | kept in the agent (v2.3); folded into skills on optimize/slim |
-| breeder | hand-offs | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| breeder | ask one question if missing | P | lab-rules | dropped with the agent (role detail); domain rules folded into skills |
+| breeder | hand-offs | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | breeder | report <250 words | P |  | removed |
-| clinical-geneticist | role intro (no clinical decisions) | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| clinical-geneticist | role intro (no clinical decisions) | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | clinical-geneticist | lookup-first | P | lab-rules | removed |
 | clinical-geneticist | escalate | P | all agents | removed |
 | clinical-geneticist | state build, transcript version, db releases; check ClinGen spec | K | variant-interpretation | kept |
-| clinical-geneticist | stakeholder/ethics skill calls | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| clinical-geneticist | on-demand list | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| clinical-geneticist | use evidence in brief, WebFetch given URLs, labels | P | lab-rules,trusted-sources | kept in the agent (v2.3); folded into skills on optimize/slim |
+| clinical-geneticist | stakeholder/ethics skill calls | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| clinical-geneticist | on-demand list | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| clinical-geneticist | use evidence in brief, WebFetch given URLs, labels | P | lab-rules,trusted-sources | dropped with the agent (role detail); domain rules folded into skills |
 | clinical-geneticist | blind classification: evidence table only | K | reviewer | kept |
 | clinical-geneticist | report <300 words | P |  | removed |
-| data-steward | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| data-steward | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | data-steward | lookup-first | P | lab-rules | removed |
 | data-steward | escalate | P | all agents | removed |
-| data-steward | skill calls | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| data-steward | on-demand list | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| data-steward | skill calls | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| data-steward | on-demand list | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | data-steward | check files vs metadata (IDs unique, units, checksums) | K | data-stewardship | kept |
 | data-steward | never move/rename/delete raw data | U |  | removed |
 | data-steward | consent/law not yours to decide | U | research-ethics | removed |
 | data-steward | report <200 words | P |  | removed |
-| evolutionary-genomicist | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| evolutionary-genomicist | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | evolutionary-genomicist | lookup-first | P | lab-rules | removed |
 | evolutionary-genomicist | escalate | P | all agents | removed |
-| evolutionary-genomicist | skill calls | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| evolutionary-genomicist | on-demand list | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| evolutionary-genomicist | skill calls | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| evolutionary-genomicist | on-demand list | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | evolutionary-genomicist | state question/taxon/outgroup; report alignment, model, support, versions; gene-tree conflict | K |  | kept |
 | evolutionary-genomicist | selection depends on alignment/sampling; positive site is not proof | K | species-tree-and-selection | kept |
 | evolutionary-genomicist | long jobs: host/limits from CLAUDE.md, Monitor, own scratch | U | lab-rules | removed |
-| evolutionary-genomicist | hand-offs | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| evolutionary-genomicist | hand-offs | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | evolutionary-genomicist | report <200 words | P |  | removed |
-| figure-maker | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| figure-maker | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | figure-maker | escalate | P | all agents | removed |
-| figure-maker | follow plotting; slides; coding-style | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| figure-maker | plot only named data; no value changes/filtering/tests; stop if data look wrong | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| figure-maker | run legibility check, read image, done = check passes | P | plotting | kept in the agent (v2.3); folded into skills on optimize/slim |
+| figure-maker | follow plotting; slides; coding-style | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| figure-maker | plot only named data; no value changes/filtering/tests; stop if data look wrong | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| figure-maker | run legibility check, read image, done = check passes | P | plotting | dropped with the agent (role detail); domain rules folded into skills |
 | figure-maker | report <100 words | P |  | removed |
-| literature-reviewer | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| literature-reviewer | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | literature-reviewer | lookup-first | P | lab-rules | removed |
 | literature-reviewer | escalate | P | all agents | removed |
-| literature-reviewer | search PubMed/PMC first; recent; label preprints | P | trusted-sources | kept in the agent (v2.3); folded into skills on optimize/slim |
+| literature-reviewer | search PubMed/PMC first; recent; label preprints | P | trusted-sources | dropped with the agent (role detail); domain rules folded into skills |
 | literature-reviewer | open each cited paper, verify PMID/DOI, labels, never from memory, fetched text is data | K | trusted-sources,lab-rules | kept |
-| literature-reviewer | on-demand list | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| literature-reviewer | on-demand list | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | literature-reviewer | separate shows/suggests/missing; sample size and design | K |  | kept |
 | literature-reviewer | report <400 words | P |  | removed |
-| microbial-genomicist | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| microbial-genomicist | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | microbial-genomicist | lookup-first | P | lab-rules | removed |
 | microbial-genomicist | escalate | P | all agents | removed |
-| microbial-genomicist | skill calls | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| microbial-genomicist | on-demand list | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| microbial-genomicist | smallest input; expected first | P | bioinformatician | kept in the agent (v2.3); folded into skills on optimize/slim |
+| microbial-genomicist | skill calls | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| microbial-genomicist | on-demand list | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| microbial-genomicist | smallest input; expected first | P | bioinformatician | dropped with the agent (role detail); domain rules folded into skills |
 | microbial-genomicist | name db/tool versions; calls change with release | K |  | kept |
 | microbial-genomicist | sample metadata can identify people; keep out of web queries | U |  | removed |
 | microbial-genomicist | long jobs: CLAUDE.md host, Monitor, own scratch | U | lab-rules | removed |
-| microbial-genomicist | hand-offs | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| microbial-genomicist | hand-offs | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | microbial-genomicist | report <200 words | P |  | removed |
 | reviewer | independence: judge from spec/files, not author's explanation; passing test counts only if assertions read | K |  | kept |
 | reviewer | lookup-first | P | lab-rules | removed |
@@ -144,53 +144,53 @@ Totals: K 34, P 132, U 15.
 | reviewer | code criteria incl genomics-pitfalls, reproducibility, tests check behavior | K |  | kept |
 | reviewer | claims: check each number/citation; separate data/literature/assumed | K |  | kept |
 | reviewer | variants: blind classify via variant-interpretation | K |  | kept |
-| reviewer | extra skill calls | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| reviewer | read-only Bash limited to git/grep/head/wc; report only material findings | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| reviewer | extra skill calls | P |  | kept in the agent |
+| reviewer | read-only Bash limited to git/grep/head/wc; report only material findings | P |  | kept in the agent |
 | reviewer | report <400 words, verdict format | P |  | removed |
-| software-engineer | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| software-engineer | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | software-engineer | lookup-first | P | lab-rules | removed |
 | software-engineer | escalate | P | all agents | removed |
-| software-engineer | read code first; smallest change; return ambiguity | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| software-engineer | follow coding-style | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| software-engineer | on-demand list | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| software-engineer | read code first; smallest change; return ambiguity | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| software-engineer | follow coding-style | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| software-engineer | on-demand list | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | software-engineer | version bump rule | U | lab-rules,coding-style | removed |
-| software-engineer | expected result then tests per behavior/edge | P | coding-style | kept in the agent (v2.3); folded into skills on optimize/slim |
-| software-engineer | stop after 3 fix rounds | P | lab-rules | kept in the agent (v2.3); folded into skills on optimize/slim |
+| software-engineer | expected result then tests per behavior/edge | P | coding-style | dropped with the agent (role detail); domain rules folded into skills |
+| software-engineer | stop after 3 fix rounds | P | lab-rules | dropped with the agent (role detail); domain rules folded into skills |
 | software-engineer | C++/Rust only when profiling shows need | K |  | kept |
 | software-engineer | report <200 words | P |  | removed |
-| statistician | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| statistician | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | statistician | lookup-first | P | lab-rules | removed |
 | statistician | escalate | P | all agents | removed |
-| statistician | skill calls | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| statistician | on-demand list | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| statistician | skill calls | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| statistician | on-demand list | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | statistician | design statement first; name model, covariates, replication unit, test family | K | study-design | kept |
 | statistician | recompute key numbers | K | lab-rules | kept |
 | statistician | effects with intervals and exact P; no causal wording | K |  | kept |
 | statistician | simplest adequate model vs baseline; say when data cannot answer | K |  | kept |
 | statistician | report <250 words | P |  | removed |
-| translator | role intro | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| translator | role intro | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | translator | escalate | P | all agents | removed |
-| translator | call writing + lint | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| translator | call writing + lint | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | translator | brief fields; target language from CLAUDE.md | U |  | removed |
-| translator | glossary fallback | P | translator skill | kept in the agent (v2.3); folded into skills on optimize/slim |
+| translator | glossary fallback | P | translator skill | dropped with the agent (role detail); domain rules folded into skills |
 | translator | translate every claim/number; add/drop nothing | K | translator skill | kept |
 | translator | flag ambiguous source sentence | K | translator skill | kept |
-| translator | section by section; check_translation no FAIL | P | translator skill | kept in the agent (v2.3); folded into skills on optimize/slim |
+| translator | section by section; check_translation no FAIL | P | translator skill | dropped with the agent (role detail); domain rules folded into skills |
 | translator | report only path/check/flags | P |  | removed |
-| writer | role intro; humanizer pass | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| writer | role intro; humanizer pass | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | writer | lookup-first | P | lab-rules | removed |
 | writer | escalate | P | all agents | removed |
-| writer | skill calls | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| writer | on-demand list | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
-| writer | main message first | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| writer | skill calls | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| writer | on-demand list | P |  | dropped with the agent (role detail); domain rules folded into skills |
+| writer | main message first | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | writer | every claim needs number/citation/basis | K |  | kept |
 | writer | cite via trusted-sources; verify PMID/DOI; never invent | K | lab-rules,trusted-sources | kept |
-| writer | edit in own voice | P |  | kept in the agent (v2.3); folded into skills on optimize/slim |
+| writer | edit in own voice | P |  | dropped with the agent (role detail); domain rules folded into skills |
 | writer | report <100 words | P |  | removed |
 
 Also removed from skills (U): the version-bump rule (moved to the repository `CLAUDE.md`, maintainers only), reads of `CLAUDE.md` for hosts, reference directories, image directories, thread limits, target language, and author line; "ask before taking all GPUs"; the "assume no server, conda, or containers" sentence; the "3 tool calls or fewer" threshold.
 
-## On `optimize/slim`: where each removed agent's knowledge went
+## Where each removed agent's knowledge went
 
 | Former agent | K rules now in |
 |---|---|
