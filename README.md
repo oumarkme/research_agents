@@ -39,7 +39,7 @@ Intended behavior (not tested end to end): Claude states the objective and valid
 | `assistant` | Haiku | low | Search, lookups, log checks, test runs |
 | `reviewer` | Opus | high | One independent, read-only review before results are reported |
 
-Forked skills (own context, `model: sonnet`): `literature-review`, `long-analysis-job`. All other roles (statistics, breeding, variant interpretation, data stewardship, writing, figures, code) are skills the main session loads; branch `optimize/slim` is the test of this layout against the 14-agent one.
+Forked skills (own context, `model: sonnet`): `literature-review`, `long-analysis-job`. All other roles (statistics, breeding, variant interpretation, data stewardship, writing, figures, code) are skills the main session loads. The earlier 14-agent layout is tag `v2.1.0`.
 
 | Group | Skills |
 |---|---|
