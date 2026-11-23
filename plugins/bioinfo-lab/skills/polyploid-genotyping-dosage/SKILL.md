@@ -1,6 +1,6 @@
 ---
 name: polyploid-genotyping-dosage
-description: 'Use when calling or analyzing genotypes in polyploid crops as allele dosage (0 to ploidy). Not for reference choice and assembly (non-human-genomes-and-polyploidy) or the prediction model (genomic-prediction).'
+description: 'Use when calling or analyzing genotypes in polyploid crops as allele dosage (0 to ploidy). Not for reference choice and assembly (non-human-genomes-and-polyploidy).'
 ---
 
 # Polyploid genotyping and dosage

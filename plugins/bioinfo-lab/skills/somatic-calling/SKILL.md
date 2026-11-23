@@ -1,6 +1,6 @@
 ---
 name: somatic-calling
-description: 'Use when calling and filtering somatic SNVs and indels from tumor-normal, tumor-only, or low-VAF mosaic data. Not for germline calling (short-read-germline-calling) or build and contig checks (genomics-pitfalls).'
+description: 'Use when calling and filtering somatic SNVs and indels from tumor-normal, tumor-only, or low-VAF mosaic data. Not for germline calling (short-read-germline-calling).'
 ---
 
 # Somatic calling

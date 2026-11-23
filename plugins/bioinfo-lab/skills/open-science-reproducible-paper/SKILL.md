@@ -1,6 +1,6 @@
 ---
 name: open-science-reproducible-paper
-description: 'Use when you assemble the reproducibility package for a paper: code, environment, workflow, deposits with DOIs, preprint, and journal openness policy. Not for daily logs (analysis-log) or directory layout (data-stewardship).'
+description: 'Use when you assemble the reproducibility package for a paper: code, environment, workflow, deposits with DOIs, preprint, and journal openness policy. Not for daily logs (analysis-log).'
 ---
 
 # Open science and the reproducible paper

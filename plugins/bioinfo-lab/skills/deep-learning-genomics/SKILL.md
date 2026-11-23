@@ -1,6 +1,6 @@
 ---
 name: deep-learning-genomics
-description: 'Use when training, validating, or applying neural models to genomic data (variant effect predictors, sequence models, basecallers). Not for polygenic or genomic prediction (genomic-prediction) or ACMG classification (variant-interpretation).'
+description: 'Use when training, validating, or applying neural models to genomic data (variant effect predictors, sequence models, basecallers). Not for polygenic or genomic prediction (genomic-prediction).'
 ---
 
 # Deep learning in genomics

@@ -1,6 +1,6 @@
 ---
 name: genome-assembly-and-curation
-description: 'Use when assembling a eukaryotic genome from long reads and Hi-C: haplotype strategy, scaffolding, contamination screening, QC, curation. Not for bacteria (bacterial-genome-assembly-annotation) or gene models (gene-annotation-te-repeats).'
+description: 'Use when assembling a eukaryotic genome from long reads and Hi-C: haplotype strategy, scaffolding, contamination screening, QC, curation. Not for bacteria (bacterial-genome-assembly-annotation).'
 ---
 
 # Genome assembly and curation

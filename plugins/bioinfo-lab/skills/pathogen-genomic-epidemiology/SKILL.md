@@ -1,6 +1,6 @@
 ---
 name: pathogen-genomic-epidemiology
-description: 'Use when turning pathogen sequence data into consensus genomes, lineages, time trees, and outbreak reports with metadata and sharing. Not for isolate assembly (bacterial-genome-assembly-annotation) or run QC (run-qc-and-demultiplexing).'
+description: 'Use when turning pathogen sequence data into consensus genomes, lineages, time trees, and outbreak reports with metadata and sharing. Not for isolate assembly (bacterial-genome-assembly-annotation).'
 ---
 
 # Pathogen genomic epidemiology

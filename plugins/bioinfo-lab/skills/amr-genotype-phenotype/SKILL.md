@@ -1,6 +1,6 @@
 ---
 name: amr-genotype-phenotype
-description: 'Use when detecting antimicrobial resistance genes and mutations in bacterial genomes and relating them to phenotype. Not for building the assembly (bacterial-genome-assembly-annotation) or core-genome work (pangenome-analysis-prokaryote).'
+description: 'Use when detecting antimicrobial resistance genes and mutations in bacterial genomes and relating them to phenotype. Not for building the assembly (bacterial-genome-assembly-annotation).'
 ---
 
 # AMR genotype and phenotype

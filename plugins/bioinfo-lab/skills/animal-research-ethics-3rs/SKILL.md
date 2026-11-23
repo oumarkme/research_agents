@@ -1,6 +1,6 @@
 ---
 name: animal-research-ethics-3rs
-description: 'Use when planning or reporting animal experiments or field and wildlife sampling: 3Rs, reporting guideline, sample size, approvals, and permits. Not for human data (research-ethics) or general power analysis (study-design).'
+description: 'Use when planning or reporting animal experiments or field and wildlife sampling: 3Rs, reporting guideline, sample size, approvals, and permits. Not for human data (research-ethics).'
 ---
 
 # Animal research ethics and the 3Rs

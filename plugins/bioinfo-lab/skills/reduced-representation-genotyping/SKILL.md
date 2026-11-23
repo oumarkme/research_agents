@@ -1,6 +1,6 @@
 ---
 name: reduced-representation-genotyping
-description: 'Use when designing or analyzing GBS, RAD, DArT, or skim-sequencing data, with or without a reference, including filters and low-coverage imputation. Not for SNP arrays (array-genotyping-and-imputation) or WGS calling (short-read-germline-calling).'
+description: 'Use when designing or analyzing GBS, RAD, DArT, or skim-sequencing data, with or without a reference, including filters and low-coverage imputation. Not for SNP arrays (array-genotyping-and-imputation).'
 ---
 
 # Reduced-representation genotyping

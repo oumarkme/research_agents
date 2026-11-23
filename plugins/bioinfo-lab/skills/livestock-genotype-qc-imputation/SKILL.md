@@ -1,6 +1,6 @@
 ---
 name: livestock-genotype-qc-imputation
-description: 'Use when cleaning livestock SNP-array genotypes: parentage and pedigree checks, sex and breed checks, imputation to a denser panel. Not for generic array QC (array-genotyping-and-imputation) or the prediction model (genomic-prediction).'
+description: 'Use when cleaning livestock SNP-array genotypes: parentage and pedigree checks, sex and breed checks, imputation to a denser panel. Not for generic array QC (array-genotyping-and-imputation).'
 ---
 
 # Livestock genotype QC and imputation

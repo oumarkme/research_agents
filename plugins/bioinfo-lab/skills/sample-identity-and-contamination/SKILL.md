@@ -1,6 +1,6 @@
 ---
 name: sample-identity-and-contamination
-description: 'Use when confirming sample sex, relatedness, pedigree, cross-sample contamination, or a suspected swap in sequencing or array data. Not for run-level QC (run-qc-and-demultiplexing) or variant calling (short-read-germline-calling).'
+description: 'Use when confirming sample sex, relatedness, pedigree, cross-sample contamination, or a suspected swap in sequencing or array data. Not for run-level QC (run-qc-and-demultiplexing).'
 ---
 
 # Sample identity and contamination

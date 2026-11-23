@@ -1,6 +1,6 @@
 ---
 name: research-ethics
-description: 'Use when handling human, animal, or plant-germplasm data or samples, or deciding on consent, privacy, sharing, authorship, or AI-tool use in research and publishing. Not for animal experiments (animal-research-ethics-3rs) or cross-border material (access-benefit-sharing-and-data-governance).'
+description: 'Use when handling human, animal, or plant-germplasm data or samples, or deciding on consent, privacy, sharing, authorship, or AI-tool use in research and publishing. Not for animal experiments (animal-research-ethics-3rs).'
 ---
 
 # Research ethics and compliance

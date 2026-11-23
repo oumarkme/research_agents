@@ -1,6 +1,6 @@
 ---
 name: popgen-inbreeding-ne-germplasm
-description: 'Use when estimating structure, inbreeding, ROH, or effective population size in non-model, crop, livestock, or genebank samples. Not for human ancestry and admixture workflows (population-genetics) or GWAS (association-studies).'
+description: 'Use when estimating structure, inbreeding, ROH, or effective population size in non-model, crop, livestock, or genebank samples. Not for human ancestry and admixture workflows (population-genetics).'
 ---
 
 # Inbreeding, Ne, and germplasm diversity

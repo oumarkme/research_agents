@@ -1,6 +1,6 @@
 ---
 name: reference-genomes-and-liftover
-description: 'Use when choosing a reference build or contig naming, or converting coordinates and VCFs between builds. Not for general build bug checks (genomics-pitfalls) or alignment pipelines (sequencing-pipelines).'
+description: 'Use when choosing a reference build or contig naming, or converting coordinates and VCFs between builds. Not for general build bug checks (genomics-pitfalls).'
 ---
 
 # Reference genomes and liftover

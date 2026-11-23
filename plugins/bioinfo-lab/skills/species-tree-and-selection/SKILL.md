@@ -1,6 +1,6 @@
 ---
 name: species-tree-and-selection
-description: 'Use when estimating a species tree from many gene trees or testing selection on codon alignments. Not for one gene or concatenated trees (phylogenetic-inference) or orthogroup inference (orthology-comparative-genomics).'
+description: 'Use when estimating a species tree from many gene trees or testing selection on codon alignments. Not for one gene or concatenated trees (phylogenetic-inference).'
 ---
 
 # Species trees and selection tests

@@ -2,7 +2,7 @@
 
 A Claude plugin marketplace with one plugin, `bioinfo-lab`: 88 skills for bioinformatics, genetics, genomics, and breeding in any organism (research use only). It ships no agents; it uses Claude Code's built-in ones. Each skill says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
 
-Status: stable · Version: 2.6.0 · License: MIT · Install as `bioinfo-lab@research_agents`
+Status: stable · Version: 2.7.0 · License: MIT · Install as `bioinfo-lab@research_agents`
 
 Ask in plain language and the right skill loads: genomic prediction for breeders, outbreak phylogenetics for pathogen work, species trees and selection tests for evolutionary biology, ACMG/AMP classification for variant work, pipeline QC for sequencing. No server, conda, container, hook, or setting is needed.
 
@@ -34,9 +34,9 @@ Intended behavior (not tested end to end): Claude states the objective and valid
 | Part | Contents |
 |---|---|
 | Built-in agents | No custom agents. `lab-team` says when to use Claude Code's `Explore` (search, log and test checks), `Plan`, `general-purpose` (lookups, independent review), `web-fetch`, `/advisor`, and `/code-review`. |
-| Forked skills | `literature-review` and `long-analysis-job` run in their own context (`model: sonnet`). |
+| Forked skills | `fact-lookup`, `literature-review`, `long-analysis-job`, and `independent-review` run in their own context on a built-in agent (`general-purpose`), with the model and effort set in each skill. |
 | Method skills | 68 method skills: calling and QC, assembly and annotation, human variants, breeding, microbial, evolution, omics, engineering, statistics. Full map: `plugins/bioinfo-lab/skills/start-here/references/skill-map.md`. |
-| Support skills | `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `trusted-sources`, `current-methods-lookup`, `analysis-log`, `coding-style`, `writing`, `humanizer`, `translator`, `plotting`, `slides`, `project-readme`, `research-ethics`, `update`. |
+| Support skills | `lab-rules`, `lab-team`, `trusted-sources`, `current-methods-lookup`, `analysis-log`, `coding-style`, `writing`, `humanizer`, `translator`, `plotting`, `slides`, `project-readme`, `research-ethics`, `git-versioning`, `update`. |
 | `claude-md-setup` | Audits and sets up your `CLAUDE.md` at global, project, and local scope. Runs only when you call it; writes only after you approve a diff. |
 
 ## Design principles
@@ -56,11 +56,13 @@ Intended behavior (not tested end to end): Claude states the objective and valid
 * **Skills:** descriptions lead with the trigger and carry a "Not for" pointer; process and environment rules are gone and domain knowledge is kept (`docs/removed-rules.md`); `update` and `claude-md-setup` are user-invoked only; five skills were rewritten as compact decision criteria.
 * **Agents:** 14 agents became none. 12 roles became skills, with their domain rules folded into the matching skill; the lookup and review jobs use Claude Code's built-in agents and `/advisor`. The 14-agent layout is tag `v2.1.0`.
 * **Delegation:** optional guidance in `lab-team`. A subagent starts with no history and multi-agent runs used about 15 times the tokens of a chat, so delegate parallel, breadth-first, or bulky work and keep dependent steps in the main session.
-* **Models and effort:** the plugin pins none. The forked skills use `model: sonnet`, which follows the latest Sonnet on purpose. A plugin cannot set the main model; pass `model` or `effort` per subagent call.
+* **Models and effort:** the plugin pins none. The forked skills use model aliases (`opus`, `sonnet`), which follow the latest model of that family on purpose. A plugin cannot set the main model; pass `model` or `effort` per subagent call.
 
 Example model guidance (not prescribed): Sonnet at `medium` by default; `opusplan` or `/model opus` for judgment-heavy sessions such as study design or claim audits; `xhigh` and `max` rarely. In Opus sessions, `CLAUDE_CODE_SUBAGENT_MODEL=sonnet` keeps subagents on Sonnet (Claude Code v2.1.251 or later).
 
 ## Limits
+
+Claude Code lists skill descriptions within a budget of 1% of the context window and drops the descriptions of the least used skills first (names always stay). With 88 skills, raise `skillListingBudgetFraction` in your own settings (for example 0.02) or set `SLASH_COMMAND_TOOL_CHAR_BUDGET`; `/doctor` shows the cost. Subagents can load any plugin skill with the Skill tool, so name the skill in the brief (`lab-team`).
 
 Skills are guidance, not validated pipelines, and no skill has been tested end to end on real data. The eval suite in `evals/` has not been run. Instructions are advice, not enforcement: a rule that must never be skipped belongs in a hook or permission rule in your own settings. Policy items taken from secondary sources (ICMJE and Springer Nature AI rules, data-protection and access-and-benefit-sharing law) must be checked against the official text. Some sites block scripts (OMIM, UK Biobank, TAIR); use a browser.
 

@@ -1,6 +1,6 @@
 ---
 name: literature-review
-description: 'Use when a gene, method, disease, or claim needs a literature search and synthesis from public identifiers and queries, with each paper labeled verified or not. Runs in its own context. Not for a single lookup (current-methods-lookup) or drafting (writing).'
+description: 'Use when a gene, method, disease, or claim needs a literature search and synthesis from public identifiers and queries, with each paper labeled verified or not. Runs in its own context. Not for a single lookup (current-methods-lookup).'
 context: fork
 model: sonnet
 background: false

@@ -20,7 +20,7 @@ Built from the ISCB bioinformatics core competencies (Mulder et al., 2018, https
 | Effective communication (N) | `project-readme`, `writing`, `humanizer`, `translator`, `plotting`, `stakeholder-communication` |
 | Teamwork and collaboration with breeders, farmers, and clinicians (O) | `stakeholder-communication` |
 | Project planning and grants (practice-based) | `research-planning` |
-| Delegation and cost control | `lab-team`, `agent-brief`, `team-playbooks`, `lab-rules` |
+| Delegation and cost control | `lab-team`, `lab-rules` |
 | Data generation technologies (C) | `run-qc-and-demultiplexing` |
 | Tools (F) | `short-read-germline-calling` |
 | Tools (F) | `exome-and-panel-analysis` |

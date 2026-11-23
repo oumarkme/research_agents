@@ -15,7 +15,7 @@ Stop when two independent reliable sources agree.
 
 ## How
 
-Who looks up: any session with web tools, or a `general-purpose` subagent (try a cheaper `model` for plain fact lookups; check its facts against the page). Return facts only: URL, version or date, a short quote, retrieval date, or "not found".
+Who looks up: any session with web tools, or the forked skill `fact-lookup` to keep page text out of the main context. Check its facts against the page. Return facts only: URL, version or date, a short quote, retrieval date, or "not found".
 1. State the question and constraints: organism, data type, scale, platform.
 2. Search the keywords in the domain skill's where-to-look file; open the official or most-used current page; official documentation and release notes first. Fetch from the web; keep no local copies of documentation.
 3. Then recent independent benchmarks or reviews (PubMed, Crossref; label preprints) over the authors' own.

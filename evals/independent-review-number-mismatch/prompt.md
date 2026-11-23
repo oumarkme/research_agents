@@ -5,4 +5,4 @@ runs: 3
 tags: ['quality']
 ---
 
-Have an independent subagent check the claims in ./report.md against ./data.csv, giving it only the files and not your own conclusion, and tell me the verdict.
+Get an independent review of the claims in ./report.md against ./data.csv and tell me the verdict.

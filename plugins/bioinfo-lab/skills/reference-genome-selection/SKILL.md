@@ -1,6 +1,6 @@
 ---
 name: reference-genome-selection
-description: 'Use when choosing or recording the reference assembly and annotation for a non-human eukaryote project, or deciding on a new one. Not for liftover mechanics (reference-genomes-and-liftover) or building the assembly (genome-assembly-and-curation).'
+description: 'Use when choosing or recording the reference assembly and annotation for a non-human eukaryote project, or deciding on a new one. Not for liftover mechanics (reference-genomes-and-liftover).'
 ---
 
 # Reference genome selection (non-human)

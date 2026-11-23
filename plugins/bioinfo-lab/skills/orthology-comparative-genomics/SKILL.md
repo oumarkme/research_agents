@@ -1,6 +1,6 @@
 ---
 name: orthology-comparative-genomics
-description: 'Use when inferring orthogroups, gene-family gain and loss, synteny, or whole-genome duplication across species. Not for tree building (phylogenetic-inference) or selection tests (species-tree-and-selection).'
+description: 'Use when inferring orthogroups, gene-family gain and loss, synteny, or whole-genome duplication across species. Not for tree building (phylogenetic-inference).'
 ---
 
 # Orthology and comparative genomics

@@ -1,6 +1,6 @@
 ---
 name: bacterial-genome-assembly-annotation
-description: 'Use when assembling, polishing, annotating, and checking a bacterial isolate genome from long or hybrid reads. Not for AMR calls (amr-genotype-phenotype) or many-genome comparison (pangenome-analysis-prokaryote).'
+description: 'Use when assembling, polishing, annotating, and checking a bacterial isolate genome from long or hybrid reads. Not for AMR calls (amr-genotype-phenotype).'
 ---
 
 # Bacterial genome assembly and annotation

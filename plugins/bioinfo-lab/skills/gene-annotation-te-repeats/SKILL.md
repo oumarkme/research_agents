@@ -1,6 +1,6 @@
 ---
 name: gene-annotation-te-repeats
-description: 'Use when annotating repeats, transposable elements, and genes on a eukaryotic assembly, or transferring an annotation. Not for building the assembly (genome-assembly-and-curation) or choosing a public annotation (reference-genome-selection).'
+description: 'Use when annotating repeats, transposable elements, and genes on a eukaryotic assembly, or transferring an annotation. Not for building the assembly (genome-assembly-and-curation).'
 ---
 
 # Gene, TE, and repeat annotation

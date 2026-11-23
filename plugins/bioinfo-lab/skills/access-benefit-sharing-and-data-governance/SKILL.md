@@ -1,6 +1,6 @@
 ---
 name: access-benefit-sharing-and-data-governance
-description: 'Use when you sample, sequence, or share data from wild, germplasm, microbial, or community-held material across borders. Not for consent and authorship (research-ethics) or repository choice (data-stewardship).'
+description: 'Use when you sample, sequence, or share data from wild, germplasm, microbial, or community-held material across borders. Not for consent and authorship (research-ethics).'
 ---
 
 # Access, benefit sharing, and data governance

@@ -1,6 +1,6 @@
 ---
 name: long-analysis-job
-description: 'Use when a long or heavy sequencing analysis should run in its own context (QC, alignment, calling, assembly, workflows) with a log and a checked result. Not for reusable tools (coding-style) or model choice (study-design).'
+description: 'Use when a long or heavy sequencing analysis should run in its own context (QC, alignment, calling, assembly, workflows) with a log and a checked result. Not for reusable tools (coding-style).'
 context: fork
 model: sonnet
 background: false

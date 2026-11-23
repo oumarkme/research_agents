@@ -1,6 +1,6 @@
 ---
 name: omics-statistics-and-batch
-description: 'Use when testing expression, methylation, or count data, sizing replicates, or detecting and correcting batch effects. Not for the design statement (study-design) or GWAS and QTL (association-studies).'
+description: 'Use when testing expression, methylation, or count data, sizing replicates, or detecting and correcting batch effects. Not for the design statement (study-design).'
 ---
 
 # Omics statistics and batch

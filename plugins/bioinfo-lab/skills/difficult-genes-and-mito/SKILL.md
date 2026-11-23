@@ -1,6 +1,6 @@
 ---
 name: difficult-genes-and-mito
-description: 'Use when a gene has a paralog, pseudogene, or segmental duplication (SMN1, GBA1, CYP2D6, HBA1) or an organelle variant needs calling. Not for general SV calling (sv-cnv-calling) or ACMG classification (variant-interpretation).'
+description: 'Use when a gene has a paralog, pseudogene, or segmental duplication (SMN1, GBA1, CYP2D6, HBA1) or an organelle variant needs calling. Not for general SV calling (sv-cnv-calling).'
 ---
 
 # Difficult genes and mitochondrial variants

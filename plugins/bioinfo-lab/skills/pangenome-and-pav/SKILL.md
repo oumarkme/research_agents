@@ -1,6 +1,6 @@
 ---
 name: pangenome-and-pav
-description: 'Use when building or using a eukaryotic pangenome (graph or linear), calling presence/absence variation, or genotyping SVs across accessions or breeds. Not for bacteria (pangenome-analysis-prokaryote) or single-sample SV calling (sv-cnv-calling).'
+description: 'Use when building or using a eukaryotic pangenome (graph or linear), calling presence/absence variation, or genotyping SVs across accessions or breeds. Not for bacteria (pangenome-analysis-prokaryote).'
 ---
 
 # Pangenome and PAV (eukaryotes)

@@ -1,6 +1,6 @@
 ---
 name: long-read-ont-pacbio
-description: 'Use when processing ONT or PacBio reads: basecalling, alignment, small variants, SV, phasing, methylation, assembly, or run metrics. Not for run pass or fail (run-qc-and-demultiplexing) or short-read SV (sv-cnv-calling).'
+description: 'Use when processing ONT or PacBio reads: basecalling, alignment, small variants, SV, phasing, methylation, assembly, or run metrics. Not for run pass or fail (run-qc-and-demultiplexing).'
 ---
 
 # Long-read ONT and PacBio

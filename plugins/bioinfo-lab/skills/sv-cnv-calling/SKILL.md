@@ -1,6 +1,6 @@
 ---
 name: sv-cnv-calling
-description: 'Use when detecting, merging, filtering, or benchmarking structural variants or copy-number changes from short-read, exome, or long-read data. Not for repeats (repeat-expansions) or paralogs (difficult-genes-and-mito).'
+description: 'Use when detecting, merging, filtering, or benchmarking structural variants or copy-number changes from short-read, exome, or long-read data. Not for repeats (repeat-expansions).'
 ---
 
 # SV and CNV calling

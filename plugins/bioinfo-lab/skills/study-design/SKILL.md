@@ -1,6 +1,6 @@
 ---
 name: study-design
-description: 'Use when designing an analysis, choosing statistics, or auditing claims: design statement, confounders, multiple testing, power. Not for GWAS or QTL workflow (association-studies) or prediction validation (genomic-prediction).'
+description: 'Use when designing an analysis, choosing statistics, or auditing claims: design statement, confounders, multiple testing, power. Not for GWAS or QTL workflow (association-studies).'
 ---
 
 # Study design and claim audit

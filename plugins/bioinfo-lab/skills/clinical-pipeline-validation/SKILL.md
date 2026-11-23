@@ -1,6 +1,6 @@
 ---
 name: clinical-pipeline-validation
-description: 'Use when validating, freezing, or changing a human diagnostic NGS bioinformatics pipeline, or preparing evidence for accreditation. Not for variant classification (variant-interpretation) or research benchmarking (sequencing-pipelines).'
+description: 'Use when validating, freezing, or changing a human diagnostic NGS bioinformatics pipeline, or preparing evidence for accreditation. Not for variant classification (variant-interpretation).'
 ---
 
 # Clinical pipeline validation

@@ -1,6 +1,6 @@
 ---
 name: hpc-resource-planning
-description: 'Use when sizing cores, memory, disk, GPU, and runtime for a job, or splitting parallel jobs under the host limit. Not for a slow job that already runs (performance-profiling) or a failed job (troubleshooting-failed-jobs).'
+description: 'Use when sizing cores, memory, disk, GPU, and runtime for a job, or splitting parallel jobs under the host limit. Not for a slow job that already runs (performance-profiling).'
 ---
 
 # HPC resource planning

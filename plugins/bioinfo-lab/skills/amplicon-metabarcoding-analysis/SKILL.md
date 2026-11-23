@@ -1,6 +1,6 @@
 ---
 name: amplicon-metabarcoding-analysis
-description: 'Use when analyzing 16S, 18S, ITS, or other amplicon or eDNA metabarcoding reads: ASVs, taxonomy, controls, contamination, reporting. Not for shotgun metagenomes (metagenomics) or sampling planning (sample-and-assay-planning).'
+description: 'Use when analyzing 16S, 18S, ITS, or other amplicon or eDNA metabarcoding reads: ASVs, taxonomy, controls, contamination, reporting. Not for shotgun metagenomes (metagenomics).'
 ---
 
 # Amplicon and metabarcoding analysis

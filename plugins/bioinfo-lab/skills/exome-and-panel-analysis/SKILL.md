@@ -1,6 +1,6 @@
 ---
 name: exome-and-panel-analysis
-description: 'Use when analyzing WES or targeted panels: capture kit and BED, coverage metrics, per-gene gaps, padding, kit and panel versions, capture CNV. Not for WGS calling (short-read-germline-calling) or SV work (sv-cnv-calling).'
+description: 'Use when analyzing WES or targeted panels: capture kit and BED, coverage metrics, per-gene gaps, padding, kit and panel versions, capture CNV. Not for WGS calling (short-read-germline-calling).'
 ---
 
 # Exome and panel analysis

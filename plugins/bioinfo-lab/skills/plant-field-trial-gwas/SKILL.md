@@ -1,6 +1,6 @@
 ---
 name: plant-field-trial-gwas
-description: 'Use when running GWAS or QTL mapping on replicated, spatially modelled field trials, single or multi-environment. Not for generic association QC (association-studies) or variance components and selection (quantitative-genetics).'
+description: 'Use when running GWAS or QTL mapping on replicated, spatially modelled field trials, single or multi-environment. Not for generic association QC (association-studies).'
 ---
 
 # Plant field-trial GWAS

@@ -1,6 +1,6 @@
 ---
 name: performance-profiling
-description: 'Use when a step is slower or heavier than expected and you must find the bottleneck and tune threads, I/O, compression, or indexing. Not for sizing a new job (hpc-resource-planning) or a crash (troubleshooting-failed-jobs).'
+description: 'Use when a step is slower or heavier than expected and you must find the bottleneck and tune threads, I/O, compression, or indexing. Not for sizing a new job (hpc-resource-planning).'
 ---
 
 # Performance profiling

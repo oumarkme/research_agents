@@ -4,7 +4,7 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 
 | Area | Skills |
 |---|---|
-| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `update`, `claude-md-setup`, `literature-review`, `long-analysis-job` |
+| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `update`, `claude-md-setup`, `literature-review`, `long-analysis-job`, `independent-review`, `fact-lookup` |
 | Calling and QC | `run-qc-and-demultiplexing`, `short-read-germline-calling`, `exome-and-panel-analysis`, `sample-identity-and-contamination`, `sv-cnv-calling`, `somatic-calling`, `repeat-expansions`, `long-read-ont-pacbio`, `difficult-genes-and-mito`, `genome-browser-review` |
 | Assembly, annotation, references | `genome-assembly-and-curation`, `gene-annotation-te-repeats`, `pangenome-and-pav`, `reference-genome-selection`, `reference-genomes-and-liftover` |
 | Interpretation (human) | `variant-interpretation`, `annotation-and-databases`, `rare-disease-prioritization`, `pharmacogenomics-and-hla`, `clinical-pipeline-validation` |
@@ -30,7 +30,7 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 | Bioinformatician | "Build and benchmark a calling pipeline" | `sequencing-pipelines` |
 | Statistician | "Check this mixed model" | `study-design` |
 | Newcomer to a method | "Explain GWAS, then show the steps" | `association-studies` in plain language |
-| Project lead | "Plan aims; check my manuscript claims" | `research-planning`; `writing`; independent review (`lab-team`) |
+| Project lead | "Plan aims; check my manuscript claims" | `research-planning`; `writing`; `independent-review` |
 | Data manager or curator | "Document this dataset for sharing" | `data-stewardship` |
 | Anyone with a consent, permit, or privacy question | "Can I share these data or samples?" | `research-ethics`, `access-benefit-sharing-and-data-governance` (stop and ask the data owner) |
 | Anyone needing one fact or reference | "Is this PMID real?" | `trusted-sources`, `current-methods-lookup` |
@@ -41,5 +41,5 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 | Anyone versioning or committing a software project | "Commit this fix and bump the version" | `git-versioning` |
 | Anyone setting up their CLAUDE.md | "Check my global and project CLAUDE.md" | `claude-md-setup` |
 | Anyone with a long, multi-step analysis | "Resume the pipeline from last week" | `analysis-log` |
-| Anyone planning delegation or a multi-step workflow | "Plan a GWAS in steps" | `lab-team`; `team-playbooks`, `agent-brief` |
+| Anyone planning delegation or a multi-step workflow | "Plan a GWAS in steps" | `lab-team` |
 | Anyone with a heavy analysis that should run in its own context | "Run QC and alignment on these 40 samples" | `long-analysis-job` |

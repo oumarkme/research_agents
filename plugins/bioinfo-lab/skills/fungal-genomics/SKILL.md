@@ -1,6 +1,6 @@
 ---
 name: fungal-genomics
-description: 'Use when assembling, annotating, or comparing fungal genomes (yeast, molds, plant and human pathogens). Evidence is thin; ask. Not for bacterial genomes (bacterial-genome-assembly-annotation) or amplicon profiling (amplicon-metabarcoding-analysis).'
+description: 'Use when assembling, annotating, or comparing fungal genomes (yeast, molds, plant and human pathogens). Evidence is thin; ask. Not for bacterial genomes (bacterial-genome-assembly-annotation).'
 ---
 
 # Fungal genomics

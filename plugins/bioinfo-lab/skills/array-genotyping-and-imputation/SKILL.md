@@ -1,6 +1,6 @@
 ---
 name: array-genotyping-and-imputation
-description: 'Use when processing SNP-array or low-pass data in any organism: array QC, strand and build, phasing, imputation, panel choice, info filters. Not for GWAS models (association-studies) or sample swaps (genomics-pitfalls).'
+description: 'Use when processing SNP-array or low-pass data in any organism: array QC, strand and build, phasing, imputation, panel choice, info filters. Not for GWAS models (association-studies).'
 ---
 
 # Array genotyping and imputation

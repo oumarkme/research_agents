@@ -1,6 +1,6 @@
 ---
 name: rare-disease-prioritization
-description: 'Use when ranking human candidate variants in a proband, trio, or family: filter ladder, inheritance models, phenotype ranking, reanalysis. Not for ACMG classification (variant-interpretation) or calling (sequencing-pipelines).'
+description: 'Use when ranking human candidate variants in a proband, trio, or family: filter ladder, inheritance models, phenotype ranking, reanalysis. Not for ACMG classification (variant-interpretation).'
 ---
 
 # Rare-disease prioritization

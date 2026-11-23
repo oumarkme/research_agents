@@ -1,6 +1,6 @@
 ---
 name: genome-browser-review
-description: 'Use when visually reviewing variants, SVs, repeats, or splicing in a genome browser, or saving screenshots and review decisions. Not for figure design (plotting) or variant classification (variant-interpretation).'
+description: 'Use when visually reviewing variants, SVs, repeats, or splicing in a genome browser, or saving screenshots and review decisions. Not for figure design (plotting).'
 ---
 
 # Genome browser review

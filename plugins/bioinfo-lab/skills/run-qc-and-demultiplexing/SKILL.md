@@ -1,6 +1,6 @@
 ---
 name: run-qc-and-demultiplexing
-description: 'Use when a new Illumina or ONT run arrives and needs demultiplexing, FASTQ or run QC, and a pass or re-run call. Not for alignment-level QC (short-read-germline-calling) or sample identity (sample-identity-and-contamination).'
+description: 'Use when a new Illumina or ONT run arrives and needs demultiplexing, FASTQ or run QC, and a pass or re-run call. Not for alignment-level QC (short-read-germline-calling).'
 ---
 
 # Run QC and demultiplexing

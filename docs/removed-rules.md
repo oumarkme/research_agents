@@ -207,4 +207,4 @@ Also removed from skills (U): the version-bump rule (moved to the repository `CL
 | bioinformatician | new forked skill `long-analysis-job`; `genomics-pitfalls` and `sequencing-pipelines` already held the rest |
 | literature-reviewer | new forked skill `literature-review` |
 
-On v2.6.0 `assistant` and `reviewer` were removed too: lookups, searches, and independent review use Claude Code's built-in agents, `/advisor`, and `/code-review` (`lab-team`). The agents' on-demand skill lists, hand-offs, role introductions, and the `effort` pins were dropped. `roster.md` was deleted.
+On v2.6.0 `assistant` and `reviewer` were removed too, and `agent-brief` and `team-playbooks` were merged into `lab-team` on v2.7.0: lookups, searches, and independent review use Claude Code's built-in agents, `/advisor`, and `/code-review` (`lab-team`). The agents' on-demand skill lists, hand-offs, role introductions, and the `effort` pins were dropped. `roster.md` was deleted.

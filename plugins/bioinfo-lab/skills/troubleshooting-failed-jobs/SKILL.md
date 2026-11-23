@@ -1,6 +1,6 @@
 ---
 name: troubleshooting-failed-jobs
-description: 'Use when a pipeline step, container, or job fails, hangs, is killed, or leaves empty or truncated output. Not for sizing before launch (hpc-resource-planning) or tuning a slow job (performance-profiling).'
+description: 'Use when a pipeline step, container, or job fails, hangs, is killed, or leaves empty or truncated output. Not for sizing before launch (hpc-resource-planning).'
 ---
 
 # Troubleshooting failed jobs

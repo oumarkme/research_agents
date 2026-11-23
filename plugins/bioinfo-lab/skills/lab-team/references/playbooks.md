@@ -1,9 +1,4 @@
----
-name: team-playbooks
-description: 'Use when you plan a multi-step workflow (pipeline, breeding, GWAS, diagnostic case, outbreak, comparative genomics, manuscript, figures, data release) and want a typical order of skills and checks. Not for a single task (lab-team).'
----
-
-# Team playbooks
+# Example sequences
 
 Typical orders, not fixed chains: pick the line that matches and skip any step the task does not need. Look up current methods (`current-methods-lookup`) before choosing a tool. Get one independent review (`lab-team`) before a result leaves the project, only if it backs a reported claim.
 

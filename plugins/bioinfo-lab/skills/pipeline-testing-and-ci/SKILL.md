@@ -1,6 +1,6 @@
 ---
 name: pipeline-testing-and-ci
-description: 'Use when adding tests, regression checks, or continuous integration to a Nextflow, Snakemake, Python, or R pipeline. Not for code style (coding-style) or clinical validation (clinical-pipeline-validation).'
+description: 'Use when adding tests, regression checks, or continuous integration to a Nextflow, Snakemake, Python, or R pipeline. Not for code style (coding-style).'
 ---
 
 # Pipeline testing and CI

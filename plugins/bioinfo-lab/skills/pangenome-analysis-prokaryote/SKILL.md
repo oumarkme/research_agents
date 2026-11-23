@@ -1,6 +1,6 @@
 ---
 name: pangenome-analysis-prokaryote
-description: 'Use when comparing gene content across many bacterial or archaeal genomes: core and accessory genes, annotation consistency, recombination. Not for single genomes (bacterial-genome-assembly-annotation) or graph pangenomes (pangenome-and-pav).'
+description: 'Use when comparing gene content across many bacterial or archaeal genomes: core and accessory genes, annotation consistency, recombination. Not for single genomes (bacterial-genome-assembly-annotation).'
 ---
 
 # Prokaryote pangenome analysis

@@ -1,6 +1,6 @@
 ---
 name: workflow-engines-and-containers
-description: 'Use when choosing, writing, or debugging a workflow engine setup, or a container or environment that fixes software versions. Not for pipeline content (sequencing-pipelines) or code style (coding-style).'
+description: 'Use when choosing, writing, or debugging a workflow engine setup, or a container or environment that fixes software versions. Not for pipeline content (sequencing-pipelines).'
 ---
 
 # Workflow engines and containers

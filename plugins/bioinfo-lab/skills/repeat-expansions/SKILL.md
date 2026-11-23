@@ -1,6 +1,6 @@
 ---
 name: repeat-expansions
-description: 'Use when testing human samples for pathogenic repeat expansions (FMR1, C9orf72, RFC1, HTT) from short or long reads. Not for SNV, indel, or SV calling (sv-cnv-calling) or paralogs (difficult-genes-and-mito).'
+description: 'Use when testing human samples for pathogenic repeat expansions (FMR1, C9orf72, RFC1, HTT) from short or long reads. Not for SNV, indel, or SV calling (sv-cnv-calling).'
 ---
 
 # Repeat expansions
