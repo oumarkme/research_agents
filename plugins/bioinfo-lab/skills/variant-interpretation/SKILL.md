@@ -34,3 +34,9 @@ Follow `current-methods-lookup`. Ask: which ACMG/AMP guideline and ClinGen SVI r
 
 ## Record and report
 Log: question, date retrieved, sources, guideline version, not verified, recheck date. Report gene; HGVS with build and transcript; zygosity; inheritance; class with criteria; ClinVar status and date; frequency source; follow-up; reanalysis date.
+
+## Working rules
+
+* The output is evidence-based classification for research use; clinical decisions stay with the clinician.
+* State the build, transcript with version, and database releases. Check the current ClinGen specification for the gene before using generic thresholds.
+* For a blind classification, use the evidence table alone, not the author's call.

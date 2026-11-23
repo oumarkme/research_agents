@@ -27,3 +27,7 @@ description: 'Use before writing, changing, or reviewing code in Python, R, C++,
 * Keep tests proportional to the code: each behavior and each edge case once, without parametrized expansion or duplicate cases. Tests check behavior, not only that the code runs.
 * Test on a small input first. Run heavy jobs on suitable compute, not the interactive session.
 * Do not add dependencies, change environments, or delete data without saying so in the report.
+
+## Changing code
+
+Read the existing code first and make the smallest change that meets the specification; if an ambiguity changes results, ask. Write the expected result, then one test per behavior and edge case; run them and read the output. Choose C++ or Rust only when profiling shows Python or R is too slow or too large in memory, and state what was measured.

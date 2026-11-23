@@ -1,6 +1,6 @@
 # research_agents
 
-A Claude plugin marketplace that adds a research group for bioinformatics, genetics, genomics, and breeding in any organism (research use only). The 85 skills hold the methods; the 14 agents are optional helpers for parallel, bulk, or independent work. You decide and keep control of your data. Each skill each says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
+A Claude plugin marketplace that adds a research group for bioinformatics, genetics, genomics, and breeding in any organism (research use only). The 87 skills hold the methods; two agents (`assistant`, `reviewer`) and two forked skills (`literature-review`, `long-analysis-job`) help with bulk, independent, or long-context work. You decide and keep control of your data. Each skill says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
 
 Status: stable · Version: 2.3.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
 
@@ -37,19 +37,9 @@ Intended behavior (not tested end to end): Claude states the objective and valid
 | Agent | Model | Effort | Role |
 |---|---|---|---|
 | `assistant` | Haiku | low | Search, lookups, log checks, test runs |
-| `data-steward` | Sonnet | low | Metadata, FAIR, repositories, data plans |
-| `translator` | Sonnet | medium | Academic English to or from any language (target language as you name it) |
-| `writer` | Sonnet | medium | Manuscripts, grants, reports, READMEs |
-| `bioinformatician` | Sonnet | medium | Sequencing QC, calling, assembly, workflows, long jobs |
-| `microbial-genomicist` | Sonnet | medium | Bacterial, fungal, viral, and pathogen genomics, metagenomics, AMR, outbreak trees |
-| `evolutionary-genomicist` | Sonnet | medium | Phylogenetics, selection tests, comparative and non-model population genomics |
-| `software-engineer` | Sonnet | medium | Reusable tools in Python, R, C++, Rust |
-| `breeder` | Sonnet | medium | Plant and animal breeding, genomic selection |
-| `statistician` | Sonnet | high | Models, tests, validation |
-| `clinical-geneticist` | Sonnet | high | ACMG/AMP classification, physician reports |
-| `reviewer` | Opus | high | One independent review before results are reported |
-| `literature-reviewer` | Sonnet | medium | Literature search and evidence review with verified citations |
-| `figure-maker` | Sonnet | low | Figures, posters, and decks with the legibility check |
+| `reviewer` | Opus | high | One independent, read-only review before results are reported |
+
+Forked skills (own context, `model: sonnet`): `literature-review`, `long-analysis-job`. All other roles (statistics, breeding, variant interpretation, data stewardship, writing, figures, code) are skills the main session loads; branch `optimize/slim` is the test of this layout against the 14-agent one.
 
 | Group | Skills |
 |---|---|
@@ -63,7 +53,7 @@ Intended behavior (not tested end to end): Claude states the objective and valid
 
 ## Skills by area
 
-The 57 task skills below load on demand; the agents call them by name (`start-here` has the routing).
+The 57 task skills below load on demand; Claude loads them by trigger (`start-here` has the routing).
 
 | Skill | Purpose |
 |---|---|
@@ -138,7 +128,7 @@ The plugin does not handle environment, safety, resource limits, privacy, data g
 ## What was optimized (v2.3)
 
 * **Skills:** descriptions lead with the trigger and carry a "Not for" pointer; `update` and `claude-md-setup` run only when invoked; five skills were rewritten as compact decision criteria as a pilot; process and environment rules were removed and the domain knowledge kept. Removed rules are listed in `docs/removed-rules.md`.
-* **Agents:** duplicated boilerplate (lookup-first, escalation, word caps, site paths) was deleted and tool restrictions were dropped, except the read-only `reviewer`. Branch `optimize/slim` tests turning the other roles into skills.
+* **Agents:** only `assistant` (cheap, isolated bulk work) and `reviewer` (independent, read-only) remain; the other 12 roles became skills, with their domain rules folded into the matching skill.
 * **Models:** the frontmatter aliases (`sonnet`, `opus`, `haiku`) follow the latest model of that family, on purpose. A plugin cannot set the main model.
 * **Efforts:** `reviewer` (high) and `assistant` (low) are pinned on purpose; other effort levels are experiments (see `evals/README.md`).
 
@@ -148,7 +138,7 @@ Example model guidance (not prescribed): Sonnet at `medium` as the default; `opu
 
 1. Scope: skills map to the ISCB bioinformatics core competencies (Mulder et al., 2018) and to domain standards for breeding, prediction, association studies, sequencing, microbial and evolutionary genomics, clinical genetics, and data stewardship. The map is in `plugins/bioinfo-lab/skills/lab-team/references/competency-map.md`.
 2. Evidence: each skill cites primary sources. On 2026-10-22 the 45 cited DOIs were checked in Crossref and 136 resource URLs with live requests; failures are flagged in the catalog.
-3. Cost control: each agent preloads `lab-rules` (under 3 KB) and at most one core skill for its role (for example, `writer` preloads `writing`); every other skill, including the 57 task skills, loads on demand. Detail sits in `references/` files that load on demand. `lab-rules` holds only the shared evidence rules; delegation is optional guidance (`lab-team`), because a subagent starts with no history and multi-agent runs used about 15 times the tokens of a chat.
+3. Cost control: both agents preload `lab-rules` (under 1 KB); every other skill, including the 57 task skills, loads on demand. Detail sits in `references/` files that load on demand. `lab-rules` holds only the shared evidence rules; delegation is optional guidance (`lab-team`), because a subagent starts with no history and multi-agent runs used about 15 times the tokens of a chat.
 4. Long work: `analysis-log` keeps a progress file, a claims ledger, and provenance, so a new session resumes from the files and not from memory.
 5. Design basis: delegation, context, and testing choices follow Anthropic's published engineering guidance; each choice and its source is listed in `plugins/bioinfo-lab/skills/lab-team/references/design-basis.md`.
 6. Layout: `.claude-plugin/marketplace.json`; `plugins/bioinfo-lab/` with `agents/`, `skills/<name>/SKILL.md`, and `.claude-plugin/plugin.json`; `plugins/bioinfo-lab/tests/` (pytest checks); `.github/workflows/ci.yml` runs them and a metadata check.

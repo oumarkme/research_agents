@@ -29,3 +29,7 @@ Goal: a reader outside the sub-field, including a non-native reader, reads each 
 * Humanizer: cut stock vocabulary, reflex structures, em dashes, and vague attribution; add specifics (`humanizer`).
 
 Final check: main message stated · numbers have units and comparators · abbreviations defined once · claims match evidence · citations verified · humanizer done · lint clean.
+
+## Evidence in text
+
+Every claim needs a number, a citation, or a stated basis; verify each PMID or DOI through `trusted-sources` and never invent a reference. Edit existing documents in their own voice and change only what breaks a rule. Report which claims still lack evidence.

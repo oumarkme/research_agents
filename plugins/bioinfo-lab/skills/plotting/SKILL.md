@@ -36,3 +36,7 @@ Draft figures (JPEG, 300 dpi) and publication figures (vector PDF) after the Nat
 View the file with Read at full size and zoomed on each crowded region (crop with PIL; for a PDF, re-run `pdftoppm -r 600`). Pass only if text is at least 7 pt, readable, unclipped, and non-overlapping; lines and points are distinguishable by style or shape as well as color; axes, ticks, and units are visible; groups are separable in the gray preview (PDF), and you fix every pair the check warns about; and the figure is 88 mm wide and legible at 100% in PowerPoint. If nothing is crowded, say so.
 
 Read `design.md` also for publication PDFs, more than 3 groups, or crowded plots.
+
+## Scope of a figure
+
+Plot only the data and summary requested: do not change a value, filter rows, or choose a test. If the data look wrong, say so and stop. A figure is done when the legibility check passes and the file exists.

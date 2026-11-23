@@ -27,3 +27,9 @@ For each claim: what data show, what literature supports (verified PMID or DOI),
 ## Answer format
 
 Answer first with the main number and its uncertainty; then evidence, assumptions, limits, next decisive step.
+
+## Statistical review
+
+* State the design statement first; name the model, covariates, unit of replication, and family of tests.
+* Recompute key numbers from the files; do not trust a reported value. Report effects with intervals and exact P values, and use no causal wording for associations.
+* Choose the simplest adequate model and compare it with a baseline. Say when the data cannot answer the question.

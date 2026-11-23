@@ -189,3 +189,22 @@ Totals: K 34, P 132, U 15.
 | writer | report <100 words | P |  | removed |
 
 Also removed from skills (U): the version-bump rule (moved to the repository `CLAUDE.md`, maintainers only), reads of `CLAUDE.md` for hosts, reference directories, image directories, thread limits, target language, and author line; "ask before taking all GPUs"; the "assume no server, conda, or containers" sentence; the "3 tool calls or fewer" threshold.
+
+## On `optimize/slim`: where each removed agent's knowledge went
+
+| Former agent | K rules now in |
+|---|---|
+| statistician | `study-design` (Statistical review) |
+| breeder | `quantitative-genetics` (Advising on a breeding question) |
+| clinical-geneticist | `variant-interpretation` (Working rules) |
+| data-steward | `data-stewardship` (Checking a dataset) |
+| writer | `writing` (Evidence in text) |
+| translator | `translator` (already held the claim, number, ambiguity, and check rules) |
+| figure-maker | `plotting` (Scope of a figure) |
+| software-engineer | `coding-style` (Changing code) |
+| evolutionary-genomicist | `species-tree-and-selection` (Reporting) |
+| microbial-genomicist | `amr-genotype-phenotype` (Versions) |
+| bioinformatician | new forked skill `long-analysis-job`; `genomics-pitfalls` and `sequencing-pipelines` already held the rest |
+| literature-reviewer | new forked skill `literature-review` |
+
+The agents' on-demand skill lists, hand-offs, role introductions, and the `effort` pins were dropped. `roster.md` was deleted.

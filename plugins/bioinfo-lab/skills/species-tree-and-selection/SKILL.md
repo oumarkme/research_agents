@@ -33,3 +33,7 @@ Follow `current-methods-lookup`. Questions: (1) which species-tree method handle
 
 ## Record and report
 Log: question, date, sources, version, not verified, recheck date. Report gene count, filters, versions, commands, support type, test, correction, sensitivity checks. Ask when a dated tree, network, or unsourced codon model is needed.
+
+## Reporting
+
+State the question, taxon sampling, and outgroup before the method. Report alignment, model, and support values with the software version, and say when a gene tree and the species tree disagree. Selection and divergence results depend on alignment quality and sampling: report how both were tested, and do not read a positive site as proof of adaptation.

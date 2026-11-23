@@ -1,20 +1,20 @@
 ---
 name: team-playbooks
-description: 'Use when you plan a multi-step workflow across team agents (pipeline, breeding, GWAS, diagnostic case, outbreak, comparative genomics, manuscript, figures, data release) and need the agent order. Not for a single-agent task (lab-team).'
+description: 'Use when you plan a multi-step workflow (pipeline, breeding, GWAS, diagnostic case, outbreak, comparative genomics, manuscript, figures, data release) and want a typical order of skills and checks. Not for a single task (lab-team).'
 ---
 
 # Team playbooks
 
-These are example sequences, not fixed chains: pick the line that matches, brief each agent (`agent-brief`), and skip any step the task does not need. Look up current methods (`current-methods-lookup`) before choosing a tool.
+Typical orders, not fixed chains: pick the line that matches and skip any step the task does not need. Look up current methods (`current-methods-lookup`) before choosing a tool. Call `reviewer` once before a result leaves the project, only if it backs a reported claim.
 
-* Small script or edit: main session with `coding-style`. Larger or reusable: `software-engineer`.
-* Sequencing pipeline: `bioinformatician` on a small input, then full run; `reviewer` once only if the output backs a reported result or a shared pipeline.
-* Breeding analysis or genomic prediction: `breeder` sets objective and scheme, `statistician` fits and validates (`quantitative-genetics`, `genomic-prediction`), `bioinformatician` prepares genotypes, `writer` reports to the breeder (`stakeholder-communication`).
-* GWAS or Mendelian randomization: `bioinformatician` QC, `statistician` model and thresholds (`association-studies`), `reviewer` on the claim.
-* Plant or animal breeding project: `breeder` sets objective, population, and scheme; `data-steward` checks trial and pedigree metadata and permits (`breeding-metadata-and-archives`, `access-benefit-sharing-and-data-governance`); `bioinformatician` prepares genotypes and QC (`polyploid-genotyping-dosage`, `livestock-genotype-qc-imputation`); `statistician` fits and validates; `reviewer` once on the claim.
-* Microbial or pathogen outbreak: `microbial-genomicist` assembles, calls AMR, and builds the tree; `data-steward` checks metadata and sharing terms; `statistician` only for a model beyond the tree; `reviewer` once before the report leaves the project.
-* Comparative genomics project: `evolutionary-genomicist` sets taxon sampling, orthogroups, trees, and selection tests; `bioinformatician` prepares assemblies and annotations; `statistician` checks the tests; `reviewer` on the claim.
-* Rare disease or diagnostic case: `assistant` batches public-ID lookups; `clinical-geneticist` classifies from the evidence table; `reviewer` (variant mode) classifies blind; adjudicate only discordant variants; the report goes to the physician (`stakeholder-communication`).
-* Manuscript or grant: main fixes claims and the design statement (`study-design`, `research-planning`); `literature-reviewer` collects literature in parallel by question; `writer` drafts; one `reviewer` claims audit before delivery. Translation after the English text is final. Brief `translator` with source path, language pair, audience, output path, and glossary path. For a final submission, add one `reviewer` claims check on Methods and Results of the translation.
-* Figures or talk: `figure-maker` from final numbers; `reviewer` is not needed unless the figure backs a reported claim.
-* Data release: `data-steward` prepares; the user decides on any consent or sharing question (`research-ethics`).
+* Small script or edit: `coding-style`. Reusable tool: `coding-style` with `pipeline-testing-and-ci`.
+* Sequencing pipeline: `sequencing-pipelines` on a small input, then the full run (`long-analysis-job` if heavy).
+* Breeding analysis or genomic prediction: objective and scheme (`quantitative-genetics`), genotype prep (`array-genotyping-and-imputation`), fit and validation (`genomic-prediction`, `study-design`), report to the breeder (`stakeholder-communication`).
+* GWAS or Mendelian randomization: QC, then model and thresholds (`association-studies`).
+* Plant or animal breeding project: `quantitative-genetics`; trial and pedigree metadata and permits (`breeding-metadata-and-archives`, `access-benefit-sharing-and-data-governance`); genotypes (`polyploid-genotyping-dosage`, `livestock-genotype-qc-imputation`).
+* Microbial or pathogen outbreak: assembly, AMR, and tree (`bacterial-genome-assembly-annotation`, `amr-genotype-phenotype`, `pathogen-genomic-epidemiology`); metadata and sharing terms (`data-stewardship`).
+* Comparative genomics: taxon sampling, orthogroups, trees, and selection tests (`orthology-comparative-genomics`, `phylogenetic-inference`, `species-tree-and-selection`).
+* Rare disease or diagnostic case: public-ID lookups to `assistant`; classify from the evidence table (`variant-interpretation`); `reviewer` classifies blind; adjudicate only discordant variants; the report goes to the clinician (`stakeholder-communication`).
+* Manuscript or grant: claims and design statement (`study-design`, `research-planning`); `literature-review` in parallel by question; `writing`; `reviewer` claims audit; `translator` after the English text is final.
+* Figures or talk: `plotting` or `slides` from final numbers.
+* Data release: `data-stewardship`; the user decides any consent or sharing question (`research-ethics`).

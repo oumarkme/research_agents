@@ -36,3 +36,7 @@ Failure: unexplained discordance; check assembly, nomenclature, and rules before
 Analysis-log: question, date, sources, versions, not verified, recheck date. Report tool versions, database release, limits, hit and discordance tables, untested drug-organism pairs.
 
 Seeds: `references/where-to-look.md`.
+
+## Versions
+
+Name database and tool versions; resistance and taxonomy calls change with the release.

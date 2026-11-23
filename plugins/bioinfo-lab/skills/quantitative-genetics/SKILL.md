@@ -39,3 +39,7 @@ Adjusted means treated as error-free in stage 2; heritability and accuracy estim
 ## Record and report
 
 Heritability with type, formula, and standard error. Response `R = h² S` and gain `ΔG = i r σA / L`, with accuracy defined. Inbreeding rate or effective size (animals); variance and relatedness after selection (plants). Software, versions, model equation. Seeds: `references/where-to-look.md`.
+
+## Advising on a breeding question
+
+State the objective, target environments, trait definition, and selection scheme before advising; if one is missing, ask the collaborator one question. End with the next decisive trial or analysis, and the assumptions about the environment.

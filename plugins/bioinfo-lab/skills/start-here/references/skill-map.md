@@ -4,7 +4,7 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 
 | Area | Skills |
 |---|---|
-| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `update` |
+| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `update`, `claude-md-setup` |
 | Calling and QC | `run-qc-and-demultiplexing`, `short-read-germline-calling`, `exome-and-panel-analysis`, `sample-identity-and-contamination`, `sv-cnv-calling`, `somatic-calling`, `repeat-expansions`, `long-read-ont-pacbio`, `difficult-genes-and-mito`, `genome-browser-review` |
 | Assembly, annotation, references | `genome-assembly-and-curation`, `gene-annotation-te-repeats`, `pangenome-and-pav`, `reference-genome-selection`, `reference-genomes-and-liftover` |
 | Interpretation (human) | `variant-interpretation`, `annotation-and-databases`, `rare-disease-prioritization`, `pharmacogenomics-and-hla`, `clinical-pipeline-validation` |
@@ -22,21 +22,21 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 
 | If the user is | Example request | Route |
 |---|---|---|
-| Plant or animal breeder | "Rank my lines with genomic prediction" | `breeder`; `quantitative-genetics`, `genomic-prediction` |
-| Microbiologist or pathogen researcher | "Assemble this isolate and call resistance genes" | `microbial-genomicist`; `bacterial-genome-assembly-annotation`, `amr-genotype-phenotype` |
-| Evolutionary or comparative biologist | "Build a species tree and test selection" | `evolutionary-genomicist`; `phylogenetic-inference`, `species-tree-and-selection` |
-| Physician or clinical geneticist | "Classify this variant" | `clinical-geneticist`; `variant-interpretation` |
+| Plant or animal breeder | "Rank my lines with genomic prediction" | `quantitative-genetics`, `genomic-prediction` |
+| Microbiologist or pathogen researcher | "Assemble this isolate and call resistance genes" | `bacterial-genome-assembly-annotation`, `amr-genotype-phenotype` |
+| Evolutionary or comparative biologist | "Build a species tree and test selection" | `phylogenetic-inference`, `species-tree-and-selection` |
+| Physician or clinical geneticist | "Classify this variant" | `variant-interpretation` |
 | Wet-lab scientist or technician | "Plan QC and batches for 96 samples" | `sample-and-assay-planning`, `data-stewardship` |
-| Bioinformatician | "Build and benchmark a calling pipeline" | `bioinformatician`; `sequencing-pipelines` |
-| Statistician | "Check this mixed model" | `statistician`; `study-design` |
+| Bioinformatician | "Build and benchmark a calling pipeline" | `sequencing-pipelines` |
+| Statistician | "Check this mixed model" | `study-design` |
 | Newcomer to a method | "Explain GWAS, then show the steps" | `association-studies` in plain language |
-| Project lead | "Plan aims; check my manuscript claims" | `research-planning`; `writer`, `reviewer` |
-| Data manager or curator | "Document this dataset for sharing" | `data-steward`; `data-stewardship` |
+| Project lead | "Plan aims; check my manuscript claims" | `research-planning`; `writing`, `reviewer` |
+| Data manager or curator | "Document this dataset for sharing" | `data-stewardship` |
 | Anyone with a consent, permit, or privacy question | "Can I share these data or samples?" | `research-ethics`, `access-benefit-sharing-and-data-governance` (stop and ask the data owner) |
 | Anyone needing one fact or reference | "Is this PMID real?" | `assistant`; `trusted-sources` |
 | Anyone needing a translation | "Translate this abstract" (target language as the user states it) | `translator` |
-| Anyone needing slides, a talk, or a figure | "Make a 10-minute talk" (HTML default, PDF on request) | `figure-maker`; `slides`, `plotting` |
-| Anyone needing a literature review | "What is known about this gene?" | `literature-reviewer`; `trusted-sources` |
-| Anyone asking about plugin version or updates | "Is there a newer version?" | `update` |
+| Anyone needing slides, a talk, or a figure | "Make a 10-minute talk" (HTML default, PDF on request) | `slides`, `plotting` |
+| Anyone needing a literature review | "What is known about this gene?" | `literature-review`; `trusted-sources` |
+| Anyone asking about plugin version or updates | "Is there a newer version?" | `update`, `claude-md-setup` |
 | Anyone with a long, multi-step analysis | "Resume the pipeline from last week" | `analysis-log` |
 | Anyone planning a multi-agent workflow | "Plan a GWAS with the team" | `lab-team`; `team-playbooks`, `agent-brief` |

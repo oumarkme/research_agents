@@ -1,6 +1,6 @@
 ---
 name: assistant
-description: 'Use proactively for cheap volume work: file, log, and code search; lookups by public identifier (rsID, gene, PMID, DOI); job and log checks; running tests; exact mechanical edits. Not for judgment, drafting, or literature synthesis (literature-reviewer).'
+description: 'Use proactively for cheap volume work: file, log, and code search; lookups by public identifier (rsID, gene, PMID, DOI); job and log checks; running tests; exact mechanical edits. Not for judgment, drafting, or literature synthesis (literature-review).'
 model: haiku
 effort: low
 skills:

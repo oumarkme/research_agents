@@ -38,3 +38,7 @@ Edited raw data; credentials in files; renaming after release without a mapping 
 ## Record and report
 
 Checksums, dictionary, accessions, license, access terms. Seeds: `references/where-to-look.md`.
+
+## Checking a dataset
+
+Check files against the metadata: IDs unique, units stated, missing codes defined, checksums present, raw files untouched. Report each mismatch with file and line. Propose a mapping table for renames instead of moving raw files.
