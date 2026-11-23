@@ -15,7 +15,7 @@ Turn array or low-pass data into QC-passed, build-consistent genotypes and imput
 4. Panel: same build as the target and containing the study ancestry. Human: a public or local WGS panel. Other species: a breed panel; with pedigrees see `livestock-genotype-qc-imputation` (judgment).
 5. Phase, then impute; low-pass data from genotype likelihoods.
 6. Filter on the imputation quality metric by MAF bin and use; log the cutoff (judgment). Rare variants impute worst.
-7. Human data whose consent bars external servers: impute on your own host (the one in CLAUDE.md, else ask), not a public server.
+7. Human data whose consent bars external servers: impute locally, not on a public server.
 
 ## Find current information
 Follow `current-methods-lookup`. Ask: which phasing and imputation tools suit this sample size; which panels fit this ancestry or species; which QC protocol is current. Sources in order: official docs and release notes; panel documentation; recent independent benchmarks (PubMed, Europe PMC); preprints, labeled. Check date, maintenance, benchmark, fit. Seeds: `references/`.

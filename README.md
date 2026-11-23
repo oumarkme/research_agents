@@ -1,10 +1,10 @@
 # research_agents
 
-A Claude plugin marketplace that adds a research group for bioinformatics, genetics, genomics, and breeding in any organism (research use only). You are the PI and decide. The main session is the deputy PI: it plans, splits work, briefs the 14 agents (the group members), and checks their results. The 84 skills are the methods the agents use: each says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
+A Claude plugin marketplace that adds a research group for bioinformatics, genetics, genomics, and breeding in any organism (research use only). The 85 skills hold the methods; the 14 agents are optional helpers for parallel, bulk, or independent work. You decide and keep control of your data. Each skill each says where to find current information, looks up version-sensitive facts through `current-methods-lookup`, and states how to verify results.
 
-Status: stable · Version: 2.1.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
+Status: stable · Version: 2.3.0 · License: MIT · Plugin: `bioinfo-lab` (install as `bioinfo-lab@research_agents`)
 
-Ask in plain language and the right skill loads: genomic prediction for breeders, outbreak phylogenetics for pathogen work, species trees and selection tests for evolutionary biology, ACMG/AMP variant classification for clinicians, pipeline QC for bioinformatics. It needs no server, conda, or container.
+Ask in plain language and the right skill loads: genomic prediction for breeders, outbreak phylogenetics for pathogen work, species trees and selection tests for evolutionary biology, ACMG/AMP variant classification for clinicians, pipeline QC for bioinformatics. It needs no server, conda, or container, and ships no hooks, scripts that run on their own, or settings.
 
 ## Install
 
@@ -30,7 +30,7 @@ Type a request. Skills load on their own; to call one directly, use `/bioinfo-la
 Rank my 300 wheat lines for yield with genomic prediction, and tell me how to validate it.
 ```
 
-Intended behavior (not tested end to end): the breeder agent states the objective and validation scheme (`quantitative-genetics`, `genomic-prediction`), asks at most one question, and answers with the baseline model and the metrics to report.
+Intended behavior (not tested end to end): Claude states the objective and validation scheme (`quantitative-genetics`, `genomic-prediction`) and answers with the baseline model and the metrics to report.
 
 ## Usage
 
@@ -38,7 +38,7 @@ Intended behavior (not tested end to end): the breeder agent states the objectiv
 |---|---|---|---|
 | `assistant` | Haiku | low | Search, lookups, log checks, test runs |
 | `data-steward` | Sonnet | low | Metadata, FAIR, repositories, data plans |
-| `translator` | Sonnet | medium | Academic English to or from any language (target from your CLAUDE.md, else it asks) |
+| `translator` | Sonnet | medium | Academic English to or from any language (target language as you name it) |
 | `writer` | Sonnet | medium | Manuscripts, grants, reports, READMEs |
 | `bioinformatician` | Sonnet | medium | Sequencing QC, calling, assembly, workflows, long jobs |
 | `microbial-genomicist` | Sonnet | medium | Bacterial, fungal, viral, and pathogen genomics, metagenomics, AMR, outbreak trees |
@@ -53,7 +53,7 @@ Intended behavior (not tested end to end): the breeder agent states the objectiv
 
 | Group | Skills |
 |---|---|
-| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `update` |
+| Entry and rules | `start-here`, `lab-rules`, `lab-team`, `agent-brief`, `team-playbooks`, `update`, `claude-md-setup` |
 | Quantitative | `study-design`, `quantitative-genetics`, `genomic-prediction`, `association-studies` |
 | Data and sequencing | `sample-and-assay-planning`, `sequencing-pipelines`, `genomics-pitfalls`, `data-stewardship` |
 | Clinical | `variant-interpretation` |
@@ -125,13 +125,30 @@ The 57 task skills below load on demand; the agents call them by name (`start-he
 | `open-science-reproducible-paper` | Assemble the reproducibility package for a paper: code, environment, workflow, deposits with DOIs, preprint, and TOP checks |
 | `current-methods-lookup` | A decision depends on version-sensitive facts: choosing a tool, options, thresholds, database releases, benchmarks, or guidelines |
 
-If you run jobs on a shared server or cluster, put its rules (host, limits, read-only paths, scratch) in your global or project `CLAUDE.md`. Otherwise nothing needs setup.
+The plugin does not handle environment, safety, resource limits, privacy, data governance, or reply language, and it never reads or asks about your `CLAUDE.md`. You set those in your own global or project `CLAUDE.md`; `/bioinfo-lab:claude-md-setup` helps you do that at the right scope.
+
+## Design principles
+
+1. As few restrictions as possible; let the model do what it is good at.
+2. The plugin does not handle environment, safety, resource limits, privacy, data governance, or reply language. Users set those in their own `CLAUDE.md`.
+3. No hooks, `userConfig`, plugin `settings.json`, permission rules, or hard-coded site values.
+4. One setup skill, `claude-md-setup`, helps with `CLAUDE.md` at global, project, and local scope. It is user-invoked only.
+5. Users are researchers in many fields and own their data decisions.
+
+## What was optimized (v2.3)
+
+* **Skills:** descriptions lead with the trigger and carry a "Not for" pointer; `update` and `claude-md-setup` run only when invoked; five skills were rewritten as compact decision criteria as a pilot; process and environment rules were removed and the domain knowledge kept. Removed rules are listed in `docs/removed-rules.md`.
+* **Agents:** duplicated boilerplate (lookup-first, escalation, word caps, site paths) was deleted and tool restrictions were dropped, except the read-only `reviewer`. Branch `optimize/slim` tests turning the other roles into skills.
+* **Models:** the frontmatter aliases (`sonnet`, `opus`, `haiku`) follow the latest model of that family, on purpose. A plugin cannot set the main model.
+* **Efforts:** `reviewer` (high) and `assistant` (low) are pinned on purpose; other effort levels are experiments (see `evals/README.md`).
+
+Example model guidance (not prescribed): Sonnet at `medium` as the default; `opusplan` or `/model opus` for judgment-heavy sessions such as study design or claim audits; `xhigh` and `max` rarely, because they cost more without a clear gain. In Opus sessions, `CLAUDE_CODE_SUBAGENT_MODEL=sonnet` keeps subagents on Sonnet (Claude Code v2.1.251 or later).
 
 ## Methodology
 
 1. Scope: skills map to the ISCB bioinformatics core competencies (Mulder et al., 2018) and to domain standards for breeding, prediction, association studies, sequencing, microbial and evolutionary genomics, clinical genetics, and data stewardship. The map is in `plugins/bioinfo-lab/skills/lab-team/references/competency-map.md`.
 2. Evidence: each skill cites primary sources. On 2026-10-22 the 45 cited DOIs were checked in Crossref and 136 resource URLs with live requests; failures are flagged in the catalog.
-3. Cost control: each agent preloads `lab-rules` (under 3 KB) and at most one core skill for its role (for example, `writer` preloads `writing`); every other skill, including the 57 task skills, loads on demand. Detail sits in `references/` files that load on demand. Each agent has a model and effort tier, no hard turn cap, and writes a checkpoint every 30 tool calls (`lab-rules`); the main session routes, integrates, and handles only trivial steps (`lab-team`).
+3. Cost control: each agent preloads `lab-rules` (under 3 KB) and at most one core skill for its role (for example, `writer` preloads `writing`); every other skill, including the 57 task skills, loads on demand. Detail sits in `references/` files that load on demand. `lab-rules` holds only the shared evidence rules; delegation is optional guidance (`lab-team`), because a subagent starts with no history and multi-agent runs used about 15 times the tokens of a chat.
 4. Long work: `analysis-log` keeps a progress file, a claims ledger, and provenance, so a new session resumes from the files and not from memory.
 5. Design basis: delegation, context, and testing choices follow Anthropic's published engineering guidance; each choice and its source is listed in `plugins/bioinfo-lab/skills/lab-team/references/design-basis.md`.
 6. Layout: `.claude-plugin/marketplace.json`; `plugins/bioinfo-lab/` with `agents/`, `skills/<name>/SKILL.md`, and `.claude-plugin/plugin.json`; `plugins/bioinfo-lab/tests/` (pytest checks); `.github/workflows/ci.yml` runs them and a metadata check.
@@ -141,8 +158,8 @@ Limits: skills are guidance, not validated pipelines, and no skill has been test
 ## Develop
 
 * Add a skill: `plugins/bioinfo-lab/skills/<name>/SKILL.md` with `name` (equal to the folder) and a "Use when ..." `description`. Keep `SKILL.md` near 2.5 KB for new skills and under 3.6 KB for older ones (the trigger, core steps, and pointers), and put long material in `references/`.
-* Add an agent: `plugins/bioinfo-lab/agents/<role>.md` with `model`, `effort`, `tools`, and `skills`. Choose the cheapest tier that works.
-* Check with `claude plugin validate . --strict`, test with `claude --plugin-dir ./plugins/bioinfo-lab`, run `python -m pytest plugins/bioinfo-lab/tests -q` (CI runs the same), and raise `version` in `plugin.json` for each release.
+* Add an agent only when it gives isolation, cheap routing, or independence a skill cannot. Set `model` and `skills`; add `tools` only to restrict.
+* Check with `claude plugin validate . --strict`, test with `claude --plugin-dir ./plugins/bioinfo-lab`, run `python -m pytest plugins/bioinfo-lab/tests -q` (CI runs the same), and raise `version` in `plugin.json` for each release (`vx.x.x`: +0.1.0 for new functions, +0.0.1 for fixes; major only on request). Evals live in `evals/`, outside the installed plugin.
 
 ## References
 

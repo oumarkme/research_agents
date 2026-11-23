@@ -5,17 +5,17 @@ description: 'Use when analyzing methylation (human arrays, bisulfite, EM-seq, O
 
 # Methylation and epigenomics
 
-## Capability
-Compare methylation, histone marks, or accessibility apart from batch, cell mixture, age, and sex.
+Goal: compare methylation, histone marks, or accessibility apart from batch, cell mixture, age, and sex.
 
-## Decide
-1. Assay: arrays are human only; bisulfite, EM-seq, and ONT suit any organism. Plants: report CG, CHG, and CHH separately.
-2. Per-sample QC and one recorded normalization. Human arrays: mask SNP-affected and cross-reactive probes; combine array generations only on shared masked probes.
-3. Conversion rate from a spike-in or non-CpG context (not CHH in plants, judgment). ONT: record the modified-base model and filter; haplotag reads for imprinting (`sequencing-pipelines`).
-4. Set coverage floors and cutoffs before testing (judgment).
-5. Estimate cell composition from a matched reference; model it with age, sex, batch.
-6. ChIP-seq and ATAC-seq: consortium QC, replicate reproducibility, blacklist removal, consensus peaks, batch in the design.
-7. Human episignatures: platform-matched controls and a published classifier; a result supports, never replaces, variant evidence; classification goes to the clinical geneticist.
+## What decides quality
+
+* **Assay:** arrays are human only; bisulfite, EM-seq, and ONT suit any organism. Plants: report CG, CHG, and CHH separately.
+* **QC and normalization:** per-sample QC and one recorded normalization. Human arrays: mask SNP-affected and cross-reactive probes; combine array generations only on shared masked probes.
+* **Conversion rate:** from a spike-in or non-CpG context (not CHH in plants; judgment). ONT: record the modified-base model and filter; haplotag reads for imprinting (`sequencing-pipelines`).
+* **Thresholds:** set coverage floors and cutoffs before testing (judgment).
+* **Cell composition:** estimate from a matched reference; model it with age, sex, and batch.
+* **ChIP-seq and ATAC-seq:** consortium QC, replicate reproducibility, blacklist removal, consensus peaks, batch in the design.
+* **Human episignatures:** platform-matched controls and a published classifier; a result supports, never replaces, variant evidence; classification belongs to a clinical geneticist.
 
 ## Find current information
 Follow `current-methods-lookup`. Ask: which methylation tools fit this organism and platform; which modified-base model matches the chemistry; which probe masks, blacklists, and QC standards are current. Sources in order: official docs and release notes; recent independent benchmarks (PubMed, Europe PMC); preprints, labeled. Check date, maintenance, benchmark, fit. Seeds: `references/`.

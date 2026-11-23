@@ -5,32 +5,25 @@ description: 'Use when building, validating, or reporting genomic prediction or 
 
 # Genomic prediction and polygenic scores
 
-## Capability
+Goal: predict phenotype or breeding value from genotype and report accuracy that holds in the intended use. Related: `quantitative-genetics`, `livestock-genotype-qc-imputation`, `plant-field-trial-gwas`, `genomics-pitfalls`.
 
-Predict phenotype or breeding value from genotype and report accuracy that holds in the intended use. See `quantitative-genetics`, `livestock-genotype-qc-imputation`, `plant-field-trial-gwas`, `genomics-pitfalls`.
+## What decides validity
 
-## Decide
-
-1. Phenotype: adjusted means or breeding values from a stated model, not raw plot values, unless one-stage.
-2. Genotype: QC or imputation using phenotype or fold information is fit on training data only; record build, marker count, missingness.
-3. Model: linear baseline (GBLUP or ridge) first; add other models only against it, on the same folds.
-4. Scheme mirrors use: new lines, environments, families, future years, or populations and ancestries. Random k-fold answers only the first and overstates accuracy when relatives straddle folds.
-5. Every data-dependent step (scaling, imputation, feature selection, PCs, variance components) is fit inside the training fold.
-6. Humans: development and validation sets are separate; accuracy drops across ancestries, so state ancestry and do not extrapolate.
+* **Phenotype:** adjusted means or breeding values from a stated model, not raw plot values, unless one-stage.
+* **Genotype:** record build, marker count, and missingness; any QC or imputation that uses phenotype or fold information is fit on training data only.
+* **Model:** a linear baseline (GBLUP or ridge) first; other models only against it, on the same folds.
+* **Scheme mirrors use:** new lines, environments, families, future years, or populations and ancestries. Random k-fold answers only the first and overstates accuracy when relatives straddle folds.
+* **Leakage:** every data-dependent step (scaling, imputation, feature selection, PCs, variance components) is fit inside the training fold.
+* **Humans:** development and validation sets are separate; accuracy drops across ancestries, so state the ancestry and do not extrapolate.
 
 ## Find current information
 
-Follow `current-methods-lookup`. Ask:
-* Which models do recent multi-species benchmarks support for our architecture and training size?
-* Which maintained software fits our model and scale?
-* Which reporting standard and score repository apply?
-* Does the benchmark's validation scheme match ours?
+Follow `current-methods-lookup`. Ask: which models recent multi-species benchmarks support for this architecture and training size; which maintained software fits the model and scale; which reporting standard and score repository apply; whether the benchmark's validation scheme matches ours.
 
 ## Verify
 
-* Baseline beside every model, same folds, with training size, marker number, train-test relatedness.
-* Permuted phenotype gives accuracy near zero.
-* Repeat folds with stored seeds; report mean and spread.
+* A baseline beside every model, same folds, with training size, marker number, and train-test relatedness.
+* A permuted phenotype gives accuracy near zero; repeated folds with stored seeds give mean and spread.
 * Predictive ability is the test-set correlation; divide by the square root of heritability to compare with breeding-value accuracy. Add bias (slope), RMSE, and for selection the top-fraction mean against the population mean.
 * Accuracy should rise with training size and heritability; a jump after a new feature suggests leakage.
 
@@ -40,4 +33,4 @@ Relatives across folds; preprocessing on all data; tuning on test data; selected
 
 ## Record and report
 
-Table: ID, prediction, error or reliability, train/test flag. Record scheme, seeds, software, versions, QC, ancestry. See `references/where-to-look.md`.
+Table: ID, prediction, error or reliability, train/test flag. Record scheme, seeds, software, versions, QC, ancestry. Seeds: `${CLAUDE_SKILL_DIR}/references/where-to-look.md`.

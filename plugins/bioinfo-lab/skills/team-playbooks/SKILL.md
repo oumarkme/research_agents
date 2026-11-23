@@ -1,13 +1,13 @@
 ---
 name: team-playbooks
-description: 'Use when you plan a multi-step workflow across team agents (pipeline, breeding, GWAS, diagnostic case, outbreak, comparative genomics, manuscript, figures, data release) and need the agent order.'
+description: 'Use when you plan a multi-step workflow across team agents (pipeline, breeding, GWAS, diagnostic case, outbreak, comparative genomics, manuscript, figures, data release) and need the agent order. Not for a single-agent task (lab-team).'
 ---
 
 # Team playbooks
 
-The deputy PI picks the matching line, briefs each group member (`agent-brief`), and reports to the PI. Step 0 of every line below: the member looks up current methods (`current-methods-lookup`) before choosing a tool.
+These are example sequences, not fixed chains: pick the line that matches, brief each agent (`agent-brief`), and skip any step the task does not need. Look up current methods (`current-methods-lookup`) before choosing a tool.
 
-* Small script or edit (3 tool calls or fewer): main session with `coding-style`. Larger or reusable: `software-engineer`.
+* Small script or edit: main session with `coding-style`. Larger or reusable: `software-engineer`.
 * Sequencing pipeline: `bioinformatician` on a small input, then full run; `reviewer` once only if the output backs a reported result or a shared pipeline.
 * Breeding analysis or genomic prediction: `breeder` sets objective and scheme, `statistician` fits and validates (`quantitative-genetics`, `genomic-prediction`), `bioinformatician` prepares genotypes, `writer` reports to the breeder (`stakeholder-communication`).
 * GWAS or Mendelian randomization: `bioinformatician` QC, `statistician` model and thresholds (`association-studies`), `reviewer` on the claim.

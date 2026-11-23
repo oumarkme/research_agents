@@ -9,14 +9,14 @@ description: 'Use when sizing cores, memory, disk, GPU, and runtime for a job, o
 Request resources from measurement so jobs finish inside host limits. Correct: a written plan with pilot numbers, a stated margin, and a core total with its arithmetic.
 
 ## Decide
-1. Read host and limits from CLAUDE.md. The scheduler is unknown: ask for queue, walltime and memory caps, and fair-share rules before any submit script.
+1. The scheduler is unknown until stated: get queue, walltime and memory caps, and fair-share rules before any submit script.
 2. Pilot: one representative small input; record wall, CPU time, CPU use, peak memory.
 3. Scale: repeat at a second input size. Superlinear growth: size from the larger run.
 4. Memory from the peak, never the mean, plus a stated margin.
 5. Set threads explicitly; declared equals used.
 6. Core total = concurrent jobs times threads, plus helpers, at or under the limit. Show it.
 7. Disk peak = inputs + intermediates + outputs + temp; check free space.
-8. GPU: one job per GPU; ask before taking all.
+8. GPU: one job per GPU.
 
 ## Find current information
 Follow `current-methods-lookup`. Questions:

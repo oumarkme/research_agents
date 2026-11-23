@@ -14,7 +14,7 @@ Train or apply a neural model whose reported accuracy holds on new data. Correct
 3. Keep one test set untouched; add an external set. Check target-population subsets.
 4. Rare positives need precision-recall measures and prevalence. Check calibration. Bootstrap over genes or families, not rows.
 5. A published model is a versioned artifact: pin weights, build, transcripts; check training-label overlap with your test set. Convert scores to evidence by calibration (`variant-interpretation`).
-6. One model version per comparison. One job per GPU; ask before taking all.
+6. One model version per comparison. One job per GPU.
 7. Fix seeds, run several, save config, commit, image digest, checkpoint checksum.
 
 ## Find current information

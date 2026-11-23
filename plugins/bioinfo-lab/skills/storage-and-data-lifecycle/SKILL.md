@@ -9,9 +9,9 @@ description: 'Use when planning storage, compression, transfer, checksums, backu
 Keep data recoverable, verifiable, and no larger than needed. Correct: copies verified by checksum, conversions checked, deletions approved and logged.
 
 ## Decide
-1. Raw data are read-only; read-only locations named in CLAUDE.md are never modified, moved, or cleaned. Copy to the project; record source, size, checksum.
+1. Treat raw data as read-only: copy to the project; record source, size, checksum.
 2. Checksum at creation, after each transfer, and before deletion, in a manifest (path, bytes, checksum, date). An unverified copy is not a backup.
-3. Keep raw signal until the user states a retention rule; ask before deleting.
+3. Keep raw signal until a retention rule is stated.
 4. Reference-based formats need the exact reference they were written against; archive it with checksum beside the data.
 5. Lossless by default; lossy needs written approval and a concordance test.
 6. After conversion, check integrity, record counts, and a sample record-level checksum.

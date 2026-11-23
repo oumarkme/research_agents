@@ -18,9 +18,9 @@ Log: annotation tool and cache release, transcript set release, frequency resour
 `<resource>_<version>_<subset>_<metric>`. A column without a version is a defect.
 
 ## Local population data
-* Access terms are set by the data owner; cohort-level data stays on the hosts CLAUDE.md names.
+* Access terms are set by the data owner; cohort-level data stays where the data owner's terms allow.
 * Use local frequency as an extra column. Do not replace the public resource silently: sample size and ascertainment differ.
 * A large gap between a population-matched public subset and the local frequency: check build, allele orientation, and array ascertainment first.
 
 ## Where
-Use the reference directory, containers, host, and core limit in CLAUDE.md; set thread counts explicitly.
+Set thread counts explicitly.

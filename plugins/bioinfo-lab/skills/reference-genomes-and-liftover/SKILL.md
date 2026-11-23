@@ -9,7 +9,7 @@ description: 'Use when choosing a reference build or contig naming, or convertin
 One build per project, chosen before alignment, with contig names that agree across files and counted, checked conversions.
 
 ## Decide
-1. If a collaborator, database, or panel fixes the build, follow it. Else reuse an indexed reference from the directory in CLAUDE.md if one is stated; else ask.
+1. If a collaborator, database, or panel fixes the build, follow it. Else reuse an existing indexed reference.
 2. Match the build to the question: where annotation, frequency, and clinical resources live; whether repeats, centromeres, or SVs matter; whether a pangenome is needed. Non-human: `reference-genome-selection`; record accession and version.
 3. Choose the sequence variant (alt-aware, no-alt, masked): `${CLAUDE_SKILL_DIR}/references/build-variants.md`.
 4. Align, call, and annotate on one FASTA. Compare contig names and lengths across all files; rename with a contig map.

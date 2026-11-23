@@ -84,6 +84,50 @@ jobs:
               if size > 4096:
                   print(f"::warning file={f}::SKILL.md is {size} bytes (limit 4096)")
 
+          def front(text):
+              m = re.match(r"---\r?\n(.*?)\r?\n---\r?\n", text, re.S)
+              return m.group(1) if m else ""
+
+          def field(fm, key):
+              m = re.search(rf"^{key}:\s*(.*)$", fm, re.M)
+              return m.group(1).strip() if m else None
+
+          # Description length (limit 400; the platform truncates at 1,536) and SKILL.md line limit (500).
+          for f in files:
+              text = f.read_text(encoding="utf-8")
+              desc = (field(front(text), "description") or "").strip("'\"")
+              if len(desc) > 400:
+                  errors.append(f"{f}: description is {len(desc)} characters (limit 400)")
+              if f.name == "SKILL.md" and len(text.splitlines()) > 500:
+                  errors.append(f"{f}: more than 500 lines")
+
+          # Intentional agent pins, when the agent exists.
+          agents = plugin / "agents"
+          pins = {"reviewer": {"model": "opus", "effort": "high", "tools": "Skill, Read, Grep, Glob, Bash, WebFetch"},
+                  "assistant": {"model": "haiku", "effort": "low"}}
+          for name, want in pins.items():
+              p = agents / f"{name}.md"
+              if not p.exists():
+                  errors.append(f"agents/{name}.md is missing")
+                  continue
+              fm = front(p.read_text(encoding="utf-8"))
+              for key, value in want.items():
+                  if field(fm, key) != value:
+                      errors.append(f"agents/{name}.md: {key} is {field(fm, key)!r}, expected {value!r}")
+
+          # Counts in plugin.json and the marketplace description match the files.
+          n_agents = len(list(agents.glob("*.md"))) if agents.exists() else 0
+          n_skills = len(list((plugin / "skills").glob("*/SKILL.md")))
+          pjd = json.loads((plugin / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))["description"]
+          for p in mk.get("plugins", []):
+              if p.get("name") == "bioinfo-lab" and p.get("description") != pjd:
+                  errors.append("marketplace.json description differs from plugin.json")
+          want = f"{n_skills} skills"
+          if want not in pjd:
+              errors.append(f"plugin.json description should state {want}")
+          if n_agents and f"{n_agents} " not in pjd:
+              errors.append(f"plugin.json description should state {n_agents} agents")
+
           for e in errors:
               print(f"::error::{e}")
           sys.exit(1 if errors else 0)

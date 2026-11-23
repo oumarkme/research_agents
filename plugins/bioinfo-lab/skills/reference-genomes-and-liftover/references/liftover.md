@@ -10,7 +10,7 @@
 | Contig renamed | Compare `.fai` before and after |
 
 ## Chain file
-* Prefer a chain from the reference directory in CLAUDE.md; otherwise download from the assembly provider and record source, date, and checksum.
+* Prefer an existing local chain; otherwise download from the assembly provider and record source, date, and checksum.
 * The chain must match the exact source and target contig sets.
 
 ## Checks

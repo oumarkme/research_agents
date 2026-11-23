@@ -4,7 +4,7 @@ Read when you choose where to look or cannot reach a source.
 
 ## How to reach a source
 
-Use what your setup allows, in this order: the official API through any HTTP client (curl, Python, R, a browser tool); an official client package; an MCP server; a bulk download with its release number; the web page. If a source is unreachable (offline, firewall, login, bot block), say so, use the next route, and record which. Some APIs accept POST only (gnomAD, Open Targets); without a POST-capable client, use the web page or a download. Respect rate limits and terms. Assume no server, conda, or containers.
+Use what your setup allows, in this order: the official API through any HTTP client (curl, Python, R, a browser tool); an official client package; an MCP server; a bulk download with its release number; the web page. If a source is unreachable (offline, firewall, login, bot block), say so, use the next route, and record which. Some APIs accept POST only (gnomAD, Open Targets); without a POST-capable client, use the web page or a download. Respect rate limits and terms.
 
 ## Which resource first
 

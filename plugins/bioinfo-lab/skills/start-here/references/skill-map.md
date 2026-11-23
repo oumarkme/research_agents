@@ -34,7 +34,7 @@ Names only. Open the skill, not this file, for steps. Single-cell and nf-core ta
 | Data manager or curator | "Document this dataset for sharing" | `data-steward`; `data-stewardship` |
 | Anyone with a consent, permit, or privacy question | "Can I share these data or samples?" | `research-ethics`, `access-benefit-sharing-and-data-governance` (stop and ask the data owner) |
 | Anyone needing one fact or reference | "Is this PMID real?" | `assistant`; `trusted-sources` |
-| Anyone needing a translation | "Translate this abstract" (target language from CLAUDE.md, else ask) | `translator` |
+| Anyone needing a translation | "Translate this abstract" (target language as the user states it) | `translator` |
 | Anyone needing slides, a talk, or a figure | "Make a 10-minute talk" (HTML default, PDF on request) | `figure-maker`; `slides`, `plotting` |
 | Anyone needing a literature review | "What is known about this gene?" | `literature-reviewer`; `trusted-sources` |
 | Anyone asking about plugin version or updates | "Is there a newer version?" | `update` |

@@ -1,6 +1,6 @@
 ---
 name: plotting
-description: 'Use for any figure, plot, chart, or heatmap: Nature-style 88 mm single-column spec, Okabe-Ito palette, viridis, JPEG 300 dpi by default or PDF on request, templates, and a mandatory legibility check.'
+description: 'Use for any figure, plot, chart, or heatmap: Nature-style 88 mm single-column spec, Okabe-Ito palette, viridis, JPEG 300 dpi by default or PDF on request, templates, and a mandatory legibility check. Not for slide decks (slides) or caption text (writing).'
 ---
 
 # Plotting

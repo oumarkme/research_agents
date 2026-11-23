@@ -1,6 +1,6 @@
 ---
 name: stakeholder-communication
-description: 'Use when preparing results, reports, or meetings for breeders, physicians, farmers, or other non-statistician collaborators: decision-focused summaries, uncertainty, plain language, and requirement gathering.'
+description: 'Use when preparing results, reports, or meetings for breeders, physicians, farmers, or other non-statistician collaborators: decision-focused summaries, uncertainty, plain language, and requirement gathering. Not for manuscripts (writing).'
 ---
 
 # Working with breeders and physicians

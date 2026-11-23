@@ -10,7 +10,7 @@ Choose one assembly and one annotation for the question, reproducibly. A correct
 
 ## Decide
 1. Name species, accession, cultivar or breed, and the question. Ask if the population differs from the reference.
-2. Reuse an indexed project reference with a checksum (location in CLAUDE.md if stated; else ask).
+2. Reuse an indexed project reference with a checksum (reuse an existing one if present).
 3. List candidates from archives, portals, and the species consortium; prefer its release.
 4. Compare level, haplotype type, contiguity, completeness, consensus quality (QV), gaps, organelles, year. Prefer chromosome-scale, curated, and community-used.
 5. Match the annotation to the assembly version; use one annotation per comparison.

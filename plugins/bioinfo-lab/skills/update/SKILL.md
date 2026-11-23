@@ -1,6 +1,7 @@
 ---
 name: update
 description: 'Use when the user asks to update, upgrade, or check the version of this plugin, or after an error that a newer release may fix.'
+disable-model-invocation: true
 ---
 
 # Update the plugin

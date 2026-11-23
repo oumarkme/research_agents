@@ -8,4 +8,4 @@
 * Record the patch level with the build.
 * Pangenome references: coordinates need a linear path; report on a linear reference.
 
-Check the FASTA `.fai` to see which variant a file is. Use the reference directory in CLAUDE.md; list it before downloading, and note the FASTA name, index files, annotation, and chain files.
+Check the FASTA `.fai` to see which variant a file is. List existing references before downloading, and note the FASTA name, index files, annotation, and chain files.

@@ -1,6 +1,6 @@
 ---
 name: project-readme
-description: 'Use when creating or updating a README.md for a tool, pipeline, analysis project, dataset, or repository: a compact structure that answers what it is, how to install and run it, and how it works.'
+description: 'Use when creating or updating a README.md for a tool, pipeline, analysis project, dataset, or repository: a compact structure that answers what it is, how to install and run it, and how it works. Not for papers (writing).'
 ---
 
 # Project README

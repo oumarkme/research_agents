@@ -1,6 +1,6 @@
 ---
 name: trusted-sources
-description: 'Use before any scientific fact, reference, database record, or software lookup: source tiers, a catalog of trustworthy genomic and genetic resources, and labels for what was verified.'
+description: 'Use before any scientific fact, reference, database record, or software lookup: source tiers, a catalog of trustworthy genomic and genetic resources, and labels for what was verified. Not for choosing a method (current-methods-lookup).'
 ---
 
 # Trusted sources
@@ -20,7 +20,7 @@ Prefer the last five years unless seminal. When Tier 1 sources disagree, report 
 
 ## Routing
 
-Route in this order: official API, client package, MCP server, bulk download with release number, web page. If a source is unreachable, say so, use the next route, and record which. Assume no server, conda, or containers. `${CLAUDE_SKILL_DIR}/references/routing.md` has the "Which resource first" table (question to database) and access notes (POST-only APIs, rate limits).
+Route in this order: official API, client package, MCP server, bulk download with release number, web page. If a source is unreachable, say so, use the next route, and record which. `${CLAUDE_SKILL_DIR}/references/routing.md` has the "Which resource first" table (question to database) and access notes (POST-only APIs, rate limits).
 
 ## Workflow
 

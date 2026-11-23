@@ -11,11 +11,11 @@ Goal: pick methods from today's evidence, not from memory, and record what was f
 
 Look up: tool or method choice, options and flags, thresholds from a release, database releases, benchmark claims, guideline updates.
 Skip: stable principles, file-format meaning, statistics, and any dated, unexpired entry in the project `analysis-log`. Reuse that entry.
-Cost: one focused lookup per decision. Stop when two independent reliable sources agree.
+Stop when two independent reliable sources agree.
 
 ## How
 
-Who looks up: the deputy PI sends the question to the `assistant` agent (cheap, fast, has web tools) and gets back facts only: URL, version or date, a short quote, retrieval date, or "not found". Other agents with WebFetch read URLs they are given; they do not browse.
+Who looks up: any session with web tools, or the cheap `assistant` agent when the question is a plain fact lookup. Return facts only: URL, version or date, a short quote, retrieval date, or "not found".
 1. State the question and constraints: organism, data type, scale, platform.
 2. Search the keywords in the domain skill's where-to-look file; open the official or most-used current page; official documentation and release notes first. Fetch from the web; keep no local copies of documentation.
 3. Then recent independent benchmarks or reviews (PubMed, Crossref; label preprints) over the authors' own.

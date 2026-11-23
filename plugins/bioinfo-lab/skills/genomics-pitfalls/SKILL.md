@@ -1,6 +1,6 @@
 ---
 name: genomics-pitfalls
-description: 'Use when code or analysis handles genomic coordinates, variants, builds, sample tables, genotypes, or prediction: checklist of bug classes (coordinates, builds, contigs, REF/ALT, sample order, leakage).'
+description: 'Use when code or analysis handles genomic coordinates, variants, builds, sample tables, genotypes, or prediction: checklist of bug classes (coordinates, builds, contigs, REF/ALT, sample order, leakage). Not for sample swaps (sample-identity-and-contamination) or liftover steps (reference-genomes-and-liftover).'
 ---
 
 # Genomics and genomic prediction pitfalls

@@ -15,7 +15,7 @@ Build layers in this order:
 3. Regression: compare outputs with stored expectations after any change. Do not checksum files that carry dates or command lines; compare records or use numeric tolerances.
 4. Accuracy: a truth-set slice scored and stratified (`sequencing-pipelines`); fail on a drop in any stratum, with a margin set from repeat runs on the unchanged pipeline.
 Rules: tiny public or synthetic test data, fetched by checksum; pin seeds, tool versions, and images; change a pin in its own commit with the regression diff; each bug fix adds the failing case first.
-CI: layers 1 and 2 on every push; layers 3 and 4 on release, on the compute host in CLAUDE.md (else ask). Runner matches production containers. No secrets or large downloads.
+CI: layers 1 and 2 on every push; layers 3 and 4 on release, on the production compute environment. Runner matches production containers. No secrets or large downloads.
 
 ## Find current information
 Follow `current-methods-lookup`. Ask: which test framework for this engine is maintained now; how it handles snapshots and tolerances; which CI limits apply; which truth sets are current.

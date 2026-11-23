@@ -1,38 +1,16 @@
 ---
 name: lab-team
-description: 'Use before delegating to an agent or planning multi-step work: routing rule, agent roster with when not to delegate, and escalation order.'
+description: 'Use before delegating or when planning multi-step work: what each agent is good at and when delegation pays off. Guidance, not a rule.'
 ---
 
 # Lab team
 
-## Default: route
+Delegation is optional. A subagent starts with no conversation history, returns only a summary, and spends its own tokens; multi-agent runs used about 15 times the tokens of a chat (Anthropic, 2025). Delegate when the work is parallel, breadth-first, or produces large intermediate output. Keep dependent steps, and anything that needs the conversation, in the main session.
 
-The main session, as deputy PI, routes. Delegate by default: split the task, send each part to the best-matching agent, and integrate the returns. Work alone only when no agent fits or the step is trivial (one lookup, a one-line edit). A multi-agent run costs about 15 times the tokens of a chat (Anthropic, 2025), so give each agent a bounded task and a capped report. Run independent agents in one message, chain at most 3, and say in one line which agent you used.
+Agents (descriptions are in each agent's frontmatter): `assistant` (cheap bulk work: searches, public-ID lookups, log and job checks, test runs), `literature-reviewer`, `data-steward`, `translator`, `writer`, `figure-maker`, `bioinformatician`, `microbial-genomicist`, `evolutionary-genomicist`, `software-engineer`, `breeder`, `statistician`, `clinical-geneticist`, and `reviewer` (independent, read-only, Opus).
 
-Cost: send routine work with no judgment in it to `assistant` (Haiku) first: searches, public-ID lookups, log and job checks, test runs, and mechanical edits with a fixed rule. Use a stronger agent only for drafting, method choice, classification, or review. Check each `assistant` return against the files.
+`reviewer` is worth a call before results are reported or shared, because it did not produce the work. Skip it for exploratory work and for edits you have tested.
 
-## Agents (14)
+If a result is poor, retry with a sharper brief, then raise effort (the main model may pass `effort` per call), then raise the model.
 
-`assistant`, `literature-reviewer`, `data-steward`, `translator`, `writer`, `figure-maker`, `bioinformatician`, `microbial-genomicist`, `evolutionary-genomicist`, `software-engineer`, `breeder`, `statistician`, `clinical-geneticist`, `reviewer` (Opus). Descriptions in each agent's frontmatter.
-
-Roster, chains, and gaps: `${CLAUDE_SKILL_DIR}/references/roster.md`. Summary:
-
-* Chains: assay planning -> `bioinformatician` -> `statistician` -> `reviewer` -> `writer`.
-* Variants: `bioinformatician` -> `clinical-geneticist` -> `reviewer`.
-* Outbreak: `microbial-genomicist` -> `evolutionary-genomicist` -> `reviewer`.
-* Breeding: `breeder` -> `statistician` -> `data-steward`.
-* The user is the PI; the main session is the deputy PI who briefs the group members and checks every return; scope, budget, ethics, and publication claims go to the PI.
-* Gaps (no assay liaison, HPC engineer, or coordinator agent) are listed in the roster.
-
-Model and effort are in each agent's frontmatter. After a cheaper tier fails twice, raise effort first, then model. Opus is for the reviewer and blind variant classification only.
-
-## Next skills
-
-Call Skill `agent-brief` to write a brief and verify returns, and `team-playbooks` for the agent order of a multi-step workflow.
-
-## Checks and stop rules
-
-* Ask the reviewer for correctness and requirement gaps only; it always finds optional ones.
-* Skip `reviewer` for exploratory work and for edits you tested yourself.
-
-Competency map and the sources behind this team: `${CLAUDE_SKILL_DIR}/references/competency-map.md`.
+Roster with hand-offs: `${CLAUDE_SKILL_DIR}/references/roster.md`. Briefing and checking returns: `agent-brief`. Sequences for common workflows: `team-playbooks`. Sources: `${CLAUDE_SKILL_DIR}/references/competency-map.md`.

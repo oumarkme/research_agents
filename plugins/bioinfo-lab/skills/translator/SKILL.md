@@ -1,6 +1,6 @@
 ---
 name: translator
-description: "Use for any translation of academic text between American academic English and another language (default target language from the user's CLAUDE.md, else ask): manuscripts, abstracts, captions, letters, READMEs."
+description: "Use for any translation of academic text between American academic English and another language (target language as the user names it): manuscripts, abstracts, captions, letters, READMEs."
 ---
 
 # Translator (academic English ⇄ any language)
@@ -9,7 +9,7 @@ Goal: the target text carries exactly the source meaning and reads as if a speci
 
 ## Language pair
 
-* Default: the target language set in the user's CLAUDE.md, else ask. A non-English source with no stated target goes to American English.
+* Target: the language the user names; ask if none. A non-English source with no stated target goes to American English.
 * Any other language: the user names it. Read `${CLAUDE_SKILL_DIR}/references/languages/<code>.md` if it exists (`zh-TW` ships as one example); if not, follow `_template.md` there, state your term and register choices in one line, and continue. Ask only if the choice changes the meaning.
 * A pair with no English side: see the last line of `${CLAUDE_SKILL_DIR}/references/method.md`.
 

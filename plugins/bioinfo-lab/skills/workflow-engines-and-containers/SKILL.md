@@ -10,11 +10,11 @@ Run analyses as pinned, restartable, auditable workflows. Correct: a second run 
 
 ## Decide
 1. Reuse a maintained community pipeline at a pinned revision before writing one.
-2. Engine: the one the team runs and the host supports; ask before adopting another.
-3. Software source, in order: shared image directory if CLAUDE.md names one (read-only: ask the owner to add images), a project-built container, a locked environment.
+2. Engine: the one the host supports.
+3. Software source, in order: an existing shared image, a project-built container, a locked environment.
 4. Pin every layer (image digest, lock file, reference checksum). Never a floating tag.
 5. The scheduler is unknown. Ask for executor, queue, walltime, and memory rules.
-6. Total cores within the limit in CLAUDE.md (else ask). Work directory in private scratch; results to the project.
+6. Total cores within the host limit. Work directory in scratch; results to the project.
 7. Retry only resource-related failures, with a bounded count and a memory cap below the host limit.
 
 ## Find current information

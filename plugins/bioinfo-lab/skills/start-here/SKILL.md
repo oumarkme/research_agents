@@ -5,9 +5,9 @@ description: 'Use when a user asks what this plugin can do, where to start, or w
 
 # Start here
 
-Vision: skills look up current methods and verify results; agents are the group members; the user is the PI who decides; the main session is the deputy PI.
+Skills look up current methods and verify results; agents are optional helpers for parallel or bulk work.
 
-This plugin supports research in bioinformatics, genetics, genomics, and breeding on any organism: human, animal, plant, microbial, viral, fungal, and wild populations. Ask at most two questions, only if the answers change the route: what is the organism and goal, and what data exist (none is fine). Infer the user's level from their words; no programming skill is required.
+This plugin supports research in bioinformatics, genetics, genomics, and breeding on any organism: human, animal, plant, microbial, viral, fungal, and wild populations. Ask only if the organism, goal, or data would change the route (no data yet is fine). Infer the user's level from their words; no programming skill is required.
 
 By need (full table in `references/skill-map.md`):
 
@@ -25,4 +25,4 @@ Other routes: `translator`, `figure-maker`, `literature-reviewer`, `analysis-log
 
 Single-cell and nf-core: the optional separate bio-research plugin, if installed; otherwise use `sequencing-pipelines` and `current-methods-lookup` (`bio-research:single-cell-rna-qc`, `bio-research:scvi-tools`, `bio-research:nextflow-development`).
 
-The deputy PI (main session) routes each step to the best-matching member (`lab-team`). Defaults: user's language and level, next step, what was not checked.
+For delegation guidance see `lab-team`.

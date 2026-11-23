@@ -19,4 +19,4 @@
 Imputation from array genotypes uses a trained model: choose one trained on a matched population and check call posterior before use.
 
 ## Machines
-Use the host, containers, and thread cap in CLAUDE.md if stated, else ask; check the container directory before building an image. Graph-based typers need their reference; keep the path in the config.
+Check for an existing container image before building one. Graph-based typers need their reference; keep the path in the config.

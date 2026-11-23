@@ -1,6 +1,6 @@
 ---
 name: analysis-log
-description: 'Use when work spans several steps or sessions (pipeline build, multi-step analysis, long jobs, manuscript revision): progress file, claims ledger, start-of-session routine, and provenance for every reported number.'
+description: 'Use when work spans several steps or sessions (pipeline build, multi-step analysis, long jobs, manuscript revision): progress file, claims ledger, start-of-session routine, and provenance for every reported number. Not for a one-step task.'
 ---
 
 # Analysis log
